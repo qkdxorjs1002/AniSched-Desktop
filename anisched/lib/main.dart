@@ -1,3 +1,4 @@
+import 'package:anisched/repository/anissia/service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
     void _incrementCounter() {
         setState(() {
             _counter++;
+            final api = AnissiaService();
+            api.requestSchedule(1).then((value) => print(value));
         });
     }
 
