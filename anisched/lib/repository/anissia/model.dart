@@ -1,3 +1,21 @@
+class FACTOR {
+    static const Map<int, String> WEEKDAY = {
+        0: "일요일",
+        1: "월요일",
+        2: "화요일",
+        3: "수요일",
+        4: "목요일",
+        5: "금요일",
+        6: "토요일",
+        7: "외전",
+        8: "신작",
+    };
+
+    static const String WEEK = "week";
+    static const String MONTH = "month";
+    static const String QUARTER = "quarter";
+}
+
 class Anime {
 
     int id;
@@ -39,6 +57,16 @@ class Anime {
             captionCount: json['captionList'],
         );
     }
+
+    String get statusString {
+        if (endDate == null || DateTime.now().isBefore(DateTime.parse(endDate))) {
+            return status.isNotEmpty && status == "OFF" ? "[결방] " : "";
+        }
+        
+        return "[종영] ";
+    } 
+
+    String get genreString => genres.replaceAll(",", " / ");
 }
 
 class Caption {
@@ -90,4 +118,8 @@ class Rank {
             rank: json['rank'],
         );
     }
+
+    String get diffString => (diff != 0 ? diff.abs().toString() + (diff.isOdd ? " ▼" : " ▲") : "");
+
+    String get rankString => "${rank.toString()}위";
 }
