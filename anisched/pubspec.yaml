@@ -1,23 +1,24 @@
 name: anisched
 description: A new Flutter project.
-
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+    sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  retrofit: any
-  cupertino_icons: ^1.0.2
+    flutter:
+        sdk: flutter
+    retrofit: any
+    url_launcher: any
+    palette_generator: any
+    cupertino_icons: ^1.0.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  retrofit_generator: any
-  build_runner: any
-
+    flutter_test:
+        sdk: flutter
+    retrofit_generator: any
+    build_runner: any
+    
 flutter:
-  uses-material-design: true
+    uses-material-design: true
