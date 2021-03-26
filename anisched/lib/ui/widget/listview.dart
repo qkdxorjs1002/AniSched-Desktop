@@ -7,6 +7,7 @@ class OnItemClickListener {
     final onItemClick;
 
     OnItemClickListener({ this.onItemClick });
+    
 }
 
 class AnimeListView extends StatelessWidget {
@@ -20,6 +21,9 @@ class AnimeListView extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return CustomScrollView(
+            physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+            ),
             shrinkWrap: true,
             slivers: [
                 SliverPadding(
@@ -264,6 +268,9 @@ class RankListView extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return CustomScrollView(
+            physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+            ),
             shrinkWrap: true,
             slivers: [
                 SliverPadding(
