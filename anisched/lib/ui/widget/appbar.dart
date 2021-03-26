@@ -5,8 +5,9 @@ class CustomAppBar extends StatelessWidget {
     final Widget title;
     final Widget backdrop;
     final Widget body;
+    final bool collapsed;
 
-    CustomAppBar({ this.title, this.backdrop, this.body });
+    CustomAppBar({ this.title, this.backdrop, this.body, this.collapsed = true });
 
     @override
     Widget build(BuildContext context) {
@@ -20,13 +21,14 @@ class CustomAppBar extends StatelessWidget {
                         color: Colors.grey,
                         opacity: 0.9,
                     ),
-                    
+                    elevation: 0,
                     pinned: true,
                     snap: true,
                     floating: true,
-                    expandedHeight: MediaQuery.of(context).size.height * 0.35,
+                    expandedHeight: collapsed ? 0 : MediaQuery.of(context).size.height * 0.35,
                     stretch: true,
                     flexibleSpace: FlexibleSpaceBar(
+                        collapseMode: CollapseMode.parallax,
                         stretchModes: [
                             StretchMode.zoomBackground,
                             StretchMode.blurBackground,
