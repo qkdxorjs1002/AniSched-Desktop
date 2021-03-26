@@ -22,3 +22,4 @@ doc/api/
 .DS_Store
 
 .private/
+anisched/lib/_API_KEY.dart
