@@ -21,10 +21,13 @@ class HomePage extends StatelessWidget {
                         ),
                     ),
                     SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.35,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: double.infinity,
-                        child: Ranking(
-                            factor: FACTOR.WEEK,
+                        child: Container(
+                            color: Color.fromRGBO(15, 15, 15, 1),
+                            child: Ranking(
+                                factor: FACTOR.WEEK,
+                            ),
                         ),
                     ),
                 ],

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:anisched/_API_KEY.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/anissia/service.dart';
+import 'package:anisched/repository/tmdb/service.dart';
 import 'package:anisched/tool.dart';
 import 'package:anisched/ui/widget/appbar.dart';
 import 'package:anisched/ui/widget/listview.dart';
@@ -18,16 +20,28 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-    final api = AnissiaService();
+    final anissia = AnissiaService();
+    final tmdb = TMDBService();
 
     List<Caption> captionList;
+    String backdrop = "";
+    bool collapsed = true;
 
     @override
     void initState() {
         super.initState();
-        api.requestCaption(widget.anime.id).then((value) {
+        anissia.requestCaption(widget.anime.id).then((value) {
             setState(() {
                 captionList = value;
+            });
+
+            tmdb.requestSearch(APIKey.TMDB_API_KEY,"ko-KR", widget.anime.subject).then((value) {
+                setState(() {
+                    if (value.resultList != null && value.resultList.isNotEmpty) {
+                        backdrop = value.resultList[0].getBackdropPath;
+                        collapsed = false;
+                    }
+                });
             });
         });
     }
@@ -36,22 +50,33 @@ class _DetailPageState extends State<DetailPage> {
     Widget build(BuildContext context) {
         return Scaffold(
             backgroundColor: Colors.black,
-            body: CustomAppBar(
-                title: Text(
-                    widget.anime.subject,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                ),
-                backdrop: Image.network(
-                    "https://image.tmdb.org/t/p/original/aOQL8UYduNxDePbynZROLZ1nfsf.jpg",
-                    fit: BoxFit.cover,
-                ),
-                body: CaptionSliverList(
-                    list: captionList,
-                    onItemClickListener: OnItemClickListener(
-                        onItemClick: (Caption caption) async => Tool.openURL(caption.website)
+            body: Row(
+                children: [
+                    Expanded(
+                        child: CustomAppBar(
+                            collapsed: collapsed,
+                            title: Text(
+                                widget.anime.subject,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                            ),
+                            backdrop: Image.network(
+                                backdrop,
+                                fit: BoxFit.cover,
+                            ),
+                            body: CaptionSliverList(
+                                list: captionList,
+                                onItemClickListener: OnItemClickListener(
+                                    onItemClick: (Caption caption) async => Tool.openURL(caption.website)
+                                ),
+                            ),
+                        ),
                     ),
-                ),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: double.infinity,
+                    ),
+                ],
             ),
         );
     }

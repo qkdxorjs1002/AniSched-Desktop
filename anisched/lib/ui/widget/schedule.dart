@@ -1,5 +1,6 @@
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/anissia/service.dart';
+import 'package:anisched/repository/tmdb/service.dart';
 import 'package:anisched/ui/page/detail.dart';
 import 'package:anisched/ui/widget/listview.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,14 +18,15 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-    final api = AnissiaService();
+    final anissia = AnissiaService();
+    final tmdb = TMDBService();
 
     List<Anime> animeList;
 
     @override
     void initState() {
         super.initState();
-        api.requestSchedule(widget.week).then((value) {
+        anissia.requestSchedule(widget.week).then((value) {
             setState(() {
                 animeList = value;
             });
