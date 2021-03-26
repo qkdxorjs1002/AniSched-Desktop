@@ -58,15 +58,39 @@ class Anime {
         );
     }
 
-    String get statusString {
-        if (endDate == null || DateTime.now().isBefore(DateTime.parse(endDate))) {
-            return status.isNotEmpty && status == "OFF" ? "[결방] " : "";
+    String get extraInfo {
+        if (time.contains(":")) {
+            return (isSoon
+                ? startDate.replaceAll(RegExp("\\d\\d\\d\\d-"), "")
+                : (!isEnd 
+                    ? (isStatus 
+                        ? "" 
+                        : "결방") 
+                    : "종영"));
         }
         
-        return "[종영] ";
+        return "";
     } 
 
     String get genreString => genres.replaceAll(",", " / ");
+
+    bool get isStatus {
+        return (status == "ON" ? true : false);
+    }
+
+    bool get isSoon {
+        if (startDate == "") {
+            return true;
+        }
+        return DateTime.now().isBefore(DateTime.parse(startDate));
+    }
+
+    bool get isEnd {
+        if (endDate == "") {
+            return false;
+        }
+        return DateTime.now().isAfter(DateTime.parse(endDate));
+    }
 }
 
 class Caption {

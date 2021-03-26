@@ -98,7 +98,7 @@ class AnimeSliverChild extends StatelessWidget {
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.bottomLeft,
-                                            child: Text("${anime.statusString}${anime.subject}"),
+                                            child: Text("${anime.subject}"),
                                         ),
                                     ),
                                 ],
@@ -106,9 +106,15 @@ class AnimeSliverChild extends StatelessWidget {
                             Row(
                                 children: [
                                     Expanded(
-                                        child:Align(
+                                        child: Align(
                                             alignment: Alignment.topLeft,
                                             child: Text("${anime.time} - ${anime.genreString}"),
+                                        ),
+                                    ),
+                                    Expanded(
+                                        child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text("${anime.extraInfo}"),
                                         ),
                                     ),
                                 ],
