@@ -60,10 +60,10 @@ class _DetailPageState extends State<DetailPage> {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                             ),
-                            backdrop: Image.network(
+                            backdrop: backdrop.isNotEmpty ? Image.network(
                                 backdrop,
                                 fit: BoxFit.cover,
-                            ),
+                            ) : null,
                             body: CaptionSliverList(
                                 list: captionList,
                                 onItemClickListener: OnItemClickListener(
