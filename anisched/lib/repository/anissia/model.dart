@@ -58,7 +58,7 @@ class Anime {
         );
     }
 
-    String get extraInfo {
+    String get getExtraInfo {
         if (time.contains(":")) {
             return (isSoon
                 ? startDate.replaceAll(RegExp("\\d\\d\\d\\d-"), "")
@@ -72,7 +72,7 @@ class Anime {
         return "";
     } 
 
-    String get genreString => genres.replaceAll(",", " / ");
+    String get getGenreString => genres.replaceAll(",", " / ");
 
     bool get isStatus {
         return (status == "ON" ? true : false);
@@ -91,6 +91,8 @@ class Anime {
         }
         return DateTime.now().isAfter(DateTime.parse(endDate));
     }
+
+    String get getTimeString => time.isNotEmpty ? time.replaceAll("-99", "") : "미정";
 }
 
 class Caption {
@@ -114,6 +116,33 @@ class Caption {
             website: json['website'],
             author: json['name'],
         );
+    }
+
+    String get getEpisodeString => (episode == "0" ? (isWIP ? "준비중" : "단편") : episode + "화");
+
+    bool get isWIP => DateTime.now().isBefore(DateTime.parse(uploadDate));
+
+    String get getUploadDateString {
+        Duration diff = DateTime.now().difference(DateTime.parse(uploadDate));
+
+        if (diff.inDays > 0) {
+            if (diff.inDays >= 30) {
+                int inMonth = diff.inDays ~/ 30;
+                
+                if (inMonth >= 12) {
+                    return (inMonth ~/ 12).toString() + "년 전";
+                } else {
+                    return inMonth.toString() + "개월 전";
+                }
+            } 
+            return diff.inDays.toString() + "일 전";
+        } else if (diff.inHours > 0) {
+            return diff.inHours.toString() + "시간 전";
+        } else if (diff.inMinutes > 0) {
+            return diff.inMinutes.toString() + "분 전";
+        } else {
+            return "방금 전";
+        }
     }
 }
 

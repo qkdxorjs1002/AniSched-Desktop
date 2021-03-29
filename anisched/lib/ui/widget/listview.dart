@@ -112,13 +112,13 @@ class AnimeSliverChild extends StatelessWidget {
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text("${anime.time} - ${anime.genreString}"),
+                                            child: Text("${anime.getTimeString} - ${anime.getGenreString}"),
                                         ),
                                     ),
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.topRight,
-                                            child: Text("${anime.extraInfo}"),
+                                            child: Text("${anime.getExtraInfo}"),
                                         ),
                                     ),
                                 ],
@@ -221,7 +221,7 @@ class CaptionSliverChild extends StatelessWidget {
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.bottomLeft,
-                                            child: Text(""),
+                                            child: Text("자막"),
                                         ),
                                     ),
                                     Expanded(
@@ -237,13 +237,13 @@ class CaptionSliverChild extends StatelessWidget {
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text(caption.episode),
+                                            child: Text(caption.getEpisodeString),
                                         ),
                                     ),
                                     Expanded(
                                         child: Align(
                                             alignment: Alignment.topRight,
-                                            child: Text(caption.uploadDate),
+                                            child: Text(caption.getUploadDateString),
                                         ),
                                     ),
                                 ],

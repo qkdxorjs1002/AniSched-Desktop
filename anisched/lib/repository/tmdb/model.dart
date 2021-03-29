@@ -94,14 +94,14 @@ class Result {
     }
 
     String get getBackdropPath {
-        if (backdropPath.isEmpty) {
+        if (backdropPath == null || backdropPath.isEmpty) {
             return this.getPosterPath;
         }
         return "https://image.tmdb.org/t/p/original" + backdropPath;
     }
     
     String get getPosterPath {
-        if (posterPath.isEmpty) {
+        if (posterPath == null || posterPath.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/original" + posterPath;
