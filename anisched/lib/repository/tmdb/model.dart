@@ -15,7 +15,7 @@ class Search {
     factory Search.fromJson(Map<String, dynamic> json) {
         return Search(
             page: json['page'],
-            resultList: (json['results'] as List).map((e) => Result.fromJson(e)).toList(),
+            resultList: (json['results'] as List)?.map((e) => Result.fromJson(e))?.toList(),
             totalPages: json['total_pages'],
             totalResults: json['total_results'],
         );
@@ -74,11 +74,11 @@ class Result {
             adult: json['adult'],
             backdropPath: json['backdrop_path'],
             firstAirDate: json['first_air_date'],
-            genreIdList: (json['genre_ids'] as List).map((e) => e as int).toList(),
+            genreIdList: (json['genre_ids'] as List)?.map((e) => e as int)?.toList(),
             id: json['id'],
             mediaType: json['media_type'],
             name: json['name'],
-            originCountry: (json['origin_country'] as List).map((e) => e as String).toList(),
+            originCountry: (json['origin_country'] as List)?.map((e) => e as String)?.toList(),
             originalLanguage: json['original_language'],
             originalName: json['original_name'],
             originalTitle: json['original_title'],
@@ -88,7 +88,7 @@ class Result {
             releaseDate: json['release_date'],
             title: json['title'],
             video: json['video'],
-            voteAverage: json['vote_average'].toDouble(),
+            voteAverage: json['vote_average']?.toDouble(),
             voteCount: json['vote_count'],
         );
     }
@@ -122,7 +122,7 @@ class Videos {
     factory Videos.fromJson(Map<String, dynamic> json) {
         return Videos(
             id: json['id'],
-            videoList: (json['results'] as List).map((e) => Video.fromJson(e)).toList(),
+            videoList: (json['results'] as List)?.map((e) => Video.fromJson(e))?.toList(),
         );
     }
 
