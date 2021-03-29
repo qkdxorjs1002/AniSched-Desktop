@@ -28,8 +28,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   project.set_dart_entrypoint_arguments(std::move(command_line_arguments));
 
   FlutterWindow window(&run_loop, project);
-  Win32Window::Point origin(400, 300);
-  Win32Window::Size size(720, 1280);
+  Win32Window::Point origin(300, 200);
+  Win32Window::Size size(1000, 1000);
   if (!window.CreateAndShow(L"AniSched", origin, size)) {
     return EXIT_FAILURE;
   }
