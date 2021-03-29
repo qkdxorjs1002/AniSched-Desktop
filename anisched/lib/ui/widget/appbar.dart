@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget {
 
     final Widget title;
-    final Widget backdrop;
+    final bool leading;
+    final String backdrop;
+    final Widget bottom;
     final Widget body;
     final bool collapsed;
 
-    CustomAppBar({ this.title, this.backdrop, this.body, this.collapsed = true });
+    CustomAppBar({ this.title, this.leading = true, this.backdrop, this.bottom, this.body, this.collapsed = true });
 
     @override
     Widget build(BuildContext context) {
@@ -17,6 +19,8 @@ class CustomAppBar extends StatelessWidget {
             ),
             slivers: [
                 SliverAppBar(
+                    automaticallyImplyLeading: leading,
+                    bottom: bottom != null ? bottom : null,
                     iconTheme: IconThemeData(
                         color: Colors.grey,
                         opacity: 0.9,
@@ -49,7 +53,10 @@ class CustomAppBar extends StatelessWidget {
                             children: [
                                 Padding(
                                     padding: EdgeInsets.only(bottom: 5),
-                                    child: backdrop,
+                                    child: backdrop != null ? Image.network(
+                                        backdrop,
+                                        fit: BoxFit.cover,
+                                    ) : null,
                                 ),
                                 DecoratedBox(
                                     decoration: BoxDecoration(
