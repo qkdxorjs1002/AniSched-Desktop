@@ -1,6 +1,6 @@
 import 'package:anisched/repository/anissia/model.dart';
-import 'package:anisched/ui/widget/rank.dart';
-import 'package:anisched/ui/widget/schedule.dart';
+import 'package:anisched/ui/page/ranking/ranking.dart';
+import 'package:anisched/ui/page/schedule/schedule.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

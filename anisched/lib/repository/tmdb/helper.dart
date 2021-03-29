@@ -1,4 +1,3 @@
-import 'package:anisched/_API_KEY.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/service.dart';
 import 'package:anisched/tool.dart';
