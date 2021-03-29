@@ -107,6 +107,14 @@ class Result {
         return "https://image.tmdb.org/t/p/original" + posterPath;
     }
 
+    String get getFlexibleName {
+        if (mediaType == "tv") {
+            return name;
+        } else if (mediaType == "movie") {
+            return title;
+        }
+        return "";
+    }
 }
 
 class Videos {

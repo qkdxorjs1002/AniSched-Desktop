@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:anisched/_API_KEY.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/anissia/service.dart';
+import 'package:anisched/repository/tmdb/helper.dart';
+import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/repository/tmdb/service.dart';
 import 'package:anisched/tool.dart';
 import 'package:anisched/ui/widget/appbar.dart';
@@ -20,8 +22,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-    final anissia = AnissiaService();
-    final tmdb = TMDBService();
+    final anissiaService = AnissiaService();
+    final tmdbService = TMDBService();
 
     List<Caption> captionList;
     String backdrop = "";
@@ -30,20 +32,27 @@ class _DetailPageState extends State<DetailPage> {
     @override
     void initState() {
         super.initState();
-        anissia.requestCaption(widget.anime.id).then((value) {
+
+        anissiaService.requestCaption(widget.anime.id).then((value) {
             setState(() {
                 captionList = value;
             });
-
-            tmdb.requestSearch(APIKey.TMDB_API_KEY,"ko-KR", widget.anime.subject).then((value) {
-                setState(() {
-                    if (value.resultList != null && value.resultList.isNotEmpty) {
-                        backdrop = value.resultList[0].getBackdropPath;
-                        collapsed = false;
-                    }
-                });
-            });
         });
+        
+        TMDBHelper(
+            tmdbService: tmdbService,
+            onResultListener: OnResultListener(
+                onFind: (Result result) {
+                    setState(() {
+                        backdrop = result.getBackdropPath;
+                        collapsed = false;
+                    });
+                },
+                onFailed: () {
+
+                }
+            ),
+        ).searchWithFilter(APIKey.TMDB_API_KEY, widget.anime);
     }
 
     @override
