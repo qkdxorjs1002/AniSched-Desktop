@@ -21,6 +21,10 @@ class HomePage extends StatelessWidget {
                         ),
                     ),
                     SizedBox(
+                        width: 1,
+                        height: double.infinity,
+                    ),
+                    SizedBox(
                         width: MediaQuery.of(context).size.width * 0.4,
                         height: double.infinity,
                         child: Container(
