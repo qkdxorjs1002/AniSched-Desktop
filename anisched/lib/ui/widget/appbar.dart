@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget {
                             children: [
                                 Padding(
                                     padding: EdgeInsets.only(bottom: 5),
-                                    child: backdrop != null ? Image.network(
+                                    child: backdrop != null && backdrop.isNotEmpty ? Image.network(
                                         backdrop,
                                         fit: BoxFit.cover,
                                     ) : null,

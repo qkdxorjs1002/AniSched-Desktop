@@ -83,7 +83,7 @@ class Result {
             originalName: json['original_name'],
             originalTitle: json['original_title'],
             overview: json['overview'],
-            popularity: json['popularity'],
+            popularity: json['popularity']?.toDouble(),
             posterPath: json['poster_path'],
             releaseDate: json['release_date'],
             title: json['title'],
