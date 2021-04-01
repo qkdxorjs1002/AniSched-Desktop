@@ -68,6 +68,7 @@ class _DetailPageState extends State<DetailPage> {
                     Expanded(
                         child: CustomAppBar(
                             collapsed: appBarCollapsed,
+                            leading: false,
                             title: Text(
                                 widget.anime.subject,
                                 style: TextStyle(
@@ -90,12 +91,14 @@ class _DetailPageState extends State<DetailPage> {
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.4,
                         height: double.infinity,
-                        child: CustomAppBar(
-                            title: Text("자막"),
-                            leading: false,
-                            body: CaptionSliverList(
-                                list: captionList,
-                                onItemClickListener: onCaptionListItemClickListener,
+                        child: Container(
+                            color: Color.fromRGBO(15, 15, 15, 1),
+                            child: CustomAppBar(
+                                title: Text("자막"),
+                                body: CaptionSliverList(
+                                    list: captionList,
+                                    onItemClickListener: onCaptionListItemClickListener,
+                                ),
                             ),
                         ),
                     ),

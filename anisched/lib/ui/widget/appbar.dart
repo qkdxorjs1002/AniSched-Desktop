@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
                     automaticallyImplyLeading: leading,
                     bottom: bottom != null ? bottom : null,
                     iconTheme: IconThemeData(
-                        color: Colors.grey,
+                        color: Colors.white,
                         opacity: 0.9,
                     ),
                     elevation: 0,
