@@ -109,12 +109,15 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
                 maxLines: 1,
             ),
             backdrop: _backdropIdx >= 0 ? _backdropList[_backdropIdx] : null,
-            bottom: TabBar(
-                controller: _tabController,
-                labelPadding: EdgeInsets.zero,
-                indicatorColor: Colors.grey,
-                tabs: getTabList(),
-                onTap: (idx) => widget.dataProvider.requestSchedule(idx),
+            bottom: PreferredSize(
+                preferredSize: Size.fromHeight(kToolbarHeight),
+                child: TabBar(
+                    controller: _tabController,
+                    labelPadding: EdgeInsets.zero,
+                    indicatorColor: Colors.grey,
+                    tabs: getTabList(),
+                    onTap: (idx) => dataProvider.requestSchedule(idx),
+                ),
             ),
             body: AnimeSliverList(
                 list: _animeList,
@@ -127,9 +130,11 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
         List<Widget> tabList = [];
 
         for (String item in FACTOR.WEEKDAY.values) {
-            tabList.add(Tab(
+            tabList.add(Container(
+                height: kToolbarHeight / 2,
+                child: Tab(
                 text: item,
-            ));
+            )));
         }
 
         return tabList;
