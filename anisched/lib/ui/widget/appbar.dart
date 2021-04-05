@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget {
                     pinned: true,
                     snap: true,
                     floating: true,
-                    expandedHeight: collapsed ? 0 : MediaQuery.of(context).size.height * 0.35,
+                    expandedHeight: collapsed ? 0 : MediaQuery.of(context).size.height * 0.4,
                     stretch: true,
                     flexibleSpace: FlexibleSpaceBar(
                         collapseMode: CollapseMode.parallax,
