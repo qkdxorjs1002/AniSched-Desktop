@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = anisched
+PRODUCT_NAME = AniSched
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.anisched
+PRODUCT_BUNDLE_IDENTIFIER = kr.paragonnov.anisched
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2021 paragonnov. All rights reserved.
