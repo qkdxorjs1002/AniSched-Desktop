@@ -2,7 +2,11 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 
 class Tool {
-    static void openURL(String url) async => await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+    static void openURL(String url) async {
+        if (url != null && url.isNotEmpty) {
+            await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+        }
+    }
 }
 
 class Levenshtein {
