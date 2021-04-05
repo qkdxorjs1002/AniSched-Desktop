@@ -12,16 +12,17 @@ import 'package:flutter/material.dart';
 
 class Schedule extends StatefulWidget {
 
-    final ScheduleDataProvider dataProvider = ScheduleDataProvider();
     final int week;
     
-    Schedule({ Key key, this.week }) : super(key: key);
+    const Schedule({ Key key, this.week }) : super(key: key);
 
     @override
     _ScheduleState createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
+
+    final ScheduleDataProvider dataProvider = ScheduleDataProvider();
 
     TabController _tabController;
     Timer _timer;
@@ -42,11 +43,11 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
         initObservers();
         initEvents();
 
-        widget.dataProvider.requestSchedule(widget.week);
+        dataProvider.requestSchedule(widget.week);
     }
 
     void initObservers() {
-        widget.dataProvider.getScheduleList.addObserver(Observer((List<Anime> data) {
+        dataProvider.getScheduleList.addObserver(Observer((List<Anime> data) {
             setState(() {
                 _animeList = data;
                 _backdropIdx = -1;
@@ -59,11 +60,11 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
 
             Iterator<Anime> iterator = data.iterator;
             while (iterator.moveNext()) {
-                widget.dataProvider.requestTMDB(iterator.current);
+                dataProvider.requestTMDB(iterator.current);
             }
         }));
 
-        widget.dataProvider.getTMDBResult.addObserver(Observer((Result data) {
+        dataProvider.getTMDBResult.addObserver(Observer((Result data) {
             setState(() {
                 _backdropList.add(data.getBackdropPath);
                 _appBarCollapsed = false;

@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
 
 class Ranking extends StatefulWidget {
 
-    final RankingDataProvider dataProvider = RankingDataProvider();
     final String factor;
     
-    Ranking({ Key key, this.factor }) : super(key: key);
+    const Ranking({ Key key, this.factor }) : super(key: key);
 
     @override
     _RankingState createState() => _RankingState();
@@ -20,6 +19,8 @@ class Ranking extends StatefulWidget {
 
 class _RankingState extends State<Ranking> {
 
+    final RankingDataProvider dataProvider = RankingDataProvider();
+    
     List<Rank> rankList;
 
     @override
@@ -27,11 +28,11 @@ class _RankingState extends State<Ranking> {
         super.initState();
         initObservers();
 
-        widget.dataProvider.requestRanking(widget.factor);
+        dataProvider.requestRanking(widget.factor);
     }
 
     void initObservers() {
-        widget.dataProvider.getAnime.addObserver(Observer((Anime data) {
+        dataProvider.getAnime.addObserver(Observer((Anime data) {
             Navigator.push(context, CupertinoPageRoute(
                 builder: (context) => DetailPage(
                     anime: data,
@@ -39,7 +40,7 @@ class _RankingState extends State<Ranking> {
             ));
         }));
 
-        widget.dataProvider.getRankList.addObserver(Observer((List<Rank> data) {
+        dataProvider.getRankList.addObserver(Observer((List<Rank> data) {
             setState(() {
                 rankList = data;
             });
@@ -54,7 +55,7 @@ class _RankingState extends State<Ranking> {
                 list: rankList,
                 onItemClickListener: OnItemClickListener(
                     onItemClick: (Rank rank) {
-                        widget.dataProvider.requestAnime(rank.id);
+                        dataProvider.requestAnime(rank.id);
                     }
                 ),
             )

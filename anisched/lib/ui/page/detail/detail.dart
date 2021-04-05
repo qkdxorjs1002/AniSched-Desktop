@@ -10,10 +10,9 @@ import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
 
-    final DetailDataProvider dataProvider = DetailDataProvider();
     final Anime anime;
     
-    DetailPage({ Key key, this.anime }) : super(key: key);
+    const DetailPage({ Key key, this.anime }) : super(key: key);
 
     @override
     _DetailPageState createState() => _DetailPageState();
@@ -21,6 +20,8 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
 
+    final DetailDataProvider dataProvider = DetailDataProvider();
+    
     bool appBarCollapsed = true;
     String backdropPath;
 
@@ -34,18 +35,18 @@ class _DetailPageState extends State<DetailPage> {
         initObservers();
         initEvents();
 
-        widget.dataProvider.requestCaption(widget.anime.id);
-        widget.dataProvider.requestTMDB(widget.anime);
+        dataProvider.requestCaption(widget.anime.id);
+        dataProvider.requestTMDB(widget.anime);
     }
 
     void initObservers() {
-        widget.dataProvider.getCaptionList.addObserver(Observer((List<Caption> data) {
+        dataProvider.getCaptionList.addObserver(Observer((List<Caption> data) {
             setState(() {
                 captionList = data;
             });
         }));
 
-        widget.dataProvider.getTMDBResult.addObserver(Observer((Result data) {
+        dataProvider.getTMDBResult.addObserver(Observer((Result data) {
             setState(() {
                 backdropPath = data.getBackdropPath;
                 appBarCollapsed = false;
