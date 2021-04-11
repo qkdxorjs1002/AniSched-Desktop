@@ -15,7 +15,7 @@ class App extends StatelessWidget {
                 brightness: Brightness.dark,
                 primarySwatch: Colors.indigo,
             ),
-            home: HomePage(week: DateTime.now().weekday),
+            home: HomePage(week: DateTime.now().weekday % 7),
         );
     }
 }
