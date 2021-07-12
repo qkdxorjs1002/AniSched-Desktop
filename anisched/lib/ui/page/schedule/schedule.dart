@@ -66,7 +66,7 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
 
         dataProvider.getTMDBResult.addObserver(Observer((Result data) {
             setState(() {
-                _backdropList.add(data.getBackdropPath);
+                _backdropList.add(data.getBackdropPath(Result.W1280));
                 _appBarCollapsed = false;
             });
             

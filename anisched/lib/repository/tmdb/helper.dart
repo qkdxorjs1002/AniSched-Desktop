@@ -19,7 +19,7 @@ class TMDBHelper {
     final TMDBService tmdbService;
 
     final List<String> _regexList = [
-            r"(\s\d기)|(\s(OVA|OAD))", r"(\s(IX|IV|V?I{0,3})\$)|(\s\d[snrt][tdh])|(((\sthe)(\s\w+|)|)\s(시즌|season)(\d|\s\d|))",
+            r"(\s\d기)|(\s(OVA|OAD))|(\s(IX|IV|V?I{0,3})\$)|(\s\d[snrt][tdh])|(((\sthe)(\s\w+|)|)\s(시즌|season)(\d|\s\d|))",
             r"(((\sthe)(\s\w+|)|)\s(animation)(\d|\s\d|))", r"[-~].*[-~]", r"[^\uAC00-\uD7A30-9A-z\s]", r"\s" 
     ];
 

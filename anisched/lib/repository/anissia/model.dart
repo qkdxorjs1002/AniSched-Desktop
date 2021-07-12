@@ -74,6 +74,8 @@ class Anime {
 
     String get getGenreString => genres.replaceAll(",", " / ");
 
+    List<String> get getGenreList => genres.split(",");
+
     bool get isStatus {
         return (status == "ON" ? true : false);
     }
@@ -93,6 +95,10 @@ class Anime {
     }
 
     String get getTimeString => time.isNotEmpty ? time.replaceAll("-99", "") : "미정";
+    
+    String get getStartDateString => startDate.isNotEmpty ? startDate : "미정";
+    
+    String get getEndDateString => endDate.isNotEmpty ? endDate : "미정";
 }
 
 class Caption {

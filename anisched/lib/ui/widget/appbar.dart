@@ -1,3 +1,4 @@
+import 'package:anisched/ui/widget/image.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -53,10 +54,9 @@ class CustomAppBar extends StatelessWidget {
                             children: [
                                 Padding(
                                     padding: EdgeInsets.only(bottom: 5),
-                                    child: backdrop != null && backdrop.isNotEmpty ? Image.network(
-                                        backdrop,
-                                        fit: BoxFit.cover,
-                                    ) : null,
+                                    child: backdrop != null && backdrop.isNotEmpty 
+                                        ? ImageNetwork(backdrop) 
+                                        : null,
                                 ),
                                 DecoratedBox(
                                     decoration: BoxDecoration(

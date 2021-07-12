@@ -24,6 +24,11 @@ class Search {
 
 class Result {
 
+    static const String ORIGINAL = "original";
+    static const String W300 = "w300";
+    static const String W500 = "w500";
+    static const String W1280 = "w1280";
+
     bool adult;
 
     String backdropPath;
@@ -93,18 +98,18 @@ class Result {
         );
     }
 
-    String get getBackdropPath {
+    String getBackdropPath(String width) {
         if (backdropPath == null || backdropPath.isEmpty) {
-            return this.getPosterPath;
+            return this.getPosterPath(width);
         }
-        return "https://image.tmdb.org/t/p/original" + backdropPath;
+        return "https://image.tmdb.org/t/p/" + width + backdropPath;
     }
     
-    String get getPosterPath {
+    String getPosterPath(String width) {
         if (posterPath == null || posterPath.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/original" + posterPath;
+        return "https://image.tmdb.org/t/p/" + width + posterPath;
     }
 
     String get getFlexibleName {
