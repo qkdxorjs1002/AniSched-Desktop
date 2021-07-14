@@ -20,6 +20,9 @@ abstract class AnissiaService {
     @GET("list/{page}")
     Future<List<Anime>> requestAllSchedule(@Path("page") int page);
 
+    @GET("caption/recent")
+    Future<List<RecentCaption>> requestRecentCaption();
+
     @GET("caption/animeNo/{id}")
     Future<List<Caption>> requestCaption(@Path("id") int id);
 
@@ -28,5 +31,8 @@ abstract class AnissiaService {
 
     @GET("rank/{factor}")
     Future<List<Rank>> requestRanking(@Path("factor") String factor);
+
+    @GET("autocorrect")
+    Future<List<String>> requestAutoCorrect(@Query("q") String query);
     
 }

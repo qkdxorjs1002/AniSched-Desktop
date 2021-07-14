@@ -101,6 +101,31 @@ class Anime {
     String get getEndDateString => endDate.isNotEmpty ? endDate : "미정";
 }
 
+class RecentCaption extends Caption {
+    
+    int id;
+
+    String subject;
+
+    RecentCaption({
+        episode, uploadDate, website, author, this.id, this.subject
+    }) : super(
+        episode: episode, uploadDate: uploadDate, website: website, author: author
+    );
+
+    factory RecentCaption.fromJson(Map<String, dynamic> json) {
+        return RecentCaption(
+            id: json['id'],
+            subject: json['subject'],
+            episode: json['episode'],
+            uploadDate: json['updDt'],
+            website: json['website'],
+            author: json['name'],
+        );
+    }
+
+}
+
 class Caption {
 
     String episode;
@@ -178,7 +203,7 @@ class Rank {
         );
     }
 
-    String get diffString => (diff != 0 ? diff.abs().toString() + (diff.isOdd ? " ▼" : " ▲") : "");
+    String get diffString => (diff != 0 ? (diff.isOdd ? "▼" : "▲") + diff.abs().toString()  : "");
 
     String get rankString => "${rank.toString()}위";
 }
