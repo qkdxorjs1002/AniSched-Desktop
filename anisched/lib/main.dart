@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'ui/page/home/home.dart';
 
 void main() {
@@ -7,14 +6,11 @@ void main() {
 }
 
 class App extends StatelessWidget {
-    @override
+
     Widget build(BuildContext context) {
         return MaterialApp(
             color: Colors.black,
-            theme: ThemeData(
-                brightness: Brightness.dark,
-                primarySwatch: Colors.indigo,
-            ),
+            theme: ThemeData.dark(),
             home: HomePage(week: DateTime.now().weekday % 7),
         );
     }

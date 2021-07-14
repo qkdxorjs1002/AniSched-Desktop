@@ -1,10 +1,11 @@
-import 'package:anisched/repository/anissia/model.dart';
-import 'package:anisched/ui/page/ranking/ranking.dart';
-import 'package:anisched/ui/page/schedule/schedule.dart';
+import 'package:anisched/ui/widget/board.dart';
+import 'package:anisched/ui/widget/ranking/ranking.dart';
+import 'package:anisched/ui/widget/recent/recent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+
     final int week;
     
     const HomePage({ Key key, this.week }) : super(key: key);
@@ -13,26 +14,12 @@ class HomePage extends StatelessWidget {
     Widget build(BuildContext context) {
         return Scaffold(
             backgroundColor: Colors.black,
-            body: Row(
+            body: ListView(
                 children: [
-                    Expanded(
-                        child: Schedule(
-                            week: week,
-                        ),
-                    ),
-                    SizedBox(
-                        width: 1,
-                        height: double.infinity,
-                    ),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: double.infinity,
-                        child: Container(
-                            color: Color.fromRGBO(15, 15, 15, 1),
-                            child: Ranking(
-                                factor: FACTOR.WEEK,
-                            ),
-                        ),
+                    Ranking(),
+                    Board(
+                        title: "최근 자막",
+                        child: Recent(),
                     ),
                 ],
             ),
