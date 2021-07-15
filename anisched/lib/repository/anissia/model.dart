@@ -24,6 +24,8 @@ class Anime {
 
     String time;
 
+    int week;
+
     String subject;
 
     String genres;
@@ -39,22 +41,28 @@ class Anime {
     List<Caption> captionList;
 
     Anime({ 
-        this.id, this.status, this.time, this.subject, 
+        this.id, this.status, this.time, this.week, this.subject, 
         this.genres, this.startDate, this.endDate,
         this.website, this.captionCount, this.captionList 
     });
 
     factory Anime.fromJson(Map<String, dynamic> json) {
+        int week = -1;
+        try {
+            week = int.tryParse(json['week']);
+        } catch (Exception) { }
         return Anime(
             id: json['animeNo'],
             status: json['status'],
             time: json['time'],
+            week: week,
             subject: json['subject'],
             genres: json['genres'],
             startDate: json['startDate'],
             endDate: json['endDate'],
             website: json['website'],
-            captionCount: json['captionList'],
+            captionCount: json['captionCount'],
+            captionList: (json['captions'] as List)?.map((e) => Caption.fromJson(e))?.toList(),
         );
     }
 
@@ -72,7 +80,7 @@ class Anime {
         return "";
     } 
 
-    String get getGenreString => genres.replaceAll(",", " / ");
+    String get getGenreString => genres.replaceAll(",", " • ");
 
     List<String> get getGenreList => genres.split(",");
 
@@ -115,7 +123,7 @@ class RecentCaption extends Caption {
 
     factory RecentCaption.fromJson(Map<String, dynamic> json) {
         return RecentCaption(
-            id: json['id'],
+            id: json['animeNo'],
             subject: json['subject'],
             episode: json['episode'],
             uploadDate: json['updDt'],
@@ -203,7 +211,7 @@ class Rank {
         );
     }
 
-    String get diffString => (diff != 0 ? (diff.isOdd ? "▼" : "▲") + diff.abs().toString()  : "");
+    String get diffString => (diff != 0 ? (diff.isOdd ? "▲" : "▼") + diff.abs().toString() : "");
 
     String get rankString => "${rank.toString()}위";
 }
