@@ -12,8 +12,15 @@ class DetailDataProvider extends DataProvider {
     final AnissiaService _anissiaService = AnissiaService();
     final TMDBService _tmdbService = TMDBService();
 
+    ObservableData<Anime> _animeInfo;
     ObservableData<List<Caption>> _captionList;
     ObservableData<Result> _tmdbResult;
+
+    void requestAnimeInfo(int id) {
+        _anissiaService.requestAnime(id).then((value) {
+            _animeInfo.setData(value);
+        });
+    }
 
     void requestCaption(int id) {
         _anissiaService.requestCaption(id).then((value) {
@@ -37,7 +44,14 @@ class DetailDataProvider extends DataProvider {
         });
     }
 
-    ObservableData<List<Caption>> get getCaptionList {
+    ObservableData<Anime> get getAnimeInfo {
+        if (_animeInfo == null) {
+            _animeInfo = ObservableData();
+        }
+        return _animeInfo;
+    }
+
+    ObservableData<List<Caption>> get getCaption {
         if (_captionList == null) {
             _captionList = ObservableData();
         }
