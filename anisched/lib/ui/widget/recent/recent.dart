@@ -1,20 +1,26 @@
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/repository/anissia/model.dart';
-import 'package:anisched/ui/widget/recent/listview.dart';
+import 'package:anisched/ui/widget/loading.dart';
+import 'package:anisched/ui/widget/recent/item/item.dart';
 import 'package:anisched/ui/widget/recent/provider.dart';
+import 'package:anisched/ui/widget/scale.dart';
 import 'package:flutter/material.dart';
 
 class Recent extends StatefulWidget {
 
-    const Recent({ Key key }) : super(key: key);
+    final Function onItemClick;
+    final Function onItemLongClick;
+
+    const Recent({ this.onItemClick, this.onItemLongClick, key }) : super(key: key);
 
     @override
     _RecentState createState() => _RecentState();
 }
 
-class _RecentState extends State<Recent> {
+class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
 
     final RecentDataProvider dataProvider = RecentDataProvider();
+    
     List<RecentCaption> recentCaptionList;
 
     @override
@@ -35,14 +41,37 @@ class _RecentState extends State<Recent> {
 
     @override
     Widget build(BuildContext context) {
-        return RecentListView(
-            list: recentCaptionList,
-            onItemClick: (recentCaption) {
+        super.build(context);
 
-            },
-            onItemLongClick: (recentCaption) {
-                
-            },
-        );
+        final Scale scale = Scale(context);
+        
+        return (recentCaptionList != null) ? Container(
+            height: scale.actualLongestSide * 0.03,
+            child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: recentCaptionList.length,
+                itemBuilder: (context, index) {
+                    EdgeInsets padding = EdgeInsets.zero;
+                    if (index == 0) {
+                        padding = EdgeInsets.only(left: scale.actualLongestSide * 0.01);
+                    } else if (index == recentCaptionList.length - 1) {
+                        padding = EdgeInsets.only(right: scale.actualLongestSide * 0.01);
+                    }
+                    return Padding(
+                        padding: padding,
+                        child: RecentItem(
+                            caption: recentCaptionList[index],
+                            onItemClick: (RecentCaption caption) => widget.onItemClick(caption),
+                            onItemLongClick: (RecentCaption caption) => widget.onItemLongClick(caption),
+                        ),
+                    );
+                }, 
+                separatorBuilder: (context, index) => Container(width: scale.actualLongestSide * 0.005), 
+            ),
+        ) : LoadingIndicator();
     }
+
+  @override
+  bool get wantKeepAlive => true;
 }
