@@ -6,6 +6,7 @@ import 'package:anisched/repository/anissia/service.dart';
 import 'package:anisched/repository/tmdb/helper.dart';
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/repository/tmdb/service.dart';
+import 'package:anisched/ui/page/detail/model.dart';
 
 class DetailDataProvider extends DataProvider {
     
@@ -14,7 +15,7 @@ class DetailDataProvider extends DataProvider {
 
     ObservableData<Anime> _animeInfo;
     ObservableData<List<Caption>> _captionList;
-    ObservableData<Result> _tmdbResult;
+    ObservableData<TMDBDetail> _tmdbDetail;
 
     void requestAnimeInfo(int id) {
         _anissiaService.requestAnime(id).then((value) {
@@ -34,7 +35,7 @@ class DetailDataProvider extends DataProvider {
                 tmdbService: _tmdbService,
                 onResultListener: OnResultListener(
                     onFind: (Result result) {
-                        _tmdbResult.setData(result);
+                        _requestDetail(result.mediaType, result.id);
                     },
                     onFailed: () {
 
@@ -42,6 +43,22 @@ class DetailDataProvider extends DataProvider {
                 ),
             ).searchWithFilter(APIKey.TMDB_API_KEY, anime);
         });
+    }
+
+    void _requestDetail(String type, int id) {
+        if (type == TMDBMediaTypes.MOVIE) {
+            _tmdbService.requestMovie(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
+                _tmdbDetail.setData(TMDBDetail<Movie>.from(value));
+            });
+        } else if (type == TMDBMediaTypes.TV) {
+            _tmdbService.requestTV(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
+                _tmdbDetail.setData(TMDBDetail<TV>.from(value));
+            });
+        }
+
+        if (type == TMDBMediaTypes.MOVIE || type == TMDBMediaTypes.TV) {
+            // requestVideos(apiKey, type, id);
+        }
     }
 
     ObservableData<Anime> get getAnimeInfo {
@@ -58,10 +75,10 @@ class DetailDataProvider extends DataProvider {
         return _captionList;
     }
 
-    ObservableData<Result> get getTMDBResult {
-        if (_tmdbResult == null) {
-            _tmdbResult = ObservableData();
+    ObservableData<TMDBDetail> get getTMDBDetail {
+        if (_tmdbDetail == null) {
+            _tmdbDetail = ObservableData();
         }
-        return _tmdbResult;
+        return _tmdbDetail;
     }
 }
