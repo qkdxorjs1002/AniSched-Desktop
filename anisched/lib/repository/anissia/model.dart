@@ -68,13 +68,15 @@ class Anime {
 
     String get getExtraInfo {
         if (time.contains(":")) {
-            return (isSoon
-                ? startDate.replaceAll(RegExp("\\d\\d\\d\\d-"), "")
-                : (!isEnd 
-                    ? (isStatus 
+            return (isSoon)
+                ? (time.contains(":"))
+                    ? startDate.replaceAll("-99", "").replaceAll(RegExp("\\d\\d\\d\\d-"), "")
+                    : startDate.replaceAll("-99", "")
+                : (!isEnd) 
+                    ? (isStatus)
                         ? "" 
-                        : "결방") 
-                    : "종영"));
+                        : "결방"
+                    : "종영";
         }
         
         return "";
@@ -104,9 +106,9 @@ class Anime {
 
     String get getTimeString => time.isNotEmpty ? time.replaceAll("-99", "") : "미정";
     
-    String get getStartDateString => startDate.isNotEmpty ? startDate : "미정";
+    String get getStartDateString => startDate.isNotEmpty ? startDate.replaceAll("-99", "") : "미정";
     
-    String get getEndDateString => endDate.isNotEmpty ? endDate : "미정";
+    String get getEndDateString => endDate.isNotEmpty ? endDate.replaceAll("-99", "") : "미정";
 }
 
 class RecentCaption extends Caption {
