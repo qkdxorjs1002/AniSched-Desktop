@@ -2,6 +2,7 @@ import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/tool.dart';
 import 'package:anisched/ui/page/detail/detail.dart';
+import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/board.dart';
 import 'package:anisched/ui/widget/ranking/ranking.dart';
 import 'package:anisched/ui/widget/recent/recent.dart';
@@ -53,12 +54,11 @@ class HomePage extends StatelessWidget {
             PageRouteBuilder(
                 opaque: false,
                 transitionDuration: Duration(milliseconds: 500),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
-                    opacity: Tween<double>(begin: 0, end: 1).animate(animation),
-                    child: child,
-                ),
-                pageBuilder: (context, animation, secondaryAnimation) => DetailPage(
-                    animeId: id,
+                pageBuilder: (context, animation, secondaryAnimation) => BlurTransition(
+                    animation: Tween<double>(begin: 30.0, end: 0.0).animate(animation),
+                    child: DetailPage(
+                        animeId: id,
+                    ),
                 ),
             ),
         );
