@@ -41,11 +41,57 @@ class _TMDBService implements TMDBService {
   }
 
   @override
-  Future<Videos> requestVideos(type, id, apiKey, lang) async {
-    ArgumentError.checkNotNull(type, 'type');
-    ArgumentError.checkNotNull(id, 'id');
+  Future<Movie> requestMovie(apiKey, lang, id) async {
     ArgumentError.checkNotNull(apiKey, 'apiKey');
     ArgumentError.checkNotNull(lang, 'lang');
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'api_key': apiKey,
+      r'language': lang
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('movie/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Movie.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<TV> requestTV(apiKey, lang, id) async {
+    ArgumentError.checkNotNull(apiKey, 'apiKey');
+    ArgumentError.checkNotNull(lang, 'lang');
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'api_key': apiKey,
+      r'language': lang
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('tv/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = TV.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  Future<Videos> requestVideos(apiKey, lang, type, id) async {
+    ArgumentError.checkNotNull(apiKey, 'apiKey');
+    ArgumentError.checkNotNull(lang, 'lang');
+    ArgumentError.checkNotNull(type, 'type');
+    ArgumentError.checkNotNull(id, 'id');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,

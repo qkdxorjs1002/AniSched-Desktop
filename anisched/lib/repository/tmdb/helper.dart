@@ -19,8 +19,7 @@ class TMDBHelper {
     final TMDBService tmdbService;
 
     final List<String> _regexList = [
-            r"(\s\d기)|(\s(OVA|OAD))|(\s(IX|IV|V?I{0,3})\$)|(\s\d[snrt][tdh])|(((\sthe)(\s\w+|)|)\s(시즌|season)(\d|\s\d|))",
-            r"(((\sthe)(\s\w+|)|)\s(animation)(\d|\s\d|))", r"[-~].*[-~]", r"[^\uAC00-\uD7A30-9A-z\s]", r"\s" 
+        r"", r"(\s\d기)|(\s(OVA|OAD))|(\s(IX|IV|V?I{0,3})$)|(\s\d[snrt][tdh])|(((\sthe)(\s\w+|)|)\s(시즌|season)(\d|\s\d|))"
     ];
 
     TMDBHelper({ this.tmdbService, this.onResultListener });
@@ -68,7 +67,7 @@ class TMDBHelper {
             }
 
             if (genreIdList.contains(16) && ((target.mediaType == "tv" || target.mediaType == "movie"))) {
-                String targetString = target.getFlexibleName.replaceAll(" ", "");
+                String targetString = target.getTitle.replaceAll(" ", "");
 
                 double diff = (Levenshtein.getDistance(targetString, anime.subject.replaceAll(" ", ""))
                         + Levenshtein.getDistance(targetString, keyword.replaceAll(" ", ""))) / 2;

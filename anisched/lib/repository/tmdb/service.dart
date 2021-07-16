@@ -18,15 +18,29 @@ abstract class TMDBService {
     Future<Search> requestSearch(
         @Query("api_key") String apiKey,
         @Query("language") String lang,
-        @Query("query") String keyword
+        @Query("query") String keyword,
+    );
+
+    @GET("movie/{id}")
+    Future<Movie> requestMovie(
+        @Query("api_key") String apiKey,
+        @Query("language") String lang,
+        @Path("id") int id,
+    );
+
+    @GET("tv/{id}")
+    Future<TV> requestTV(
+        @Query("api_key") String apiKey,
+        @Query("language") String lang,
+        @Path("id") int id,
     );
 
     @GET("{type}/{id}/videos")
     Future<Videos> requestVideos(
+        @Query("api_key") String apiKey,
+        @Query("language") String lang,
         @Path("type") String type,
         @Path("id") int id,
-        @Query("api_key") String apiKey,
-        @Query("language") String lang
     );
 
 }
