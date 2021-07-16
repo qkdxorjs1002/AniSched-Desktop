@@ -56,7 +56,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
         });
 
         return rankList != null ? Container(
-            height: scale.actualLongestSide * 0.28,
+            height: scale.longestSide * 0.56,
             child: Stack(
                 children: [
                     PageView.builder(

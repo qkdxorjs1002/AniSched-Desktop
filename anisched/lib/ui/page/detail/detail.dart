@@ -65,13 +65,13 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                         Container(
                             color: Colors.black54,
-                            height: scale.actualLongestSide * 0.2,
+                            height: scale.longestSide * 0.4,
                             child: Stack(
                                 children: [
                                     Backdrop(
-                                        panelHeight: scale.actualLongestSide * 0.04,
                                         imageUrl: (tmdbResult != null) 
                                             ? tmdbResult.getBackdropPath(Result.ORIGINAL)
+                                        panelHeight: scale.longestSide * 0.08,
                                             : null,
                                         title: anime.subject,
                                         time: FACTOR.WEEKDAY[anime.week],
@@ -94,18 +94,18 @@ class _DetailPageState extends State<DetailPage> {
                                     maxWidth: 750,
                                 ),
                                 child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: scale.actualLongestSide * 0.01),
+                                    padding: EdgeInsets.symmetric(vertical: scale.longestSide * 0.03),
                                     child: Column(
                                         children: [
                                             Padding(
-                                                padding: EdgeInsets.symmetric(vertical: scale.actualLongestSide * 0.015),
+                                                padding: EdgeInsets.symmetric(horizontal: scale.longestSide * 0.02),
                                                 child: Description(
                                                     anime: anime,
                                                     tmdbResult: tmdbResult,
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(bottom: scale.actualLongestSide * 0.015),
+                                                padding: EdgeInsets.only(top: scale.longestSide * 0.02),
                                                 child: Captions(
                                                     captionList: anime.captionList,
                                                     onItemClick: (Caption caption) async => Tool.openURL(caption.website),

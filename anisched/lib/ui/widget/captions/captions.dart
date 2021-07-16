@@ -26,7 +26,9 @@ class Captions extends StatelessWidget{
                     onItemClick: (Caption caption) => onItemClick(caption),
                 );
             }, 
-            separatorBuilder: (context, index) => Container(height: scale.actualLongestSide * 0.005), 
+            separatorBuilder: (context, index) => Container(
+                height: scale.longestSide * 0.01,
+            ), 
         ) : LoadingIndicator();
     }
 

@@ -18,7 +18,7 @@ class RecentItem extends StatelessWidget {
 
         return Container(
             color: Colors.white10,
-            width: scale.actualLongestSide * 0.14,
+            width: scale.longestSide * 0.28,
             child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -33,7 +33,7 @@ class RecentItem extends StatelessWidget {
                         }
                     },
                     child: Padding(
-                        padding: EdgeInsets.fromLTRB(scale.actualLongestSide * 0.01, scale.actualLongestSide * 0.005, scale.actualLongestSide * 0.01, scale.actualLongestSide * 0.005),
+                        padding: EdgeInsets.fromLTRB(scale.longestSide * 0.02, scale.longestSide * 0.01, scale.longestSide * 0.02, scale.longestSide * 0.01),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center, 
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +43,7 @@ class RecentItem extends StatelessWidget {
                                     child: Text(
                                         caption.subject,
                                         style: TextStyle(
-                                            fontSize: scale.actualLongestSide * 0.007,
+                                            fontSize: scale.longestSide * 0.014,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -57,7 +57,7 @@ class RecentItem extends StatelessWidget {
                                                 child: Text(
                                                     "${caption.getEpisodeString} • ${caption.author}",
                                                     style: TextStyle(
-                                                        fontSize: scale.actualLongestSide * 0.005,
+                                                        fontSize: scale.longestSide * 0.01,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
@@ -70,7 +70,7 @@ class RecentItem extends StatelessWidget {
                                                 child: Text(
                                                     caption.getUploadDateString,
                                                     style: TextStyle(
-                                                        fontSize: scale.actualLongestSide * 0.005,
+                                                        fontSize: scale.longestSide * 0.01,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,

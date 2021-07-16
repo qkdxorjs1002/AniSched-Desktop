@@ -18,12 +18,28 @@ class Scale {
         return _size.height * _dpr;
     }
 
+    double get width {
+        return _size.width;
+    }
+
+    double get height {
+        return _size.height;
+    }
+
     double get actualLongestSide {
         return _size.longestSide * _dpr;
     }
 
     double get actualShortestSide {
         return _size.shortestSide * _dpr;
+    }
+
+    double get longestSide {
+        return _size.longestSide;
+    }
+
+    double get shortestSide {
+        return _size.shortestSide;
     }
 
 }

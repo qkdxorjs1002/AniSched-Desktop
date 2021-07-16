@@ -47,7 +47,7 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
         final Scale scale = Scale(context);
         
         return (animeList != null) ? Container(
-            height: scale.actualLongestSide * 0.15,
+            height: scale.longestSide * 0.3,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -55,9 +55,9 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: scale.actualLongestSide * 0.01);
+                        padding = EdgeInsets.only(left: scale.longestSide * 0.02);
                     } else if (index == animeList.length - 1) {
-                        padding = EdgeInsets.only(right: scale.actualLongestSide * 0.01);
+                        padding = EdgeInsets.only(right: scale.longestSide * 0.02);
                     }
                     return Padding(
                         padding: padding,
@@ -67,7 +67,7 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
                         ),
                     );
                 }, 
-                separatorBuilder: (context, index) => Container(width: scale.actualLongestSide * 0.005), 
+                separatorBuilder: (context, index) => Container(width: scale.longestSide * 0.01), 
             ),
         ) : LoadingIndicator();
     }

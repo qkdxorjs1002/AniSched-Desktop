@@ -14,12 +14,12 @@ class Board extends StatelessWidget {
         final Scale scale = Scale(context);
 
         return Padding(
-            padding: EdgeInsets.fromLTRB(0, scale.actualLongestSide * 0.01, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, scale.longestSide * 0.02, 0, 0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     Padding(
-                        padding: EdgeInsets.only(left: scale.actualLongestSide * 0.01, bottom: scale.actualLongestSide * 0.005),
+                        padding: EdgeInsets.only(left: scale.longestSide * 0.02, bottom: scale.longestSide * 0.01),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -27,16 +27,16 @@ class Board extends StatelessWidget {
                                     title,
                                     style: TextStyle(
                                         height: 1.0,
-                                        fontSize: scale.actualLongestSide * 0.01,
+                                        fontSize: scale.longestSide * 0.02,
                                     ),  
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.only(left: scale.actualLongestSide * 0.002),
+                                    padding: EdgeInsets.only(left: scale.longestSide * 0.004),
                                     child: Text(
                                         description,
                                         style: TextStyle(
                                             color: Colors.white70,
-                                            fontSize: scale.actualLongestSide * 0.005,
+                                            fontSize: scale.longestSide * 0.01,
                                         ),  
                                     ),
                                 ),

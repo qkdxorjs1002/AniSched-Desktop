@@ -44,14 +44,14 @@ class PageNavigator extends StatelessWidget {
             child: !enabled ? null : InkWell(
                 onTap: onTap,
                 child: Container(
-                    width: scale.actualLongestSide * 0.03,
+                    width: scale.longestSide * 0.06,
                     height: double.infinity,
                     alignment: Alignment.center,
                     child: Text(
                         text,
                         style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 0.9),
-                            fontSize: scale.actualLongestSide * 0.01,
+                            fontSize: scale.longestSide * 0.02,
                             shadows: [
                                 Shadow(
                                     color: Colors.black54,
