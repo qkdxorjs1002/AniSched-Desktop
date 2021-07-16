@@ -4,7 +4,8 @@ import 'dart:math';
 class Tool {
     static void openURL(String url) async {
         if (url != null && url.isNotEmpty) {
-            await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+            String encodedUrl = Uri.encodeFull(url);
+            await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
         }
     }
 }
