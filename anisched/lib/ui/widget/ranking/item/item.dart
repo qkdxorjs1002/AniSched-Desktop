@@ -60,7 +60,7 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
                 Backdrop(
                     panelHeight: scale.longestSide * 0.12,
                     imageUrl: (tmdbResult != null) 
-                        ? tmdbResult.getBackdropPath(scale.actualLongestSide > 1280 ? Result.ORIGINAL : Result.W1280)
+                        ? tmdbResult.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,
                     title: widget.rank.subject,
                     description: "${widget.rank.rankString} • ${widget.rank.diffString}",

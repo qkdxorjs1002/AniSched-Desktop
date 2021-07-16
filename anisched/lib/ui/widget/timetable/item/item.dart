@@ -56,7 +56,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         fit: StackFit.expand,
                         children: [
                             (tmdbResult != null)
-                            ? ImageNetwork(source: tmdbResult.getPosterPath(Result.W500))
+                            ? ImageNetwork(source: tmdbResult.getPosterPath(TMDBImageSizes.W500))
                             : Center(
                                 child: Text(
                                     "NO IMAGE",
