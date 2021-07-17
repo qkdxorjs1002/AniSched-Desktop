@@ -4,7 +4,15 @@
 <p align="center">
   <img src="img/icon.png" width="256"/>
 <br/><br/>
+  <img src="img/1.png" width="900"/>
+<br/>
   <img src="img/2.png" width="900"/>
+<br/>
+  <img src="img/3.png" width="900"/>
+<br/>
+  <img src="img/4.png" width="900"/>
+<br/>
+  <img src="img/5.png" width="900"/>
 <br/>
 
 ### 애니메이션 편성표 앱 (애니시아 API, TMDb)
@@ -23,8 +31,11 @@
 
 ## 기능
  - 요일별, 신작 / 외전 편성표 목록
- - [미구현] 작품의 방영 정보와 이미지, 줄거리 및 시청자 평가 등 상세 정보
+ - 작품의 방영 정보와 이미지, 줄거리 및 시청자 평가 등 상세 정보
+ - 주간 작품 순위 정보
+ - 최근 등록된 자막 정보
  - 작품의 실시간 자막 정보
+ - [미구현] 작품 검색 기능
  - 그 외 [추가 예정](https://github.com/qkdxorjs1002/AniSched-Desktop/projects/1)
 <br/><br/>
 
