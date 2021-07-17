@@ -58,21 +58,21 @@ class Description extends StatelessWidget {
                                         scale: scale
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(bottom: scale.longestSide * 0.016),
+                                        padding: EdgeInsets.only(bottom: scale.restrictedByTarget(size: scale.width, ratio: 0.016)),
                                         child: Wrap(
                                             children: anime.getGenreList.map((e) {
                                                 return Padding(
-                                                    padding: EdgeInsets.only(top: scale.longestSide * 0.004, right: scale.longestSide * 0.008),
+                                                    padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.004), right: scale.restrictedByTarget(size: scale.width, ratio: 0.008)),
                                                     child: Chip(
                                                         backgroundColor: Colors.white,
                                                         elevation: 0,
-                                                        padding: EdgeInsets.symmetric(vertical: scale.longestSide * 0.006, horizontal: scale.longestSide * 0.01),
+                                                        padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.006), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.01)),
                                                         labelPadding: EdgeInsets.zero,
                                                         label: Text(
                                                             e,
                                                             style: TextStyle(
                                                                 color: Colors.black,
-                                                                fontSize: scale.longestSide * 0.012,
+                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                                             ),
                                                         ),
                                                     ),
@@ -87,8 +87,8 @@ class Description extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Container(
                                 color: Colors.black26,
-                                width: scale.longestSide * 0.17,
-                                height: scale.longestSide * 0.24,
+                                width: scale.restrictedByTarget(size: scale.width, ratio: 0.17),
+                                height: scale.restrictedByTarget(size: scale.width, ratio: 0.24),
                                 child: Stack(
                                     fit: StackFit.expand,
                                     children: [
@@ -131,21 +131,21 @@ class Description extends StatelessWidget {
                         scale: scale
                     ),
                     _content(
-                        padding: EdgeInsets.only(top: scale.longestSide * 0.002),
+                        padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.002)),
                         child: Row(
                             children: [
                                 Expanded(
                                     child: Text(
                                         (tmdbDetail.media as TMDBMediaInterface).getVoteCountString,
                                         style: TextStyle(
-                                            fontSize: scale.longestSide * 0.014,
+                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
                                         ),
                                     ),
                                 ),
                                 Text(
                                     "${(tmdbDetail.media as TMDBMediaInterface).getVoteDecimal}점",
                                     style: TextStyle(
-                                        fontSize: scale.longestSide * 0.014,
+                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
                                     ),
                                 ),
                             ],
@@ -192,7 +192,7 @@ class Description extends StatelessWidget {
 
     Widget _header({ @required Widget child, @required Scale scale }) {
         return Padding(
-            padding: EdgeInsets.only(top: scale.longestSide * 0.02),
+            padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
             child: child,
         );
     }
@@ -202,7 +202,7 @@ class Description extends StatelessWidget {
             child: Text(
                 text,
                 style: TextStyle(
-                    fontSize: scale.longestSide * 0.016,
+                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                     fontWeight: FontWeight.w700,
                 ),
             ),
@@ -222,7 +222,7 @@ class Description extends StatelessWidget {
             child: Text(
                 text,
                 style: TextStyle(
-                    fontSize: scale.longestSide * 0.015,
+                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.015),
                     fontWeight: FontWeight.w300,
                 ),
             ),

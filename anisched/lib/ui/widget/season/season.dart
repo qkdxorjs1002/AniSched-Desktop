@@ -16,7 +16,7 @@ class SeasonTable extends StatelessWidget {
         final Scale scale = Scale(context);
         
         return (seasonList != null) ? Container(
-            height: scale.longestSide * 0.24,
+            height: scale.restrictedByTarget(size: scale.width, ratio: 0.24),
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -24,9 +24,9 @@ class SeasonTable extends StatelessWidget {
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: scale.longestSide * 0.02);
+                        padding = EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
                     } else if (index == seasonList.length - 1) {
-                        padding = EdgeInsets.only(right: scale.longestSide * 0.02);
+                        padding = EdgeInsets.only(right: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
                     }
                     return Padding(
                         padding: padding,
@@ -35,7 +35,7 @@ class SeasonTable extends StatelessWidget {
                         ),
                     );
                 }, 
-                separatorBuilder: (context, index) => Container(width: scale.longestSide * 0.01), 
+                separatorBuilder: (context, index) => Container(width: scale.restrictedByTarget(size: scale.width, ratio: 0.01)), 
             ),
         ) : LoadingIndicator();
     }

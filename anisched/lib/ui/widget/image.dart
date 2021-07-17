@@ -28,7 +28,7 @@ class ImageNetwork extends StatelessWidget {
                         "NO IMAGE",
                         style: TextStyle(
                             color: Colors.white54,
-                            fontSize: scale.longestSide * 0.01,
+                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                         ),
                     ),
                 );
@@ -38,7 +38,7 @@ class ImageNetwork extends StatelessWidget {
                 "NO IMAGE",
                 style: TextStyle(
                     color: Colors.white54,
-                    fontSize: scale.longestSide * 0.012,
+                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                 ),
             ),
         );

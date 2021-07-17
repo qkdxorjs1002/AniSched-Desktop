@@ -23,7 +23,7 @@ class CaptionsItem extends StatelessWidget {
                     }
                 },
                 child: Padding(
-                    padding: EdgeInsets.fromLTRB(scale.longestSide * 0.02, scale.longestSide * 0.01, scale.longestSide * 0.02, scale.longestSide * 0.01),
+                    padding: EdgeInsets.fromLTRB(scale.restrictedByTarget(size: scale.width, ratio: 0.02), scale.restrictedByTarget(size: scale.width, ratio: 0.01), scale.restrictedByTarget(size: scale.width, ratio: 0.02), scale.restrictedByTarget(size: scale.width, ratio: 0.01)),
                     child: Column(
                         children: [
                             Row(
@@ -34,7 +34,7 @@ class CaptionsItem extends StatelessWidget {
                                             child: Text(
                                                 "자막",
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.016,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -47,7 +47,7 @@ class CaptionsItem extends StatelessWidget {
                                             child: Text(
                                                 caption.author,
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.016,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -64,7 +64,7 @@ class CaptionsItem extends StatelessWidget {
                                             child: Text(
                                                 caption.getEpisodeString,
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.012,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -77,7 +77,7 @@ class CaptionsItem extends StatelessWidget {
                                             child: Text(
                                                 caption.getUploadDateString,
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.012,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,

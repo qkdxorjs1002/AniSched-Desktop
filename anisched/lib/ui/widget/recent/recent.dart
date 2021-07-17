@@ -46,7 +46,7 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
         final Scale scale = Scale(context);
         
         return (recentCaptionList != null) ? Container(
-            height: scale.longestSide * 0.06,
+            height: scale.restrictedByTarget(size: scale.width, ratio: 0.06),
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -54,9 +54,9 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: scale.longestSide * 0.02);
+                        padding = EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
                     } else if (index == recentCaptionList.length - 1) {
-                        padding = EdgeInsets.only(right: scale.longestSide * 0.02);
+                        padding = EdgeInsets.only(right: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
                     }
                     return Padding(
                         padding: padding,
@@ -67,7 +67,7 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
                         ),
                     );
                 }, 
-                separatorBuilder: (context, index) => Container(width: scale.longestSide * 0.01), 
+                separatorBuilder: (context, index) => Container(width: scale.restrictedByTarget(size: scale.width, ratio: 0.01)), 
             ),
         ) : LoadingIndicator();
     }

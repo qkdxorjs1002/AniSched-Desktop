@@ -58,7 +58,7 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
         return (anime != null) ? Stack(
             children: [
                 Backdrop(
-                    panelHeight: scale.longestSide * 0.12,
+                    panelHeight: scale.restrictedByTarget(size: scale.width, ratio: 0.12),
                     imageUrl: (tmdbResult != null) 
                         ? tmdbResult.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,

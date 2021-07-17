@@ -14,12 +14,12 @@ class Board extends StatelessWidget {
         final Scale scale = Scale(context);
 
         return Padding(
-            padding: EdgeInsets.fromLTRB(0, scale.longestSide * 0.02, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, scale.restrictedByTarget(size: scale.width, ratio: 0.02), 0, 0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     Padding(
-                        padding: EdgeInsets.only(left: scale.longestSide * 0.02, bottom: scale.longestSide * 0.01),
+                        padding: EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02), bottom: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -27,16 +27,16 @@ class Board extends StatelessWidget {
                                     title,
                                     style: TextStyle(
                                         height: 1.0,
-                                        fontSize: scale.longestSide * 0.02,
+                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
                                     ),  
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.only(left: scale.longestSide * 0.004),
+                                    padding: EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.004)),
                                     child: Text(
                                         description,
                                         style: TextStyle(
                                             color: Colors.white70,
-                                            fontSize: scale.longestSide * 0.01,
+                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
                                         ),  
                                     ),
                                 ),

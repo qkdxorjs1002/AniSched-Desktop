@@ -49,7 +49,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
 
         return (widget.anime != null) ? Container(
             color: Colors.white10,
-            width: scale.longestSide * 0.21,
+            width: scale.restrictedByTarget(size: scale.width, ratio: 0.21),
             child: Stack(
                 children: [
                     Stack(
@@ -62,7 +62,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                     "NO IMAGE",
                                     style: TextStyle(
                                         color: Colors.white54,
-                                        fontSize: scale.longestSide * 0.012,
+                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                     ),
                                 ),
                             ),
@@ -74,13 +74,13 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                             Align(
                                 alignment: Alignment.topCenter,
                                 child: (widget.anime.getExtraInfo.isNotEmpty) ? BackBlur(
-                                    height: scale.longestSide * 0.024,
+                                    height: scale.restrictedByTarget(size: scale.width, ratio: 0.024),
                                     childAlignment: Alignment.center,
                                     child: Text(
                                         widget.anime.getExtraInfo,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: scale.longestSide * 0.014,
+                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
                                         ),
                                     ),
                                 ) : null,
@@ -91,9 +91,9 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         alignment: Alignment.bottomCenter,
                         child: BackBlur(
                             width: double.infinity,
-                            height: scale.longestSide * 0.08,
+                            height: scale.restrictedByTarget(size: scale.width, ratio: 0.08),
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(scale.longestSide * 0.016, 0, scale.longestSide * 0.016, 0),
+                                padding: EdgeInsets.symmetric(horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.016)),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +101,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                         Text(
                                             widget.anime.subject,
                                             style: TextStyle(
-                                                fontSize: scale.longestSide * 0.016,
+                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                 height: 1.0,
                                             ),
                                             overflow: TextOverflow.ellipsis,
@@ -110,7 +110,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                         Text(
                                             "${widget.anime.getTimeString} • ${widget.anime.getGenreString}",
                                             style: TextStyle(
-                                                fontSize: scale.longestSide* 0.012,
+                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,

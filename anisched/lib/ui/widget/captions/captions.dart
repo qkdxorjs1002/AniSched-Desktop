@@ -27,10 +27,10 @@ class Captions extends StatelessWidget{
                 );
             }, 
             separatorBuilder: (context, index) => Container(
-                height: scale.longestSide * 0.01,
+                height: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
                 child: Divider(
-                    indent: scale.longestSide * 0.02,
-                    endIndent: scale.longestSide * 0.02,
+                    indent: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                    endIndent: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
                 ),
             ), 
         ) : LoadingIndicator();

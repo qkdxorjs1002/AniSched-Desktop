@@ -18,7 +18,7 @@ class SeasonTableItem extends StatelessWidget {
 
         return (season != null) ? Container(
             color: Colors.white10,
-            width: scale.longestSide * 0.17,
+            width: scale.restrictedByTarget(size: scale.width, ratio: 0.17),
             child: Stack(
                 children: [
                     Stack(
@@ -31,7 +31,7 @@ class SeasonTableItem extends StatelessWidget {
                                     "NO IMAGE",
                                     style: TextStyle(
                                         color: Colors.white54,
-                                        fontSize: scale.longestSide * 0.012,
+                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                     ),
                                 ),
                             ),
@@ -41,9 +41,9 @@ class SeasonTableItem extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: BackBlur(
                             width: double.infinity,
-                            height: scale.longestSide * 0.08,
+                            height: scale.restrictedByTarget(size: scale.width, ratio: 0.08),
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(scale.longestSide * 0.016, 0, scale.longestSide * 0.016, 0),
+                                padding: EdgeInsets.fromLTRB(scale.restrictedByTarget(size: scale.width, ratio: 0.016), 0, scale.restrictedByTarget(size: scale.width, ratio: 0.016), 0),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class SeasonTableItem extends StatelessWidget {
                                         Text(
                                             season.name,
                                             style: TextStyle(
-                                                fontSize: scale.longestSide * 0.016,
+                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                 height: 1.0,
                                             ),
                                             overflow: TextOverflow.ellipsis,
@@ -60,7 +60,7 @@ class SeasonTableItem extends StatelessWidget {
                                         Text(
                                             "${(season.airDate != null) ? season.airDate : "방영일 정보 없음"} | ${season.episodeCount}화",
                                             style: TextStyle(
-                                                fontSize: scale.longestSide* 0.012,
+                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,

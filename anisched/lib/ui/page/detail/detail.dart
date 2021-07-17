@@ -67,11 +67,11 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                         Container(
                             color: Colors.black54,
-                            height: scale.longestSide * 0.4,
+                            height: scale.restrictedByTarget(size: scale.width, ratio: 0.4),
                             child: Stack(
                                 children: [
                                     Backdrop(
-                                        panelHeight: scale.longestSide * 0.08,
+                                        panelHeight: scale.restrictedByTarget(size: scale.width, ratio: 0.08),
                                         imageUrl: (tmdbDetail != null) 
                                             ? tmdbDetail.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
                                             : null,
@@ -96,18 +96,18 @@ class _DetailPageState extends State<DetailPage> {
                                     maxWidth: 750,
                                 ),
                                 child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: scale.longestSide * 0.03),
+                                    padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.03)),
                                     child: Column(
                                         children: <Widget> [
                                             Padding(
-                                                padding: EdgeInsets.symmetric(horizontal: scale.longestSide * 0.02),
+                                                padding: EdgeInsets.symmetric(horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                 child: Description(
                                                     anime: anime,
                                                     tmdbDetail: tmdbDetail
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.longestSide * 0.02),
+                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
@@ -115,14 +115,14 @@ class _DetailPageState extends State<DetailPage> {
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: scale.longestSide * 0.012, horizontal: scale.longestSide * 0.02),
+                                                                padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.012), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
                                                                             child: Text(
                                                                                 "사이트 바로가기",
                                                                                 style: TextStyle(
-                                                                                    fontSize: scale.longestSide * 0.016,
+                                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                                                     fontWeight: FontWeight.w700,
                                                                                 ),
                                                                             ),
@@ -130,7 +130,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                         Text(
                                                                             "〉",
                                                                             style: TextStyle(
-                                                                                fontSize: scale.longestSide * 0.016,
+                                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                                                 fontWeight: FontWeight.w700,
                                                                             ),
                                                                         ),
@@ -144,14 +144,14 @@ class _DetailPageState extends State<DetailPage> {
                                         ] + ((tmdbDetail != null && tmdbDetail.type == TMDBMediaTypes.TV) 
                                             ? [
                                                 Padding(
-                                                    padding: EdgeInsets.only(top: scale.longestSide * 0.02, left: scale.longestSide * 0.02, right: scale.longestSide * 0.02),
+                                                    padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02), left: scale.restrictedByTarget(size: scale.width, ratio: 0.02), right: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                     child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                             Text(
                                                                 "시즌 목록",
                                                                 style: TextStyle(
-                                                                    fontSize: scale.longestSide * 0.016,
+                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                                     fontWeight: FontWeight.w700,
                                                                 ),
                                                             ),
@@ -166,14 +166,14 @@ class _DetailPageState extends State<DetailPage> {
                                             : [])
                                         + [
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.longestSide * 0.02),
+                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                 child: Captions(
                                                     captionList: anime.captionList,
                                                     onItemClick: (Caption caption) async => Tool.openURL(caption.website),
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.longestSide * 0.02),
+                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
@@ -181,14 +181,14 @@ class _DetailPageState extends State<DetailPage> {
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: scale.longestSide * 0.012, horizontal: scale.longestSide * 0.02),
+                                                                padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.012), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
                                                                             child: Text(
                                                                                 "나무위키 바로가기",
                                                                                 style: TextStyle(
-                                                                                    fontSize: scale.longestSide * 0.016,
+                                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                                                     fontWeight: FontWeight.w700,
                                                                                 ),
                                                                             ),
@@ -196,7 +196,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                         Text(
                                                                             "〉",
                                                                             style: TextStyle(
-                                                                                fontSize: scale.longestSide * 0.016,
+                                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
                                                                                 fontWeight: FontWeight.w700,
                                                                             ),
                                                                         ),

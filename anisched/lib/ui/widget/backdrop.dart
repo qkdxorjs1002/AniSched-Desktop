@@ -31,7 +31,7 @@ class Backdrop extends StatelessWidget {
                     child: BackBlur(
                         height: panelHeight,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(scale.longestSide * 0.04, 0, scale.longestSide * 0.04, 0),
+                            padding: EdgeInsets.fromLTRB(scale.restrictedByTarget(size: scale.width, ratio: 0.04), 0, scale.restrictedByTarget(size: scale.width, ratio: 0.04), 0),
                             child: Row(
                                 children: [
                                     Expanded(
@@ -42,7 +42,7 @@ class Backdrop extends StatelessWidget {
                                                 Text(
                                                     title,
                                                     style: TextStyle(
-                                                        fontSize: scale.longestSide * 0.03,
+                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.03),
                                                         height: 1.0,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
@@ -52,7 +52,7 @@ class Backdrop extends StatelessWidget {
                                                 Text(
                                                     description,
                                                     style: TextStyle(
-                                                        fontSize: scale.longestSide * 0.02,
+                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
@@ -67,7 +67,7 @@ class Backdrop extends StatelessWidget {
                                             Text(
                                                 time,
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.02,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
@@ -76,7 +76,7 @@ class Backdrop extends StatelessWidget {
                                             Text(
                                                 extra,
                                                 style: TextStyle(
-                                                    fontSize: scale.longestSide * 0.02,
+                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
