@@ -4,15 +4,23 @@
 <p align="center">
   <img src="img/icon.png" width="256"/>
 <br/><br/>
-  <img src="img/1.png" width="900"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/1.png">
+    <img src="img/1.png" width="900"/>
+  </a>
 <br/>
-  <img src="img/2.png" width="900"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/2.png">
+    <img src="img/2.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/3.png">
+    <img src="img/3.png" width="400"/>
+  </a>
 <br/>
-  <img src="img/3.png" width="900"/>
-<br/>
-  <img src="img/4.png" width="900"/>
-<br/>
-  <img src="img/5.png" width="900"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/4.png">
+    <img src="img/4.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/5.png">
+    <img src="img/5.png" width="400"/>
+  </a>
 <br/>
 
 ### 애니메이션 편성표 앱 (애니시아 API, TMDb)
