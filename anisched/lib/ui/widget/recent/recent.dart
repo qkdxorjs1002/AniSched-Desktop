@@ -3,7 +3,7 @@ import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/recent/item/item.dart';
 import 'package:anisched/ui/widget/recent/provider.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Recent extends StatefulWidget {
@@ -42,11 +42,9 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
     @override
     Widget build(BuildContext context) {
         super.build(context);
-
-        final Scale scale = Scale(context);
         
         return (recentCaptionList != null) ? Container(
-            height: scale.restrictedByTarget(size: scale.width, ratio: 0.06),
+            height: Sizes.SIZE_060,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -54,9 +52,9 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
                     } else if (index == recentCaptionList.length - 1) {
-                        padding = EdgeInsets.only(right: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
                     }
                     return Padding(
                         padding: padding,
@@ -67,7 +65,7 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
                         ),
                     );
                 }, 
-                separatorBuilder: (context, index) => Container(width: scale.restrictedByTarget(size: scale.width, ratio: 0.01)), 
+                separatorBuilder: (context, index) => Container(width: Sizes.SIZE_010), 
             ),
         ) : LoadingIndicator();
     }

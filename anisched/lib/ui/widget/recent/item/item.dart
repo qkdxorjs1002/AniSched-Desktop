@@ -1,5 +1,5 @@
 import 'package:anisched/repository/anissia/model.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,11 +14,9 @@ class RecentItem extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-
         return Container(
             color: Colors.white10,
-            width: scale.restrictedByTarget(size: scale.width, ratio: 0.28),
+            width: Sizes.SIZE_280,
             child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -33,7 +31,7 @@ class RecentItem extends StatelessWidget {
                         }
                     },
                     child: Padding(
-                        padding: EdgeInsets.fromLTRB(scale.restrictedByTarget(size: scale.width, ratio: 0.02), scale.restrictedByTarget(size: scale.width, ratio: 0.01), scale.restrictedByTarget(size: scale.width, ratio: 0.02), scale.restrictedByTarget(size: scale.width, ratio: 0.01)),
+                        padding: EdgeInsets.fromLTRB(Sizes.SIZE_020, Sizes.SIZE_010, Sizes.SIZE_020, Sizes.SIZE_010),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center, 
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +41,7 @@ class RecentItem extends StatelessWidget {
                                     child: Text(
                                         caption.subject,
                                         style: TextStyle(
-                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
+                                            fontSize: Sizes.SIZE_014,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -57,7 +55,7 @@ class RecentItem extends StatelessWidget {
                                                 child: Text(
                                                     "${caption.getEpisodeString} • ${caption.author}",
                                                     style: TextStyle(
-                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
+                                                        fontSize: Sizes.SIZE_010,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
@@ -70,7 +68,7 @@ class RecentItem extends StatelessWidget {
                                                 child: Text(
                                                     caption.getUploadDateString,
                                                     style: TextStyle(
-                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
+                                                        fontSize: Sizes.SIZE_010,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,

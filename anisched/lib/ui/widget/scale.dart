@@ -9,8 +9,6 @@ class Scale {
     Scale(BuildContext context, { this.targetSize = 1440 }) {
         _size = MediaQuery.of(context).size;
         _dpr = MediaQuery.of(context).devicePixelRatio;
-        
-        debugPrint("Scale: Size(${_size.width} * ${_size.height})");
     }
 
     double get actualWidth {
@@ -54,9 +52,7 @@ class Scale {
     double restrictedByTarget({ @required double size, @required double ratio }) {
         double ratedSize = size * ratio;
         double ratedTargetSize = targetSize * ratio;
-
         double restricted = (ratedSize >= ratedTargetSize) ? ratedTargetSize : ratedSize;
-        debugPrint("Scale: Restricted by Target Size(Size: ${ratedSize} Max: ${ratedTargetSize})");
         return restricted;
     }
 

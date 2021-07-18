@@ -4,7 +4,7 @@ import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/pagenav.dart';
 import 'package:anisched/ui/widget/ranking/item/item.dart';
 import 'package:anisched/ui/widget/ranking/provider.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,6 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     Widget build(BuildContext context) {
         super.build(context);
         
-        final Scale scale = Scale(context);
         final PageController pageController = PageController(initialPage: 0);
 
         pageController.addListener(() {
@@ -56,7 +55,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
         });
 
         return rankList != null ? Container(
-            height: scale.restrictedByTarget(size: scale.width, ratio: 0.56),
+            height: Sizes.SIZE_560,
             child: Stack(
                 children: [
                     PageView.builder(

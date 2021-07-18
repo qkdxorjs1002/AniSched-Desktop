@@ -1,4 +1,4 @@
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Board extends StatelessWidget {
@@ -11,15 +11,13 @@ class Board extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-
         return Padding(
-            padding: EdgeInsets.fromLTRB(0, scale.restrictedByTarget(size: scale.width, ratio: 0.02), 0, 0),
+            padding: EdgeInsets.fromLTRB(0, Sizes.SIZE_020, 0, 0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     Padding(
-                        padding: EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02), bottom: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                        padding: EdgeInsets.only(left: Sizes.SIZE_020, bottom: Sizes.SIZE_020),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -27,16 +25,16 @@ class Board extends StatelessWidget {
                                     title,
                                     style: TextStyle(
                                         height: 1.0,
-                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                                        fontSize: Sizes.SIZE_020,
                                     ),  
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.004)),
+                                    padding: EdgeInsets.only(left: Sizes.SIZE_004),
                                     child: Text(
                                         description,
                                         style: TextStyle(
                                             color: Colors.white70,
-                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
+                                            fontSize: Sizes.SIZE_010,
                                         ),  
                                     ),
                                 ),

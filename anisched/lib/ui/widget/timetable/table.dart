@@ -1,7 +1,7 @@
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/timetable/item/item.dart';
 import 'package:anisched/ui/widget/timetable/provider.dart';
 import 'package:flutter/material.dart';
@@ -44,10 +44,8 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
     Widget build(BuildContext context) {
         super.build(context);
         
-        final Scale scale = Scale(context);
-        
         return (animeList != null) ? Container(
-            height: scale.restrictedByTarget(size: scale.width, ratio: 0.3),
+            height: Sizes.SIZE_300,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -55,9 +53,9 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
                     } else if (index == animeList.length - 1) {
-                        padding = EdgeInsets.only(right: scale.restrictedByTarget(size: scale.width, ratio: 0.02));
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
                     }
                     return Padding(
                         padding: padding,
@@ -67,7 +65,7 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
                         ),
                     );
                 }, 
-                separatorBuilder: (context, index) => Container(width: scale.restrictedByTarget(size: scale.width, ratio: 0.01)), 
+                separatorBuilder: (context, index) => Container(width: Sizes.SIZE_010), 
             ),
         ) : LoadingIndicator();
     }

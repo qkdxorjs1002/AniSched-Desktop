@@ -4,7 +4,7 @@ import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/image.dart';
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/timetable/item/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -45,11 +45,9 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
     Widget build(BuildContext context) {
         super.build(context);
         
-        Scale scale = Scale(context);
-
         return (widget.anime != null) ? Container(
             color: Colors.white10,
-            width: scale.restrictedByTarget(size: scale.width, ratio: 0.21),
+            width: Sizes.SIZE_210,
             child: Stack(
                 children: [
                     Stack(
@@ -62,7 +60,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                     "NO IMAGE",
                                     style: TextStyle(
                                         color: Colors.white54,
-                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
+                                        fontSize: Sizes.SIZE_012,
                                     ),
                                 ),
                             ),
@@ -74,13 +72,13 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                             Align(
                                 alignment: Alignment.topCenter,
                                 child: (widget.anime.getExtraInfo.isNotEmpty) ? BackBlur(
-                                    height: scale.restrictedByTarget(size: scale.width, ratio: 0.024),
+                                    height: Sizes.SIZE_024,
                                     childAlignment: Alignment.center,
                                     child: Text(
                                         widget.anime.getExtraInfo,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
+                                            fontSize: Sizes.SIZE_014,
                                         ),
                                     ),
                                 ) : null,
@@ -91,9 +89,9 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         alignment: Alignment.bottomCenter,
                         child: BackBlur(
                             width: double.infinity,
-                            height: scale.restrictedByTarget(size: scale.width, ratio: 0.08),
+                            height: Sizes.SIZE_080,
                             child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.016)),
+                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +99,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                         Text(
                                             widget.anime.subject,
                                             style: TextStyle(
-                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                fontSize: Sizes.SIZE_016,
                                                 height: 1.0,
                                             ),
                                             overflow: TextOverflow.ellipsis,
@@ -110,7 +108,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                         Text(
                                             "${widget.anime.getTimeString} • ${widget.anime.getGenreString}",
                                             style: TextStyle(
-                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
+                                                fontSize: Sizes.SIZE_012,
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,

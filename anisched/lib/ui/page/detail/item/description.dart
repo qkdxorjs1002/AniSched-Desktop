@@ -3,7 +3,7 @@ import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/ui/page/detail/model.dart';
 import 'package:anisched/ui/widget/image.dart';
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Description extends StatelessWidget {
@@ -15,8 +15,6 @@ class Description extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-
         return (anime != null) ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -31,48 +29,41 @@ class Description extends StatelessWidget {
                                 children: [
                                     _headerText(
                                         text: "시간",
-                                        scale: scale
                                     ),
                                     _contentText(
                                         text: anime.getTimeString,
-                                        scale: scale
                                     ),
                                     _headerText(
                                         text: "방영 시작",
-                                        scale: scale
                                     ),
                                     _contentText(
                                         text: anime.getStartDateString,
-                                        scale: scale
                                     ),
                                     _headerText(
                                         text: "종영",
-                                        scale:scale
                                     ),
                                     _contentText(
                                         text: anime.getEndDateString,
-                                        scale: scale
                                     ),
                                     _headerText(
                                         text: "장르",
-                                        scale: scale
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(bottom: scale.restrictedByTarget(size: scale.width, ratio: 0.016)),
+                                        padding: EdgeInsets.only(bottom: Sizes.SIZE_016),
                                         child: Wrap(
                                             children: anime.getGenreList.map((e) {
                                                 return Padding(
-                                                    padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.004), right: scale.restrictedByTarget(size: scale.width, ratio: 0.008)),
+                                                    padding: EdgeInsets.only(top: Sizes.SIZE_004, right: Sizes.SIZE_008),
                                                     child: Chip(
                                                         backgroundColor: Colors.white,
                                                         elevation: 0,
-                                                        padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.006), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.01)),
+                                                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010),
                                                         labelPadding: EdgeInsets.zero,
                                                         label: Text(
                                                             e,
                                                             style: TextStyle(
                                                                 color: Colors.black,
-                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
+                                                                fontSize: Sizes.SIZE_012,
                                                             ),
                                                         ),
                                                     ),
@@ -87,8 +78,8 @@ class Description extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Container(
                                 color: Colors.black26,
-                                width: scale.restrictedByTarget(size: scale.width, ratio: 0.17),
-                                height: scale.restrictedByTarget(size: scale.width, ratio: 0.24),
+                                width: Sizes.SIZE_170,
+                                height: Sizes.SIZE_240,
                                 child: Stack(
                                     fit: StackFit.expand,
                                     children: [
@@ -106,20 +97,16 @@ class Description extends StatelessWidget {
                 ? [
                     _headerText(
                         text: "제목",
-                        scale: scale
                     ),
                     Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getTitle,
-                        scale: scale
                     ),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getOriginalTitle,
-                        scale: scale
                     ),
                     _headerText(
                         text: "시청자 평점",
-                        scale: scale
                     ),
                     Divider(),
                     _content(
@@ -128,61 +115,53 @@ class Description extends StatelessWidget {
                             color: Colors.white70,
                             value: (tmdbDetail.media as TMDBMediaInterface).getVoteDouble,
                         ),
-                        scale: scale
                     ),
                     _content(
-                        padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.002)),
+                        padding: EdgeInsets.only(top: Sizes.SIZE_002),
                         child: Row(
                             children: [
                                 Expanded(
                                     child: Text(
                                         (tmdbDetail.media as TMDBMediaInterface).getVoteCountString,
                                         style: TextStyle(
-                                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
+                                            fontSize: Sizes.SIZE_014,
                                         ),
                                     ),
                                 ),
                                 Text(
                                     "${(tmdbDetail.media as TMDBMediaInterface).getVoteDecimal}점",
                                     style: TextStyle(
-                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.014),
+                                        fontSize: Sizes.SIZE_014,
                                     ),
                                 ),
                             ],
                         ),
-                        scale: scale
                     ),
                     _headerText(
                         text: "줄거리",
-                        scale: scale
                     ),
                     Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getOverview,
-                        scale: scale
                     ),
                 ] + ((tmdbDetail.type == TMDBMediaTypes.TV) 
                     ? [
                         _headerText(
                             text: "방영사",
-                            scale: scale
                         ),
                         Divider(),
                         _contentText(
                             text: (tmdbDetail.media as TV).getNetworksString,
-                            scale: scale
                         ),
                     ] 
                     : []) 
                 + [
                     _headerText(
                         text: "제작사",
-                        scale: scale
                     ),
                     Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getProductionsString,
-                        scale: scale
                     ),
                 ]
                 : []
@@ -190,43 +169,41 @@ class Description extends StatelessWidget {
         ) : LoadingIndicator();
     }
 
-    Widget _header({ @required Widget child, @required Scale scale }) {
+    Widget _header({ @required Widget child }) {
         return Padding(
-            padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+            padding: EdgeInsets.only(top: Sizes.SIZE_020),
             child: child,
         );
     }
 
-    Widget _headerText({ @required String text, @required Scale scale }) {
+    Widget _headerText({ @required String text }) {
         return _header(
             child: Text(
                 text,
                 style: TextStyle(
-                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                    fontSize: Sizes.SIZE_016,
                     fontWeight: FontWeight.w700,
                 ),
             ),
-            scale: scale
         );
     }
     
-    Widget _content({ @required Widget child, @required Scale scale, EdgeInsets padding = EdgeInsets.zero}) {
+    Widget _content({ @required Widget child, EdgeInsets padding = EdgeInsets.zero}) {
         return Padding(
             padding: padding,
             child: child,
         );
     }
 
-    Widget _contentText({ @required String text, @required Scale scale }) {
+    Widget _contentText({ @required String text }) {
         return _content(
             child: Text(
                 text,
                 style: TextStyle(
-                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.015),
+                    fontSize: Sizes.SIZE_015,
                     fontWeight: FontWeight.w300,
                 ),
             ),
-            scale: scale,
         );
     }
     

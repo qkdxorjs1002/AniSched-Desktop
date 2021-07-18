@@ -1,6 +1,6 @@
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/image.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Backdrop extends StatelessWidget {
@@ -16,8 +16,6 @@ class Backdrop extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-
         return Stack(
             children: [
                 Stack(
@@ -31,7 +29,7 @@ class Backdrop extends StatelessWidget {
                     child: BackBlur(
                         height: panelHeight,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(scale.restrictedByTarget(size: scale.width, ratio: 0.04), 0, scale.restrictedByTarget(size: scale.width, ratio: 0.04), 0),
+                            padding: EdgeInsets.fromLTRB(Sizes.SIZE_040, 0, Sizes.SIZE_040, 0),
                             child: Row(
                                 children: [
                                     Expanded(
@@ -42,7 +40,7 @@ class Backdrop extends StatelessWidget {
                                                 Text(
                                                     title,
                                                     style: TextStyle(
-                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.03),
+                                                        fontSize: Sizes.SIZE_030,
                                                         height: 1.0,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
@@ -52,7 +50,7 @@ class Backdrop extends StatelessWidget {
                                                 Text(
                                                     description,
                                                     style: TextStyle(
-                                                        fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                                                        fontSize: Sizes.SIZE_020,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
@@ -67,7 +65,7 @@ class Backdrop extends StatelessWidget {
                                             Text(
                                                 time,
                                                 style: TextStyle(
-                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                                                    fontSize: Sizes.SIZE_020,
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
@@ -76,7 +74,7 @@ class Backdrop extends StatelessWidget {
                                             Text(
                                                 extra,
                                                 style: TextStyle(
-                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                                                    fontSize: Sizes.SIZE_020,
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,

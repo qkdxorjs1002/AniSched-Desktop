@@ -1,7 +1,7 @@
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/ui/widget/captions/item/item.dart';
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Captions extends StatelessWidget{
@@ -14,8 +14,6 @@ class Captions extends StatelessWidget{
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-        
         return (captionList != null) ? ListView.separated(
             shrinkWrap: true,
             physics: ClampingScrollPhysics(),
@@ -27,10 +25,10 @@ class Captions extends StatelessWidget{
                 );
             }, 
             separatorBuilder: (context, index) => Container(
-                height: scale.restrictedByTarget(size: scale.width, ratio: 0.01),
+                height: Sizes.SIZE_010,
                 child: Divider(
-                    indent: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
-                    endIndent: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                    indent: Sizes.SIZE_020,
+                    endIndent: Sizes.SIZE_020,
                 ),
             ), 
         ) : LoadingIndicator();

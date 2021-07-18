@@ -1,4 +1,4 @@
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class PageNavigator extends StatelessWidget {
@@ -13,7 +13,6 @@ class PageNavigator extends StatelessWidget {
     
     @override
     Widget build(BuildContext context) {
-
         return Row(
             children: [
                 _navigator(
@@ -36,22 +35,19 @@ class PageNavigator extends StatelessWidget {
     }
 
     Widget _navigator(BuildContext context, { String text, Function onTap, bool enabled }) {
-        
-        final Scale scale = Scale(context);
-
         return Material(
             color: Colors.transparent,
             child: !enabled ? null : InkWell(
                 onTap: onTap,
                 child: Container(
-                    width: scale.restrictedByTarget(size: scale.width, ratio: 0.06),
+                    width: Sizes.SIZE_060,
                     height: double.infinity,
                     alignment: Alignment.center,
                     child: Text(
                         text,
                         style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 0.9),
-                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.02),
+                            fontSize: Sizes.SIZE_020,
                             shadows: [
                                 Shadow(
                                     color: Colors.black54,

@@ -1,5 +1,5 @@
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +13,6 @@ class ImageNetwork extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        final Scale scale = Scale(context);
-
         return (source != null) ? CachedNetworkImage(
             imageUrl: source,
             width: width,
@@ -28,7 +26,7 @@ class ImageNetwork extends StatelessWidget {
                         "NO IMAGE",
                         style: TextStyle(
                             color: Colors.white54,
-                            fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
+                            fontSize: Sizes.SIZE_012,
                         ),
                     ),
                 );
@@ -38,7 +36,7 @@ class ImageNetwork extends StatelessWidget {
                 "NO IMAGE",
                 style: TextStyle(
                     color: Colors.white54,
-                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.012),
+                    fontSize: Sizes.SIZE_012,
                 ),
             ),
         );

@@ -6,18 +6,21 @@ import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/board.dart';
 import 'package:anisched/ui/widget/ranking/ranking.dart';
 import 'package:anisched/ui/widget/recent/recent.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/timetable/table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-
+    
     final int week;
     
     const HomePage({ Key key, this.week }) : super(key: key);
 
     @override
     Widget build(BuildContext context) {
+        Sizes.initialize(context);
+        
         return Scaffold(
             backgroundColor: Colors.black,
             body: ListView(

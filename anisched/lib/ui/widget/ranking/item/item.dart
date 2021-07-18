@@ -4,7 +4,7 @@ import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/ui/widget/backdrop.dart';
 import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/ranking/item/provider.dart';
-import 'package:anisched/ui/widget/scale.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
 class RankingItem extends StatefulWidget {
@@ -52,13 +52,11 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
     @override
     Widget build(BuildContext context) {
         super.build(context);
-
-        Scale scale = Scale(context);
-
+        
         return (anime != null) ? Stack(
             children: [
                 Backdrop(
-                    panelHeight: scale.restrictedByTarget(size: scale.width, ratio: 0.12),
+                    panelHeight: Sizes.SIZE_120,
                     imageUrl: (tmdbResult != null) 
                         ? tmdbResult.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,

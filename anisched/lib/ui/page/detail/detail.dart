@@ -9,8 +9,8 @@ import 'package:anisched/ui/widget/backdrop.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/captions/captions.dart';
 import 'package:anisched/ui/widget/loading.dart';
-import 'package:anisched/ui/widget/scale.dart';
 import 'package:anisched/ui/widget/season/season.dart';
+import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -56,9 +56,6 @@ class _DetailPageState extends State<DetailPage> {
 
     @override
     Widget build(BuildContext context) {
-
-        final Scale scale = Scale(context);
-
         return Scaffold(
             backgroundColor: Colors.transparent,
             body: BackBlur(
@@ -67,11 +64,11 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                         Container(
                             color: Colors.black54,
-                            height: scale.restrictedByTarget(size: scale.width, ratio: 0.4),
+                            height: Sizes.SIZE_400,
                             child: Stack(
                                 children: [
                                     Backdrop(
-                                        panelHeight: scale.restrictedByTarget(size: scale.width, ratio: 0.08),
+                                        panelHeight: Sizes.SIZE_080,
                                         imageUrl: (tmdbDetail != null) 
                                             ? tmdbDetail.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
                                             : null,
@@ -96,18 +93,18 @@ class _DetailPageState extends State<DetailPage> {
                                     maxWidth: 750,
                                 ),
                                 child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.03)),
+                                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
                                     child: Column(
                                         children: <Widget> [
                                             Padding(
-                                                padding: EdgeInsets.symmetric(horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
                                                 child: Description(
                                                     anime: anime,
                                                     tmdbDetail: tmdbDetail
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
@@ -115,14 +112,14 @@ class _DetailPageState extends State<DetailPage> {
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.012), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
                                                                             child: Text(
                                                                                 "사이트 바로가기",
                                                                                 style: TextStyle(
-                                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                                                    fontSize: Sizes.SIZE_016,
                                                                                     fontWeight: FontWeight.w700,
                                                                                 ),
                                                                             ),
@@ -130,7 +127,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                         Text(
                                                                             "〉",
                                                                             style: TextStyle(
-                                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                                                fontSize: Sizes.SIZE_016,
                                                                                 fontWeight: FontWeight.w700,
                                                                             ),
                                                                         ),
@@ -144,14 +141,14 @@ class _DetailPageState extends State<DetailPage> {
                                         ] + ((tmdbDetail != null && tmdbDetail.type == TMDBMediaTypes.TV) 
                                             ? [
                                                 Padding(
-                                                    padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02), left: scale.restrictedByTarget(size: scale.width, ratio: 0.02), right: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                    padding: EdgeInsets.only(top: Sizes.SIZE_020, left: Sizes.SIZE_020, right: Sizes.SIZE_020),
                                                     child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                             Text(
                                                                 "시즌 목록",
                                                                 style: TextStyle(
-                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                                    fontSize: Sizes.SIZE_016,
                                                                     fontWeight: FontWeight.w700,
                                                                 ),
                                                             ),
@@ -166,14 +163,14 @@ class _DetailPageState extends State<DetailPage> {
                                             : [])
                                         + [
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Captions(
                                                     captionList: anime.captionList,
                                                     onItemClick: (Caption caption) async => Tool.openURL(caption.website),
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
@@ -181,14 +178,14 @@ class _DetailPageState extends State<DetailPage> {
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: scale.restrictedByTarget(size: scale.width, ratio: 0.012), horizontal: scale.restrictedByTarget(size: scale.width, ratio: 0.02)),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
                                                                             child: Text(
                                                                                 "나무위키 바로가기",
                                                                                 style: TextStyle(
-                                                                                    fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                                                    fontSize: Sizes.SIZE_016,
                                                                                     fontWeight: FontWeight.w700,
                                                                                 ),
                                                                             ),
@@ -196,7 +193,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                         Text(
                                                                             "〉",
                                                                             style: TextStyle(
-                                                                                fontSize: scale.restrictedByTarget(size: scale.width, ratio: 0.016),
+                                                                                fontSize: Sizes.SIZE_016,
                                                                                 fontWeight: FontWeight.w700,
                                                                             ),
                                                                         ),
