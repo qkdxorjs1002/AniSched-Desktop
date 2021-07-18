@@ -26,9 +26,17 @@ class Sizes {
     static double SIZE_300;
     static double SIZE_400;
     static double SIZE_560;
+    
+    static Size _size;
 
     static void initialize(BuildContext context) {
         final Scale scale = Scale(context);
+
+        if (scale.size == _size) {
+            return ;
+        } else {
+            _size = scale.size;
+        }
 
         SIZE_002 = scale.restrictedByTarget(size: scale.width, ratio: 0.002);
         SIZE_004 = scale.restrictedByTarget(size: scale.width, ratio: 0.004);

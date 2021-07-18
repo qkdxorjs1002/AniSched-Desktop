@@ -56,6 +56,8 @@ class _DetailPageState extends State<DetailPage> {
 
     @override
     Widget build(BuildContext context) {
+        Sizes.initialize(context);
+        
         return Scaffold(
             backgroundColor: Colors.transparent,
             body: BackBlur(

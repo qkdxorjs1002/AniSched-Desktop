@@ -11,6 +11,8 @@ class Scale {
         _dpr = MediaQuery.of(context).devicePixelRatio;
     }
 
+    Size get size => _size;
+
     double get actualWidth {
         return _size.width * _dpr;
     }
