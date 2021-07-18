@@ -29,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
 
   FlutterWindow window(&run_loop, project);
   Win32Window::Point origin(300, 200);
-  Win32Window::Size size(1000, 1000);
+  Win32Window::Size size(1440, 900);
   if (!window.CreateAndShow(L"AniSched", origin, size)) {
     return EXIT_FAILURE;
   }
