@@ -60,7 +60,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                 children: [
                     PageView.builder(
                         allowImplicitScrolling: true,
-                        physics: ClampingScrollPhysics(),
+                        physics: const ClampingScrollPhysics(),
                         controller: pageController,
                         itemCount: rankList.length,
                         itemBuilder: (context, index) => RankingItem(
@@ -71,7 +71,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                     PageNavigator(
                         onLeftTap: () {
                             pageController.previousPage(
-                                duration: Duration(
+                                duration: const Duration(
                                     milliseconds: 350,
                                 ), 
                                 curve: Curves.easeInOut
@@ -80,7 +80,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                         enableLeft: (page > 0),
                         onRightTap: () {
                             pageController.nextPage(
-                                duration: Duration(
+                                duration: const Duration(
                                     milliseconds: 350,
                                 ), 
                                 curve: Curves.easeInOut

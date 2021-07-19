@@ -16,7 +16,7 @@ class Captions extends StatelessWidget{
     Widget build(BuildContext context) {
         return (captionList != null) ? ListView.separated(
             shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemCount: captionList.length,
             itemBuilder: (context, index) {
                 return CaptionsItem(

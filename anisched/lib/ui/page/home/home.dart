@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         return Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,
             body: ListView(
-                physics: ClampingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 children: [
                     Ranking(
                         onItemClick: (Anime anime, Result tmdb) => _navigateRoute(context, anime.id),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
         Navigator.of(context).push(
             PageRouteBuilder(
                 opaque: false,
-                transitionDuration: Duration(milliseconds: 500),
+                transitionDuration: const Duration(milliseconds: 500),
                 pageBuilder: (context, animation, secondaryAnimation) => BlurTransition(
                     animation: Tween<double>(begin: 30.0, end: 0.0).animate(animation),
                     child: DetailPage(

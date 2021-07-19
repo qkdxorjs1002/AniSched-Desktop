@@ -18,7 +18,7 @@ class Description extends StatelessWidget {
         return (anime != null) ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-                Divider(),
+                const Divider(),
                 Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -92,13 +92,13 @@ class Description extends StatelessWidget {
                         ),
                     ],
                 ),
-                Divider(),
+                const Divider(),
             ] + ((tmdbDetail != null) 
                 ? [
                     _headerText(
                         text: "제목",
                     ),
-                    Divider(),
+                    const Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getTitle,
                     ),
@@ -108,7 +108,7 @@ class Description extends StatelessWidget {
                     _headerText(
                         text: "시청자 평점",
                     ),
-                    Divider(),
+                    const Divider(),
                     _content(
                         child: LinearProgressIndicator(
                             backgroundColor: Theme.of(context).primaryColor.withOpacity(0.12),
@@ -140,7 +140,7 @@ class Description extends StatelessWidget {
                     _headerText(
                         text: "줄거리",
                     ),
-                    Divider(),
+                    const Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getOverview,
                     ),
@@ -149,7 +149,7 @@ class Description extends StatelessWidget {
                         _headerText(
                             text: "방영사",
                         ),
-                        Divider(),
+                        const Divider(),
                         _contentText(
                             text: (tmdbDetail.media as TV).getNetworksString,
                         ),
@@ -159,7 +159,7 @@ class Description extends StatelessWidget {
                     _headerText(
                         text: "제작사",
                     ),
-                    Divider(),
+                    const Divider(),
                     _contentText(
                         text: (tmdbDetail.media as TMDBMediaInterface).getProductionsString,
                     ),

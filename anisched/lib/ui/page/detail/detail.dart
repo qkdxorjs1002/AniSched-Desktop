@@ -62,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
             backgroundColor: Colors.transparent,
             body: BackBlur(
                 child: (anime != null) ? ListView(
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     children: [
                         Container(
                             color: Theme.of(context).backgroundColor.withOpacity(0.54),
@@ -154,7 +154,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                     fontWeight: FontWeight.w700,
                                                                 ),
                                                             ),
-                                                            Divider(),
+                                                            const Divider(),
                                                         ],
                                                     ),
                                                 ),
