@@ -27,8 +27,5 @@ flutter:
       - family: Noto Sans CJK KR
         fonts: 
             - asset: fonts/NotoSansCJKkr-Bold.otf
-            - asset: fonts/NotoSansCJKkr-DemiLight.otf
             - asset: fonts/NotoSansCJKkr-Light.otf
-            - asset: fonts/NotoSansCJKkr-Medium.otf
             - asset: fonts/NotoSansCJKkr-Regular.otf
-            - asset: fonts/NotoSansCJKkr-Thin.otf
