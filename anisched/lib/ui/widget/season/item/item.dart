@@ -14,7 +14,7 @@ class SeasonTableItem extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return (season != null) ? Container(
-            color: Colors.white10,
+            color: Theme.of(context).primaryColor.withOpacity(0.1),
             width: Sizes.SIZE_170,
             child: Stack(
                 children: [
@@ -27,7 +27,7 @@ class SeasonTableItem extends StatelessWidget {
                                 child: Text(
                                     "NO IMAGE",
                                     style: TextStyle(
-                                        color: Colors.white54,
+                                        color: Theme.of(context).primaryColor.withOpacity(0.54),
                                         fontSize: Sizes.SIZE_012,
                                     ),
                                 ),

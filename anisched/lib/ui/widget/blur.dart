@@ -22,7 +22,7 @@ class BackBlur extends StatelessWidget {
                     sigmaY: sigma,
                 ),
                 child: Container(
-                    color: Colors.black.withOpacity(0.35),
+                    color: Theme.of(context).backgroundColor.withOpacity(0.45),
                     height: height,
                     width: width,
                     alignment: childAlignment,

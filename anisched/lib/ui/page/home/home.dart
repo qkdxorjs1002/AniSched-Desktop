@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         Sizes.initialize(context);
         
         return Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: Theme.of(context).backgroundColor,
             body: ListView(
                 physics: ClampingScrollPhysics(),
                 children: [

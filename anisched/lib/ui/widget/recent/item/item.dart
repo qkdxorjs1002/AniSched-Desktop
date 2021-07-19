@@ -15,7 +15,7 @@ class RecentItem extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return Container(
-            color: Colors.white10,
+            color: Theme.of(context).primaryColor.withOpacity(0.1),
             width: Sizes.SIZE_280,
             child: Material(
                 color: Colors.transparent,

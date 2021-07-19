@@ -46,7 +46,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
         super.build(context);
         
         return (widget.anime != null) ? Container(
-            color: Colors.white10,
+            color: Theme.of(context).primaryColor.withOpacity(0.1),
             width: Sizes.SIZE_210,
             child: Stack(
                 children: [
@@ -59,14 +59,14 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                 child: Text(
                                     "NO IMAGE",
                                     style: TextStyle(
-                                        color: Colors.white54,
+                                        color: Theme.of(context).primaryColor.withOpacity(0.54),
                                         fontSize: Sizes.SIZE_012,
                                     ),
                                 ),
                             ),
                             Container(
                                 color: (widget.anime.isEnd || !widget.anime.isStatus)
-                                    ? Colors.black.withOpacity(0.5)
+                                    ? Theme.of(context).backgroundColor.withOpacity(0.5)
                                     : Colors.transparent,
                             ),
                             Align(
@@ -77,7 +77,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                     child: Text(
                                         widget.anime.getExtraInfo,
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: Theme.of(context).primaryColor,
                                             fontSize: Sizes.SIZE_014,
                                         ),
                                     ),

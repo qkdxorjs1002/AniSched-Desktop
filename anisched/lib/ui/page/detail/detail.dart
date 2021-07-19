@@ -65,7 +65,7 @@ class _DetailPageState extends State<DetailPage> {
                     physics: ClampingScrollPhysics(),
                     children: [
                         Container(
-                            color: Colors.black54,
+                            color: Theme.of(context).backgroundColor.withOpacity(0.54),
                             height: Sizes.SIZE_400,
                             child: Stack(
                                 children: [

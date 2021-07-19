@@ -25,7 +25,7 @@ class ImageNetwork extends StatelessWidget {
                     child: Text(
                         "NO IMAGE",
                         style: TextStyle(
-                            color: Colors.white54,
+                            color: Theme.of(context).primaryColor.withOpacity(0.54),
                             fontSize: Sizes.SIZE_012,
                         ),
                     ),
@@ -35,7 +35,7 @@ class ImageNetwork extends StatelessWidget {
             child: Text(
                 "NO IMAGE",
                 style: TextStyle(
-                    color: Colors.white54,
+                    color: Theme.of(context).primaryColor.withOpacity(0.54),
                     fontSize: Sizes.SIZE_012,
                 ),
             ),

@@ -55,14 +55,14 @@ class Description extends StatelessWidget {
                                                 return Padding(
                                                     padding: EdgeInsets.only(top: Sizes.SIZE_004, right: Sizes.SIZE_008),
                                                     child: Chip(
-                                                        backgroundColor: Colors.white,
+                                                        backgroundColor: Theme.of(context).primaryColor,
                                                         elevation: 0,
                                                         padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010),
                                                         labelPadding: EdgeInsets.zero,
                                                         label: Text(
                                                             e,
                                                             style: TextStyle(
-                                                                color: Colors.black,
+                                                                color: Theme.of(context).backgroundColor,
                                                                 fontSize: Sizes.SIZE_012,
                                                             ),
                                                         ),
@@ -77,7 +77,7 @@ class Description extends StatelessWidget {
                         Container(
                             alignment: Alignment.center,
                             child: Container(
-                                color: Colors.black26,
+                                color: Theme.of(context).backgroundColor.withOpacity(0.26),
                                 width: Sizes.SIZE_170,
                                 height: Sizes.SIZE_240,
                                 child: Stack(
@@ -111,8 +111,8 @@ class Description extends StatelessWidget {
                     Divider(),
                     _content(
                         child: LinearProgressIndicator(
-                            backgroundColor: Colors.white12,
-                            color: Colors.white70,
+                            backgroundColor: Theme.of(context).primaryColor.withOpacity(0.12),
+                            color: Theme.of(context).primaryColor.withOpacity(0.7),
                             value: (tmdbDetail.media as TMDBMediaInterface).getVoteDouble,
                         ),
                     ),

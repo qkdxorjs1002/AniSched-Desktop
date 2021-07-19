@@ -11,8 +11,8 @@ class LoadingIndicator extends StatelessWidget {
         return Center(
             child: CircularProgressIndicator(
                 strokeWidth: 1.5,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
-                backgroundColor: Colors.white70,
+                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).backgroundColor.withOpacity(0.45)),
+                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.7),
                 value: value,
             ),
         );

@@ -33,7 +33,7 @@ class Board extends StatelessWidget {
                                     child: Text(
                                         description,
                                         style: TextStyle(
-                                            color: Colors.white70,
+                                            color: Theme.of(context).primaryColor.withOpacity(0.7),
                                             fontSize: Sizes.SIZE_010,
                                         ),  
                                     ),
