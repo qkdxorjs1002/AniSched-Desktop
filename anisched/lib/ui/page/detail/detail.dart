@@ -31,6 +31,8 @@ class _DetailPageState extends State<DetailPage> {
     Anime anime;
     TMDBDetail tmdbDetail;
 
+    bool isBackdropHover = false;
+
     @override
     void initState() {
         super.initState();
@@ -78,10 +80,29 @@ class _DetailPageState extends State<DetailPage> {
                                         time: FACTOR.WEEKDAY[anime.week],
                                         extra: anime.getExtraInfo,
                                     ),
+                                    Visibility(
+                                        visible: isBackdropHover,
+                                        child: Container(
+                                            color: Theme.of(context).backgroundColor.withOpacity(0.35),
+                                            child: Center(
+                                                child: Text(
+                                                    "⮐",
+                                                    style: TextStyle(
+                                                        fontSize: Sizes.SIZE_060,
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
                                     Material(
                                         color: Colors.transparent,
                                         child: InkWell(
                                             onTap: () => Navigator.pop(context),
+                                            onHover: (value) {
+                                                setState(() {
+                                                    isBackdropHover = value;
+                                                });
+                                            },
                                             hoverColor: Colors.transparent,
                                         ),
                                     ),
