@@ -88,6 +88,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 child: Text(
                                                     "⮐",
                                                     style: TextStyle(
+                                                        color: Theme.of(context).primaryColor,
                                                         fontSize: Sizes.SIZE_060,
                                                     ),
                                                 ),
