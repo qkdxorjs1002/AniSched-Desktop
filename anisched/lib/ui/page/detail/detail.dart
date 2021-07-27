@@ -1,7 +1,7 @@
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
-import 'package:anisched/tool.dart';
+import 'package:anisched/helper.dart';
 import 'package:anisched/ui/page/detail/item/description.dart';
 import 'package:anisched/ui/page/detail/model.dart';
 import 'package:anisched/ui/page/detail/provider.dart';
@@ -18,7 +18,7 @@ class DetailPage extends StatefulWidget {
 
     final int animeId;
     
-    const DetailPage({ Key key, this.animeId }) : super(key: key);
+    DetailPage({ Key key, this.animeId }) : super(key: key);
 
     @override
     _DetailPageState createState() => _DetailPageState();
@@ -133,7 +133,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Tool.openURL(anime.website),
+                                                        onTap: () async => Helper.openURL(anime.website),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
@@ -191,7 +191,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Captions(
                                                     captionList: anime.captionList,
-                                                    onItemClick: (Caption caption) async => Tool.openURL(caption.website),
+                                                    onItemClick: (Caption caption) async => Helper.openURL(caption.website),
                                                 ),
                                             ),
                                             Padding(
@@ -199,7 +199,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Tool.openURL("https://namu.wiki/go/${anime.subject}"),
+                                                        onTap: () async => Helper.openURL("https://namu.wiki/go/${anime.subject}"),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(

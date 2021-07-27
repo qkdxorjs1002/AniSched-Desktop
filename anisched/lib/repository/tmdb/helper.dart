@@ -1,6 +1,6 @@
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/service.dart';
-import 'package:anisched/tool.dart';
+import 'package:anisched/helper.dart';
 
 import 'model.dart';
 

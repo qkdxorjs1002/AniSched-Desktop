@@ -1,6 +1,6 @@
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
-import 'package:anisched/tool.dart';
+import 'package:anisched/helper.dart';
 import 'package:anisched/ui/page/detail/detail.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/board.dart';
@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
                 physics: const ClampingScrollPhysics(),
                 children: [
                     Ranking(
-                        onItemClick: (Anime anime, Result tmdb) => _navigateRoute(context, anime.id),
+                        onItemClick: (Anime anime, Result tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                     ),
                     Board(
                         title: "최근 자막",
                         description: "길게 누르면 작품 정보",
                         child: Recent(
-                            onItemClick: (RecentCaption caption) async => Tool.openURL(caption.website),
-                            onItemLongClick: (RecentCaption caption) => _navigateRoute(context, caption.id),
+                            onItemClick: (RecentCaption caption) async => Helper.openURL(caption.website),
+                            onItemLongClick: (RecentCaption caption) => Helper.navigateRoute(context, DetailPage(animeId: caption.id)),
                         ),
                     ),
                 ] + List<Widget>.generate(9, (index) {
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                         description: (idx == week) ? "오늘" : "",
                         child: TimeTable(
                             week: idx,
-                            onItemClick: (anime, tmdb) => _navigateRoute(context, anime.id),
+                            onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                         ),
                     );
                 }),
