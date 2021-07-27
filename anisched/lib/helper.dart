@@ -10,6 +10,18 @@ class Helper {
             await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
         }
     }
+
+    static void navigateRoute(BuildContext context, Widget child) {
+        Navigator.of(context).push(
+            PageRouteBuilder(
+                opaque: false,
+                transitionDuration: const Duration(milliseconds: 500),
+                pageBuilder: (context, animation, secondaryAnimation) => BlurTransition(
+                    animation: Tween<double>(begin: 30.0, end: 0.0).animate(animation),
+                    child: child,
+                ),
+            ),
+        );
     }
 }
 
