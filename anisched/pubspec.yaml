@@ -10,6 +10,7 @@ dependencies:
     flutter:
         sdk: flutter
     retrofit: ^1.3.4+1
+    json_serializable: any
     url_launcher: any
     palette_generator: any
     cupertino_icons: ^1.0.2
@@ -27,6 +28,6 @@ flutter:
     fonts:
       - family: Noto Sans CJK KR
         fonts: 
-            - asset: fonts/NotoSansCJKkr-Bold.otf
             - asset: fonts/NotoSansCJKkr-Light.otf
+            - asset: fonts/NotoSansCJKkr-Medium.otf
             - asset: fonts/NotoSansCJKkr-Regular.otf
