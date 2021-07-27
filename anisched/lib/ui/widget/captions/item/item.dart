@@ -21,7 +21,7 @@ class CaptionsItem extends StatelessWidget {
                     }
                 },
                 child: Padding(
-                    padding: EdgeInsets.fromLTRB(Sizes.SIZE_020, Sizes.SIZE_010, Sizes.SIZE_020, Sizes.SIZE_010),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                     child: Column(
                         children: [
                             Row(
