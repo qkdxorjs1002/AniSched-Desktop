@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/ui/widget/loading.dart';
@@ -21,6 +23,9 @@ class Ranking extends StatefulWidget {
 class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
 
     final RankingDataProvider dataProvider = RankingDataProvider();
+    final PageController pageController = PageController(initialPage: 0);
+
+    Timer transitionTimer;
 
     double page = 0;
 
@@ -30,6 +35,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     void initState() {
         super.initState();
         initObservers();
+        initEvents();
 
         dataProvider.requestRanking();
     }
@@ -39,20 +45,29 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
             setState(() {
                 rankList = data;
             });
+            transitionTimer = _initTransition();
         }));
+    }
+
+    void initEvents() {
+        pageController.addListener(() {
+            setState(() {
+                page = pageController.page;
+            });
+            transitionTimer.cancel();
+            transitionTimer = _initTransition();
+        });
+    }
+
+    @override
+    void dispose() {
+        pageController.dispose();
+        super.dispose();
     }
 
     @override
     Widget build(BuildContext context) {
         super.build(context);
-        
-        final PageController pageController = PageController(initialPage: 0);
-
-        pageController.addListener(() {
-            setState(() {
-                page = pageController.page;
-            });
-        });
 
         return rankList != null ? Container(
             height: Sizes.SIZE_560,
@@ -91,6 +106,24 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                 ],
             ),
         ) : LoadingIndicator();
+    }
+
+    Timer _initTransition() {
+        return Timer(
+            const Duration(seconds: 6), 
+            () {
+                if (page < rankList.length - 1) {
+                    pageController.nextPage(
+                        duration: const Duration(
+                            milliseconds: 350,
+                        ), 
+                        curve: Curves.easeInOut
+                    );
+                } else {
+                    pageController.jumpTo(0);
+                }
+            }
+        );
     }
 
     @override

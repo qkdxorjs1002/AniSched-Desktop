@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                             child: Text(
                                 "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'",
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColor.withOpacity(0.65),
+                                    color: Theme.of(context).primaryColor.withOpacity(0.35),
                                     fontSize: Sizes.SIZE_010,
                                     fontWeight: FontWeight.w300,
                                 ),

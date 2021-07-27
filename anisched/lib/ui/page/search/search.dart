@@ -25,6 +25,12 @@ class _SearchPageState extends State<SearchPage> {
     bool isAutoCorrect = false;
 
     @override
+    void dispose() {
+        scrollController.dispose();
+        super.dispose();
+    }
+
+    @override
     void initState() {
         super.initState();
         initObservers();
