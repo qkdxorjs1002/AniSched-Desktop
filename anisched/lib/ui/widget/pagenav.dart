@@ -49,6 +49,7 @@ class PageNavigator extends StatelessWidget {
                         style: TextStyle(
                             color: Theme.of(context).backgroundColor,
                             fontSize: Sizes.SIZE_020,
+                            fontWeight: FontWeight.w300,
                             shadows: [
                                 Shadow(
                                     color: Theme.of(context).primaryColor.withOpacity(0.24),

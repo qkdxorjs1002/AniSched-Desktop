@@ -64,6 +64,7 @@ class Description extends StatelessWidget {
                                                             style: TextStyle(
                                                                 color: Theme.of(context).backgroundColor,
                                                                 fontSize: Sizes.SIZE_012,
+                                                                fontWeight: FontWeight.w500,
                                                             ),
                                                         ),
                                                     ),
@@ -125,6 +126,7 @@ class Description extends StatelessWidget {
                                         (tmdbDetail.media as TMDBMediaInterface).getVoteCountString,
                                         style: TextStyle(
                                             fontSize: Sizes.SIZE_014,
+                                            fontWeight: FontWeight.w300,
                                         ),
                                     ),
                                 ),
@@ -132,6 +134,7 @@ class Description extends StatelessWidget {
                                     "${(tmdbDetail.media as TMDBMediaInterface).getVoteDecimal}점",
                                     style: TextStyle(
                                         fontSize: Sizes.SIZE_014,
+                                        fontWeight: FontWeight.w300,
                                     ),
                                 ),
                             ],
@@ -182,7 +185,7 @@ class Description extends StatelessWidget {
                 text,
                 style: TextStyle(
                     fontSize: Sizes.SIZE_016,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                 ),
             ),
         );

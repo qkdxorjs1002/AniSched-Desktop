@@ -90,6 +90,7 @@ class _DetailPageState extends State<DetailPage> {
                                                     style: TextStyle(
                                                         color: Theme.of(context).primaryColor,
                                                         fontSize: Sizes.SIZE_060,
+                                                        fontWeight: FontWeight.w500,
                                                     ),
                                                 ),
                                             ),
@@ -144,7 +145,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                                 "사이트 바로가기",
                                                                                 style: TextStyle(
                                                                                     fontSize: Sizes.SIZE_016,
-                                                                                    fontWeight: FontWeight.w700,
+                                                                                    fontWeight: FontWeight.w500,
                                                                                 ),
                                                                             ),
                                                                         ),
@@ -152,7 +153,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                             "〉",
                                                                             style: TextStyle(
                                                                                 fontSize: Sizes.SIZE_016,
-                                                                                fontWeight: FontWeight.w700,
+                                                                                fontWeight: FontWeight.w500,
                                                                             ),
                                                                         ),
                                                                     ],
@@ -173,7 +174,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                 "시즌 목록",
                                                                 style: TextStyle(
                                                                     fontSize: Sizes.SIZE_016,
-                                                                    fontWeight: FontWeight.w700,
+                                                                    fontWeight: FontWeight.w500,
                                                                 ),
                                                             ),
                                                             const Divider(),
@@ -210,7 +211,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                                 "나무위키 바로가기",
                                                                                 style: TextStyle(
                                                                                     fontSize: Sizes.SIZE_016,
-                                                                                    fontWeight: FontWeight.w700,
+                                                                                    fontWeight: FontWeight.w500,
                                                                                 ),
                                                                             ),
                                                                         ),
@@ -218,7 +219,7 @@ class _DetailPageState extends State<DetailPage> {
                                                                             "〉",
                                                                             style: TextStyle(
                                                                                 fontSize: Sizes.SIZE_016,
-                                                                                fontWeight: FontWeight.w700,
+                                                                                fontWeight: FontWeight.w500,
                                                                             ),
                                                                         ),
                                                                     ],

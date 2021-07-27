@@ -33,6 +33,7 @@ class CaptionsItem extends StatelessWidget {
                                                 "자막",
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_016,
+                                                    fontWeight: FontWeight.w500,
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -46,6 +47,7 @@ class CaptionsItem extends StatelessWidget {
                                                 caption.author,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_016,
+                                                    fontWeight: FontWeight.w500,
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -63,6 +65,7 @@ class CaptionsItem extends StatelessWidget {
                                                 caption.getEpisodeString,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_012,
+                                                    fontWeight: FontWeight.w300,
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
@@ -76,6 +79,7 @@ class CaptionsItem extends StatelessWidget {
                                                 caption.getUploadDateString,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_012,
+                                                    fontWeight: FontWeight.w300,
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,

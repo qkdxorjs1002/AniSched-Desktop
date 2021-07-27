@@ -61,6 +61,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor.withOpacity(0.54),
                                         fontSize: Sizes.SIZE_012,
+                                        fontWeight: FontWeight.w300,
                                     ),
                                 ),
                             ),
@@ -79,6 +80,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                         style: TextStyle(
                                             color: Theme.of(context).primaryColor,
                                             fontSize: Sizes.SIZE_014,
+                                            fontWeight: FontWeight.w300,
                                         ),
                                     ),
                                 ) : null,
@@ -100,6 +102,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                             widget.anime.subject,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_016,
+                                                fontWeight: FontWeight.w500,
                                                 height: 1.0,
                                             ),
                                             overflow: TextOverflow.ellipsis,
@@ -109,6 +112,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                             "${widget.anime.getTimeString} • ${widget.anime.getGenreString}",
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_012,
+                                                fontWeight: FontWeight.w300,
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,

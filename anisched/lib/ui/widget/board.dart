@@ -26,6 +26,7 @@ class Board extends StatelessWidget {
                                     style: TextStyle(
                                         height: 1.0,
                                         fontSize: Sizes.SIZE_020,
+                                        fontWeight: FontWeight.w500,
                                     ),  
                                 ),
                                 Padding(
@@ -35,6 +36,7 @@ class Board extends StatelessWidget {
                                         style: TextStyle(
                                             color: Theme.of(context).primaryColor.withOpacity(0.7),
                                             fontSize: Sizes.SIZE_010,
+                                            fontWeight: FontWeight.w300,
                                         ),  
                                     ),
                                 ),

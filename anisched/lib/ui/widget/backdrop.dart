@@ -41,6 +41,7 @@ class Backdrop extends StatelessWidget {
                                                     title,
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_030,
+                                                        fontWeight: FontWeight.w500,
                                                         height: 1.0,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
@@ -51,6 +52,7 @@ class Backdrop extends StatelessWidget {
                                                     description,
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_020,
+                                                        fontWeight: FontWeight.w300,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
@@ -66,6 +68,7 @@ class Backdrop extends StatelessWidget {
                                                 time,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_020,
+                                                    fontWeight: FontWeight.w300,
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
@@ -75,6 +78,7 @@ class Backdrop extends StatelessWidget {
                                                 extra,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_020,
+                                                    fontWeight: FontWeight.w300,
                                                 ),
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,

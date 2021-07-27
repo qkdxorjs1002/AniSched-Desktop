@@ -29,6 +29,7 @@ class SeasonTableItem extends StatelessWidget {
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor.withOpacity(0.54),
                                         fontSize: Sizes.SIZE_012,
+                                        fontWeight: FontWeight.w300,
                                     ),
                                 ),
                             ),
@@ -49,6 +50,7 @@ class SeasonTableItem extends StatelessWidget {
                                             season.name,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_016,
+                                                fontWeight: FontWeight.w500,
                                                 height: 1.0,
                                             ),
                                             overflow: TextOverflow.ellipsis,
@@ -58,6 +60,7 @@ class SeasonTableItem extends StatelessWidget {
                                             "${(season.airDate != null) ? season.airDate : "방영일 정보 없음"} | ${season.episodeCount}화",
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_012,
+                                                fontWeight: FontWeight.w300,
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,

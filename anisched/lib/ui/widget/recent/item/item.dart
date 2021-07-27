@@ -42,6 +42,7 @@ class RecentItem extends StatelessWidget {
                                         caption.subject,
                                         style: TextStyle(
                                             fontSize: Sizes.SIZE_014,
+                                            fontWeight: FontWeight.w500,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -56,6 +57,7 @@ class RecentItem extends StatelessWidget {
                                                     "${caption.getEpisodeString} • ${caption.author}",
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_010,
+                                                        fontWeight: FontWeight.w300,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
@@ -69,6 +71,7 @@ class RecentItem extends StatelessWidget {
                                                     caption.getUploadDateString,
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_010,
+                                                        fontWeight: FontWeight.w300,
                                                     ),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,

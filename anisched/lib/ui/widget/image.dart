@@ -27,6 +27,7 @@ class ImageNetwork extends StatelessWidget {
                         style: TextStyle(
                             color: Theme.of(context).primaryColor.withOpacity(0.54),
                             fontSize: Sizes.SIZE_012,
+                            fontWeight: FontWeight.w300,
                         ),
                     ),
                 );
@@ -37,6 +38,7 @@ class ImageNetwork extends StatelessWidget {
                 style: TextStyle(
                     color: Theme.of(context).primaryColor.withOpacity(0.54),
                     fontSize: Sizes.SIZE_012,
+                    fontWeight: FontWeight.w300,
                 ),
             ),
         );
