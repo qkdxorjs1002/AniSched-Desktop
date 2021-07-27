@@ -82,7 +82,7 @@ class Anime {
         return "";
     } 
 
-    String get getGenreString => genres.replaceAll(",", " • ");
+    String get getGenreString => genres.replaceAll(",", " ᐧ ");
 
     List<String> get getGenreList => genres.split(",");
 
@@ -216,4 +216,56 @@ class Rank {
     String get diffString => (diff != 0 ? (diff.isOdd ? "▲" : "▼") + diff.abs().toString() : "");
 
     String get rankString => "${rank.toString()}위";
+}
+
+class AutoCorrect {
+
+    int id;
+    String subject;
+
+    AutoCorrect({ this.id, this.subject });
+
+    factory AutoCorrect.fromString(String string) {
+        final int delimIdx = string.indexOf(" ");
+        return AutoCorrect(
+            id: int.parse(string.substring(0, delimIdx)),
+            subject: string.substring(delimIdx + 1, string.length),
+        );
+    }
+
+}
+
+class AllAnime {
+
+    List<Anime> content;
+
+    bool isLast;
+    int number;
+    int totalElements;
+    int totalPages;
+
+    AllAnime({
+        this.content, this.isLast, this.number, this.totalElements, this.totalPages
+    });
+
+    void update(AllAnime allAnime) {
+        if (content == null) {
+            content = [];
+        }
+        this.content.addAll(allAnime.content);
+        this.isLast = allAnime.isLast;
+        this.number = allAnime.number;
+        this.totalElements = allAnime.totalElements;
+        this.totalPages = allAnime.totalPages;
+    }
+
+    factory AllAnime.fromJson(Map<String, dynamic> json) {
+        return AllAnime(
+            content: (json['content'] as List)?.map((e) => Anime.fromJson(e))?.toList(),
+            isLast: json['last'],
+            number: json['number'],
+            totalElements: json['totalElements'],
+            totalPages: json['totalPages'],
+        );
+    }
 }

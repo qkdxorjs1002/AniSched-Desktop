@@ -15,24 +15,37 @@ abstract class AnissiaService {
     }
 
     @GET("schedule/{week}")
-    Future<List<Anime>> requestSchedule(@Path("week") int week);
+    Future<List<Anime>> requestSchedule(
+        @Path("week") int week,
+    );
 
     @GET("list/{page}")
-    Future<List<Anime>> requestAllSchedule(@Path("page") int page);
+    Future<AllAnime> requestAllSchedule(
+        @Path("page") int page,
+        @Query("q") String query,
+    );
 
     @GET("caption/recent")
     Future<List<RecentCaption>> requestRecentCaption();
 
     @GET("caption/animeNo/{id}")
-    Future<List<Caption>> requestCaption(@Path("id") int id);
+    Future<List<Caption>> requestCaption(
+        @Path("id") int id,
+    );
 
     @GET("animeNo/{id}")
-    Future<Anime> requestAnime(@Path("id") int id);
+    Future<Anime> requestAnime(
+        @Path("id") int id,
+    );
 
     @GET("rank/{factor}")
-    Future<List<Rank>> requestRanking(@Path("factor") String factor);
+    Future<List<Rank>> requestRanking(
+        @Path("factor") String factor,
+    );
 
     @GET("autocorrect")
-    Future<List<String>> requestAutoCorrect(@Query("q") String query);
+    Future<String> requestAutoCorrect(
+        @Query("q") String query,
+    );
     
 }

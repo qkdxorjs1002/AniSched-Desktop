@@ -37,12 +37,13 @@ class _AnissiaService implements AnissiaService {
   }
 
   @override
-  Future<List<Anime>> requestAllSchedule(page) async {
+  Future<AllAnime> requestAllSchedule(page, query) async {
     ArgumentError.checkNotNull(page, 'page');
+    ArgumentError.checkNotNull(query, 'query');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<List<dynamic>>('list/$page',
+    final _result = await _dio.request<Map<String, dynamic>>('list/$page',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -50,9 +51,7 @@ class _AnissiaService implements AnissiaService {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    var value = _result.data
-        .map((dynamic i) => Anime.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = AllAnime.fromJson(_result.data);
     return value;
   }
 
@@ -134,12 +133,12 @@ class _AnissiaService implements AnissiaService {
   }
 
   @override
-  Future<List<String>> requestAutoCorrect(query) async {
+  Future<String> requestAutoCorrect(query) async {
     ArgumentError.checkNotNull(query, 'query');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'q': query};
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<List<dynamic>>('autocorrect',
+    final _result = await _dio.request<String>('autocorrect',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',
@@ -147,7 +146,7 @@ class _AnissiaService implements AnissiaService {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = _result.data.cast<String>();
+    final value = _result.data;
     return value;
   }
 }
