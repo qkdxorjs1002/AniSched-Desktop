@@ -109,7 +109,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                             maxLines: 1,
                                         ),
                                         Text(
-                                            "${widget.anime.getTimeString} • ${widget.anime.getGenreString}",
+                                            "${widget.anime.getTimeString} ᐧ ${widget.anime.getGenreString}",
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_012,
                                                 fontWeight: FontWeight.w300,

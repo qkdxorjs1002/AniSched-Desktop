@@ -54,7 +54,7 @@ class RecentItem extends StatelessWidget {
                                             child: Align(
                                                 alignment: Alignment.topLeft,
                                                 child: Text(
-                                                    "${caption.getEpisodeString} • ${caption.author}",
+                                                    "${caption.getEpisodeString} ᐧ ${caption.author}",
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_010,
                                                         fontWeight: FontWeight.w300,

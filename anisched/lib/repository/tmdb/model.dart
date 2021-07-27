@@ -280,7 +280,7 @@ class TV implements TMDBMediaInterface {
             for (int idx = 0; idx < networkList.length; idx++) {
                 string += networkList[idx].name;
                 if (idx < networkList.length - 1) {
-                    string += " • ";
+                    string += " ᐧ ";
                 } 
             }
         } else {
@@ -297,7 +297,7 @@ class TV implements TMDBMediaInterface {
             for (int idx = 0; idx < productionCompany.length; idx++) {
                 string += productionCompany[idx].name;
                 if (idx < productionCompany.length - 1) {
-                    string += " • ";
+                    string += " ᐧ ";
                 } 
             }
         } else {
@@ -429,7 +429,7 @@ class Movie implements TMDBMediaInterface {
             for (int idx = 0; idx < productionCompany.length; idx++) {
                 string += productionCompany[idx].name;
                 if (idx < productionCompany.length - 1) {
-                    string += " • ";
+                    string += " ᐧ ";
                 } 
             }
         } else {

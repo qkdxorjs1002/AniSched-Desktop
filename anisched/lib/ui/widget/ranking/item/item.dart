@@ -61,7 +61,7 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
                         ? tmdbResult.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,
                     title: widget.rank.subject,
-                    description: "${widget.rank.rankString} • ${widget.rank.diffString}",
+                    description: "${widget.rank.rankString} ᐧ ${widget.rank.diffString}",
                     time: FACTOR.WEEKDAY[anime.week],
                     extra: anime.getGenreString,
                 ),
