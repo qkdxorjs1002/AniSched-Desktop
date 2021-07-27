@@ -1,12 +1,15 @@
+import 'package:anisched/ui/widget/blur.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 
-class Tool {
+class Helper {
     static void openURL(String url) async {
         if (url != null && url.isNotEmpty) {
             String encodedUrl = Uri.encodeFull(url);
             await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
         }
+    }
     }
 }
 
