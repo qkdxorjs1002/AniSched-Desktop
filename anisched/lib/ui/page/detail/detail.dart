@@ -90,7 +90,6 @@ class _DetailPageState extends State<DetailPage> {
                                                     style: TextStyle(
                                                         color: Theme.of(context).primaryColor,
                                                         fontSize: Sizes.SIZE_060,
-                                                        fontWeight: FontWeight.w500,
                                                     ),
                                                 ),
                                             ),

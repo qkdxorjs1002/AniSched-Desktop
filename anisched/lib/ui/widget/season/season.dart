@@ -13,6 +13,7 @@ class SeasonTable extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return (seasonList != null) ? Container(
+            alignment: Alignment.topLeft,
             height: Sizes.SIZE_240,
             child: ListView.separated(
                 shrinkWrap: true,
