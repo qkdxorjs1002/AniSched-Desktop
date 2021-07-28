@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
@@ -39,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         initObservers();
 
         PackageInfo.fromPlatform().then(
-            (value) => _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", value.version)
+            (value) => _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", Platform.operatingSystem, value.version)
         );
     }
 

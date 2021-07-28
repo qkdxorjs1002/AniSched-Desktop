@@ -8,7 +8,7 @@ class HomeDataProvider extends DataProvider {
 
     ObservableData<NewRelease>? _newRelease;
 
-    void requestRelease(String? username, String? repo, String? version) {
+    void requestRelease(String? username, String? repo, String? os, String? version) {
         Repositories.githubService.requestRelease(username, repo).then((value) {
             Release _latest = value[0];
             
@@ -16,7 +16,7 @@ class HomeDataProvider extends DataProvider {
                 String _link = _latest.url!;
 
                 _latest.assetList!.map((e) {
-                    if (e.name!.contains(".dmg")) {
+                    if (e.name!.contains(os == "macos" ? ".dmg" : ".zip")) {
                         _link = e.downloadUrl!;
                     }
                 });
