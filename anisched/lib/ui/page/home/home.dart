@@ -35,13 +35,20 @@ class _HomePageState extends State<HomePage> {
 
     final HomeDataProvider _dataProvider = HomeDataProvider();
 
+    String version = "";
+
     @override
     void initState() {
         super.initState();
         initObservers();
 
         PackageInfo.fromPlatform().then(
-            (value) => _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", Platform.operatingSystem, value.version)
+            (value) { 
+                setState(() {
+                    version = "${value.version}+${value.buildNumber}";
+                });
+                    _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", Platform.operatingSystem, value.version);
+            }
         );
     }
 
@@ -137,7 +144,8 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                             padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030!),
                             child: Text(
-                                "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'",
+                                "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'\n${version}",
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor.withOpacity(0.35),
                                     fontSize: Sizes.SIZE_010,
