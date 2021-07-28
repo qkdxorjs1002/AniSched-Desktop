@@ -132,7 +132,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Helper.openURL(anime!.website),
+                                                        onTap: () async => Helper.openURL(anime!.website!),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
@@ -190,7 +190,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 padding: EdgeInsets.only(top: Sizes.SIZE_020!),
                                                 child: Captions(
                                                     captionList: anime!.captionList,
-                                                    onItemClick: (Caption caption) async => Helper.openURL(caption.website),
+                                                    onItemClick: (Caption caption) async => Helper.openURL(caption.website!),
                                                 ),
                                             ),
                                             Padding(

@@ -4,11 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 
 class Helper {
-    static void openURL(String? url) async {
-        if (url != null && url.isNotEmpty) {
-            String encodedUrl = Uri.encodeFull(url);
-            await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
-        }
+    static void openURL(String url) async {
+        String encodedUrl = Uri.encodeFull(url);
+        await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
     }
 
     static void navigateRoute(BuildContext context, Widget child) {

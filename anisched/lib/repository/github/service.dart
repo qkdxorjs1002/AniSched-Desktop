@@ -16,8 +16,8 @@ abstract class Github {
 
     @GET("repos/{username}/{repo}/releases")
     Future<List<Release>> requestRelease(
-        @Path("username") String username,
-        @Path("repo") String repo,
+        @Path("username") String? username,
+        @Path("repo") String? repo,
     );
     
 }
