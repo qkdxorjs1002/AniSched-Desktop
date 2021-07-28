@@ -4,10 +4,6 @@
 <p align="center">
   <img src="img/icon.png" width="256"/>
 <br/><br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w1.png">
-    <img src="img/b1.png" width="900"/>
-  </a>
-<br/>
   <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b1.png">
     <img src="img/w1.png" width="900"/>
   </a>
@@ -31,6 +27,10 @@
   </a>
   <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w7.png">
     <img src="img/w7.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w1.png">
+    <img src="img/b1.png" width="900"/>
   </a>
 <br/>
   <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b2.png">
