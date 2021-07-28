@@ -6,12 +6,12 @@ import 'model.dart';
 part 'service.g.dart';
 
 @RestApi(baseUrl: "https://api.github.com/")
-abstract class Github {
+abstract class GithubService {
 
-    factory Github({ String? baseUrl }) {
+    factory GithubService({ String? baseUrl }) {
         final dio = Dio();
         
-        return _Github(dio);
+        return _GithubService(dio);
     }
 
     @GET("repos/{username}/{repo}/releases")

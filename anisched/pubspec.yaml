@@ -16,6 +16,7 @@ dependencies:
     cupertino_icons: ^1.0.3
     cached_network_image: ^3.1.0
     flutter_cache_manager: ^3.1.2
+    package_info_plus: ^1.0.4
 
 dev_dependencies:
     flutter_test:

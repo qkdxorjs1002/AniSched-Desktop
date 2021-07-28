@@ -6,8 +6,8 @@ part of 'service.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-class _Github implements Github {
-  _Github(this._dio, {this.baseUrl}) {
+class _GithubService implements GithubService {
+  _GithubService(this._dio, {this.baseUrl}) {
     baseUrl ??= 'https://api.github.com/';
   }
 
