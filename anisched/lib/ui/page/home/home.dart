@@ -47,7 +47,9 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                     version = "${value.version}+${value.buildNumber}";
                 });
+                if (Platform.operatingSystem == "macos") {
                     _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", Platform.operatingSystem, value.version);
+                }
             }
         );
     }
