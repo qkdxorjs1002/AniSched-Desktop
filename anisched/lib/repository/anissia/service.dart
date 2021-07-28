@@ -8,7 +8,7 @@ part 'service.g.dart';
 @RestApi(baseUrl: "https://anissia.net/api/anime/")
 abstract class AnissiaService {
 
-    factory AnissiaService({ String baseUrl }) {
+    factory AnissiaService({ String? baseUrl }) {
         final dio = Dio();
         
         return _AnissiaService(dio);
@@ -22,7 +22,7 @@ abstract class AnissiaService {
     @GET("list/{page}")
     Future<AllAnime> requestAllSchedule(
         @Path("page") int page,
-        @Query("q") String query,
+        @Query("q") String? query,
     );
 
     @GET("caption/recent")
@@ -35,7 +35,7 @@ abstract class AnissiaService {
 
     @GET("animeNo/{id}")
     Future<Anime> requestAnime(
-        @Path("id") int id,
+        @Path("id") int? id,
     );
 
     @GET("rank/{factor}")

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 class Recent extends StatefulWidget {
 
-    final Function onItemClick;
-    final Function onItemLongClick;
+    final Function? onItemClick;
+    final Function? onItemLongClick;
 
     const Recent({ this.onItemClick, this.onItemLongClick, key }) : super(key: key);
 
@@ -21,7 +21,7 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
 
     final RecentDataProvider dataProvider = RecentDataProvider();
     
-    List<RecentCaption> recentCaptionList;
+    List<RecentCaption>? recentCaptionList;
 
     @override
     void initState() {
@@ -32,7 +32,7 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
     }
 
     void initObservers() {
-        dataProvider.getRecentCaptionList.addObserver(Observer((data) {
+        dataProvider.getRecentCaptionList!.addObserver(Observer((data) {
             setState(() {
                 recentCaptionList = data;
             });
@@ -48,20 +48,20 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: recentCaptionList.length,
+                itemCount: recentCaptionList!.length,
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
-                    } else if (index == recentCaptionList.length - 1) {
-                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020!);
+                    } else if (index == recentCaptionList!.length - 1) {
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020!);
                     }
                     return Padding(
                         padding: padding,
                         child: RecentItem(
-                            caption: recentCaptionList[index],
-                            onItemClick: (RecentCaption caption) => widget.onItemClick(caption),
-                            onItemLongClick: (RecentCaption caption) => widget.onItemLongClick(caption),
+                            caption: recentCaptionList![index],
+                            onItemClick: (RecentCaption caption) => widget.onItemClick!(caption),
+                            onItemLongClick: (RecentCaption caption) => widget.onItemLongClick!(caption),
                         ),
                     );
                 }, 

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class PageNavigator extends StatelessWidget {
 
-    final Function onLeftTap;
-    final Function onRightTap;
+    final Function? onLeftTap;
+    final Function? onRightTap;
 
-    final bool enableLeft;
-    final bool enableRight;
+    final bool? enableLeft;
+    final bool? enableRight;
 
     const PageNavigator({ this.onLeftTap, this.onRightTap, this.enableLeft, this.enableRight });
     
@@ -19,7 +19,7 @@ class PageNavigator extends StatelessWidget {
                     context,
                     text: "◀", 
                     onTap: onLeftTap,
-                    enabled: enableLeft,
+                    enabled: enableLeft!,
                 ),
                 Expanded(
                     child: Container(),
@@ -28,24 +28,24 @@ class PageNavigator extends StatelessWidget {
                     context,
                     text: "▶", 
                     onTap: onRightTap,
-                    enabled: enableRight,
+                    enabled: enableRight!,
                 ),
             ],
         );
     }
 
-    Widget _navigator(BuildContext context, { String text, Function onTap, bool enabled }) {
+    Widget _navigator(BuildContext context, { String? text, Function? onTap, required bool enabled }) {
         return Material(
             color: Colors.transparent,
             child: !enabled ? null : InkWell(
-                onTap: onTap,
+                onTap: onTap as void Function()?,
                 hoverColor: Theme.of(context).backgroundColor.withOpacity(0.35),
                 child: Container(
                     width: Sizes.SIZE_060,
                     height: double.infinity,
                     alignment: Alignment.center,
                     child: Text(
-                        text,
+                        text!,
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: Sizes.SIZE_020,

@@ -3,31 +3,31 @@ import 'package:flutter/material.dart';
 
 class Sizes {
 
-    static double SIZE_002;
-    static double SIZE_004;
-    static double SIZE_006;
-    static double SIZE_008;
-    static double SIZE_010;
-    static double SIZE_012;
-    static double SIZE_014;
-    static double SIZE_015;
-    static double SIZE_016;
-    static double SIZE_020;
-    static double SIZE_024;
-    static double SIZE_030;
-    static double SIZE_040;
-    static double SIZE_060;
-    static double SIZE_080;
-    static double SIZE_120;
-    static double SIZE_170;
-    static double SIZE_210;
-    static double SIZE_240;
-    static double SIZE_280;
-    static double SIZE_300;
-    static double SIZE_400;
-    static double SIZE_560;
+    static late double SIZE_002;
+    static late double SIZE_004;
+    static late double SIZE_006;
+    static late double SIZE_008;
+    static double? SIZE_010;
+    static double? SIZE_012;
+    static double? SIZE_014;
+    static double? SIZE_015;
+    static double? SIZE_016;
+    static double? SIZE_020;
+    static double? SIZE_024;
+    static double? SIZE_030;
+    static late double SIZE_040;
+    static double? SIZE_060;
+    static double? SIZE_080;
+    static double? SIZE_120;
+    static double? SIZE_170;
+    static double? SIZE_210;
+    static double? SIZE_240;
+    static double? SIZE_280;
+    static double? SIZE_300;
+    static double? SIZE_400;
+    static double? SIZE_560;
     
-    static Size _size;
+    static Size? _size;
 
     static void initialize(BuildContext context) {
         final Scale scale = Scale(context);

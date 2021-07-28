@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoadingIndicator extends StatelessWidget {
 
-    final double value;
+    final double? value;
 
     const LoadingIndicator({ this.value = null });
     

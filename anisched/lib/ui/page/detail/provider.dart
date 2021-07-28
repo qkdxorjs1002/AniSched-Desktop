@@ -9,19 +9,19 @@ import 'package:anisched/ui/page/detail/model.dart';
 
 class DetailDataProvider extends DataProvider {
 
-    ObservableData<Anime> _animeInfo;
-    ObservableData<List<Caption>> _captionList;
-    ObservableData<TMDBDetail> _tmdbDetail;
+    ObservableData<Anime>? _animeInfo;
+    ObservableData<List<Caption>>? _captionList;
+    ObservableData<TMDBDetail>? _tmdbDetail;
 
-    void requestAnimeInfo(int id) {
+    void requestAnimeInfo(int? id) {
         Repositories.anissiaService.requestAnime(id).then((value) {
-            _animeInfo.setData(value);
+            _animeInfo!.setData(value);
         });
     }
 
     void requestCaption(int id) {
         Repositories.anissiaService.requestCaption(id).then((value) {
-            _captionList.setData(value);
+            _captionList!.setData(value);
         });
     }
 
@@ -41,14 +41,14 @@ class DetailDataProvider extends DataProvider {
         });
     }
 
-    void _requestDetail(String type, int id) {
+    void _requestDetail(String? type, int? id) {
         if (type == TMDBMediaTypes.MOVIE) {
             Repositories.tmdbService.requestMovie(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
-                _tmdbDetail.setData(TMDBDetail<Movie>.from(value));
+                _tmdbDetail!.setData(TMDBDetail<Movie>.from(value));
             });
         } else if (type == TMDBMediaTypes.TV) {
             Repositories.tmdbService.requestTV(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
-                _tmdbDetail.setData(TMDBDetail<TV>.from(value));
+                _tmdbDetail!.setData(TMDBDetail<TV>.from(value));
             });
         }
 
@@ -57,21 +57,21 @@ class DetailDataProvider extends DataProvider {
         }
     }
 
-    ObservableData<Anime> get getAnimeInfo {
+    ObservableData<Anime>? get getAnimeInfo {
         if (_animeInfo == null) {
             _animeInfo = ObservableData();
         }
         return _animeInfo;
     }
 
-    ObservableData<List<Caption>> get getCaption {
+    ObservableData<List<Caption>>? get getCaption {
         if (_captionList == null) {
             _captionList = ObservableData();
         }
         return _captionList;
     }
 
-    ObservableData<TMDBDetail> get getTMDBDetail {
+    ObservableData<TMDBDetail>? get getTMDBDetail {
         if (_tmdbDetail == null) {
             _tmdbDetail = ObservableData();
         }

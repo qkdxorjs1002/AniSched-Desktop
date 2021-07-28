@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 
 class ImageNetwork extends StatelessWidget {
 
-    final String source;
-    final double width;
-    final double height;
+    final String? source;
+    final double? width;
+    final double? height;
 
-    ImageNetwork({ @required this.source, this.width, this.height });
+    ImageNetwork({ required this.source, this.width, this.height });
 
     @override
     Widget build(BuildContext context) {
         return (source != null) ? CachedNetworkImage(
-            imageUrl: source,
+            imageUrl: source!,
             width: width,
             height: height,
             fit: BoxFit.cover,

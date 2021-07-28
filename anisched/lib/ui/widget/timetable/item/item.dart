@@ -3,7 +3,6 @@ import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/image.dart';
-import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/timetable/item/provider.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +10,9 @@ import 'package:flutter/material.dart';
 class TimeTableItem extends StatefulWidget {
 
     final Anime anime;
-    final Function onItemClick;
+    final Function? onItemClick;
 
-    const TimeTableItem(this.anime, { this.onItemClick, Key key }) : super(key: key);
+    const TimeTableItem(this.anime, { this.onItemClick, Key? key }) : super(key: key);
 
     @override
     _TimeTableItemState createState() => _TimeTableItemState();
@@ -23,7 +22,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
 
     final TimeTableItemDataProvider dataProvider = TimeTableItemDataProvider();
 
-    Result tmdbResult;
+    Result? tmdbResult;
 
     @override
     void initState() {
@@ -34,7 +33,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
     }
 
     void initObservers() {
-        dataProvider.getTMDBResult.addObserver(Observer((Result data) {
+        dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
             setState(() {
                 tmdbResult = data;
             });
@@ -45,7 +44,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
     Widget build(BuildContext context) {
         super.build(context);
         
-        return (widget.anime != null) ? Container(
+        return Container(
             color: Theme.of(context).primaryColor.withOpacity(0.1),
             width: Sizes.SIZE_210,
             child: Stack(
@@ -54,7 +53,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         fit: StackFit.expand,
                         children: [
                             (tmdbResult != null)
-                            ? ImageNetwork(source: tmdbResult.getPosterPath(TMDBImageSizes.W500))
+                            ? ImageNetwork(source: tmdbResult!.getPosterPath(TMDBImageSizes.W500))
                             : Center(
                                 child: Text(
                                     "NO IMAGE",
@@ -93,13 +92,13 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                             width: double.infinity,
                             height: Sizes.SIZE_080,
                             child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016),
+                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016!),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                         Text(
-                                            widget.anime.subject,
+                                            widget.anime.subject!,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_016,
                                                 fontWeight: FontWeight.w500,
@@ -127,14 +126,14 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         child: InkWell(
                             onTap: () {
                                 if (widget.onItemClick != null) {
-                                    widget.onItemClick(widget.anime, tmdbResult);
+                                    widget.onItemClick!(widget.anime, tmdbResult);
                                 }
                             }
                         ),
                     ),
                 ],
             ),
-        ) : LoadingIndicator();
+        );
     }
 
     @override

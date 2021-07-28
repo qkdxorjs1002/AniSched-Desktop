@@ -6,22 +6,22 @@ import 'package:flutter/material.dart';
 
 class Captions extends StatelessWidget{
     
-    final List<Caption> captionList;
+    final List<Caption>? captionList;
 
-    final Function onItemClick;
+    final Function? onItemClick;
 
-    const Captions({ @required this.captionList, this.onItemClick });
+    const Captions({ required this.captionList, this.onItemClick });
 
     @override
     Widget build(BuildContext context) {
         return (captionList != null) ? ListView.separated(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
-            itemCount: captionList.length,
+            itemCount: captionList!.length,
             itemBuilder: (context, index) {
                 return CaptionsItem(
-                    caption: captionList[index],
-                    onItemClick: (Caption caption) => onItemClick(caption),
+                    caption: captionList![index],
+                    onItemClick: (Caption caption) => onItemClick!(caption),
                 );
             }, 
             separatorBuilder: (context, index) => Container(

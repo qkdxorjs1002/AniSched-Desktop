@@ -1,7 +1,6 @@
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/image.dart';
-import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +8,11 @@ class SeasonTableItem extends StatelessWidget {
 
     final Season season;
 
-    const SeasonTableItem({ @required this.season });
+    const SeasonTableItem({ required this.season });
 
     @override
     Widget build(BuildContext context) {
-        return (season != null) ? Container(
+        return Container(
             color: Theme.of(context).primaryColor.withOpacity(0.1),
             width: Sizes.SIZE_170,
             child: Stack(
@@ -41,13 +40,13 @@ class SeasonTableItem extends StatelessWidget {
                             width: double.infinity,
                             height: Sizes.SIZE_080,
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(Sizes.SIZE_016, 0, Sizes.SIZE_016, 0),
+                                padding: EdgeInsets.fromLTRB(Sizes.SIZE_016!, 0, Sizes.SIZE_016!, 0),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                         Text(
-                                            season.name,
+                                            season.name!,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_016,
                                                 fontWeight: FontWeight.w500,
@@ -72,6 +71,6 @@ class SeasonTableItem extends StatelessWidget {
                     )
                 ],
             ),
-        ) : LoadingIndicator();
+        );
     }
 }

@@ -11,9 +11,9 @@ class RankingItem extends StatefulWidget {
 
     final Rank rank;
 
-    final Function onItemClick;
+    final Function? onItemClick;
 
-    const RankingItem({ @required this.rank, this.onItemClick, key }) : super(key: key);
+    const RankingItem({ required this.rank, this.onItemClick, key }) : super(key: key);
 
     @override
     _RankingItemState createState() => _RankingItemState();
@@ -23,8 +23,8 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
 
     final RankingItemDataProvider dataProvider = RankingItemDataProvider();
     
-    Anime anime;
-    Result tmdbResult;
+    Anime? anime;
+    Result? tmdbResult;
 
     @override
     void initState() {
@@ -35,14 +35,14 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
     }
 
     void initObservers() {
-        dataProvider.getAnimeInfo.addObserver(Observer((Anime data) {
+        dataProvider.getAnimeInfo!.addObserver(Observer((Anime data) {
             setState(() {
                 anime = data;
                 dataProvider.requestTMDB(data);
             });
         }));
 
-        dataProvider.getTMDBResult.addObserver(Observer((Result data) {
+        dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
             setState(() {
                 tmdbResult = data;
             });
@@ -58,17 +58,17 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
                 Backdrop(
                     panelHeight: Sizes.SIZE_120,
                     imageUrl: (tmdbResult != null) 
-                        ? tmdbResult.getBackdropPath(TMDBImageSizes.ORIGINAL)
+                        ? tmdbResult!.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,
                     title: widget.rank.subject,
                     description: "${widget.rank.rankString} ᐧ ${widget.rank.diffString}",
-                    time: FACTOR.WEEKDAY[anime.week],
-                    extra: anime.getGenreString,
+                    time: FACTOR.WEEKDAY[anime!.week!],
+                    extra: anime!.getGenreString,
                 ),
                 Material(
                     color: Colors.transparent,
                     child: InkWell(
-                        onTap: () => widget.onItemClick(anime, tmdbResult),
+                        onTap: () => widget.onItemClick!(anime, tmdbResult),
                         hoverColor: Colors.transparent,
                     ),
                 ),

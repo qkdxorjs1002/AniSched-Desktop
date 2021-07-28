@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 class BackBlur extends StatelessWidget {
 
     final double sigma;
-    final double width;
-    final double height;
-    final Widget child;
+    final double? width;
+    final double? height;
+    final Widget? child;
     final Alignment childAlignment;
 
     const BackBlur({ this.sigma = 50.0, this.width, this.height, this.child, this.childAlignment = Alignment.centerLeft });
@@ -37,15 +37,15 @@ class BackBlur extends StatelessWidget {
 class BlurTransition extends AnimatedWidget {
 
     final Animation<double> animation;
-    final Widget child;
+    final Widget? child;
 
-    const BlurTransition({@required this.animation, this.child }) : super(listenable: animation);
+    const BlurTransition({required this.animation, this.child }) : super(listenable: animation);
 
     @override
     Widget build(BuildContext context) {
         return Stack(
             children: [
-                child,
+                child!,
                 ClipRect(
                     child: BackdropFilter(
                         filter: ImageFilter.blur(

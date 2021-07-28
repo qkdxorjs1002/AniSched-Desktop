@@ -6,9 +6,9 @@ class ToolsItem extends StatelessWidget {
 
     final Widget icon;
     final String text;
-    final Function onItemClick;
+    final Function? onItemClick;
 
-    ToolsItem({ @required this.icon, @required this.text, this.onItemClick });
+    ToolsItem({ required this.icon, required this.text, this.onItemClick });
 
     @override
     Widget build(BuildContext context) {
@@ -19,11 +19,11 @@ class ToolsItem extends StatelessWidget {
                 child: InkWell(
                     onTap: () {
                         if (onItemClick != null) {
-                            onItemClick();
+                            onItemClick!();
                         }
                     },
                     child: Padding(
-                        padding: EdgeInsets.fromLTRB(Sizes.SIZE_020, Sizes.SIZE_010, Sizes.SIZE_020, Sizes.SIZE_010),
+                        padding: EdgeInsets.fromLTRB(Sizes.SIZE_020!, Sizes.SIZE_010!, Sizes.SIZE_020!, Sizes.SIZE_010!),
                         child: Row(
                             children: [
                                 Align(

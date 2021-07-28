@@ -6,9 +6,9 @@ class CaptionsItem extends StatelessWidget {
 
     final Caption caption;
 
-    final Function onItemClick;
+    final Function? onItemClick;
 
-    CaptionsItem({ @required this.caption, this.onItemClick });
+    CaptionsItem({ required this.caption, this.onItemClick });
 
     @override
     Widget build(BuildContext context) {
@@ -17,11 +17,11 @@ class CaptionsItem extends StatelessWidget {
             child: InkWell(
                 onTap: () {
                     if (onItemClick != null) {
-                        onItemClick(this.caption);
+                        onItemClick!(this.caption);
                     }
                 },
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
                     child: Column(
                         children: [
                             Row(
@@ -44,7 +44,7 @@ class CaptionsItem extends StatelessWidget {
                                         child: Align(
                                             alignment: Alignment.bottomRight,
                                             child: Text(
-                                                caption.author,
+                                                caption.author!,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_016,
                                                     fontWeight: FontWeight.w500,

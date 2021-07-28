@@ -1,14 +1,14 @@
 class ObservableData<T> {
 
-    T _data;
+    T? _data;
 
     List<Observer> _observerList = [];
 
-    ObservableData({ T data }) {
+    ObservableData({ T? data }) {
         _data = data;
     }
 
-    T get getData {
+    T? get getData {
         return _data;
     }
 
@@ -17,7 +17,7 @@ class ObservableData<T> {
 
         Iterator iterator = _observerList.iterator;
         while (iterator.moveNext()) {
-            iterator?.current?.call(_data);
+            iterator.current?.call(_data);
         }
     }
 

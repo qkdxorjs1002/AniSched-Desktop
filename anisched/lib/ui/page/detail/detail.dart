@@ -16,9 +16,9 @@ import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
 
-    final int animeId;
+    final int? animeId;
     
-    DetailPage({ Key key, this.animeId }) : super(key: key);
+    DetailPage({ Key? key, this.animeId }) : super(key: key);
 
     @override
     _DetailPageState createState() => _DetailPageState();
@@ -28,8 +28,8 @@ class _DetailPageState extends State<DetailPage> {
 
     final DetailDataProvider dataProvider = DetailDataProvider();
     
-    Anime anime;
-    TMDBDetail tmdbDetail;
+    Anime? anime;
+    TMDBDetail? tmdbDetail;
 
     bool isBackdropHover = false;
 
@@ -42,14 +42,14 @@ class _DetailPageState extends State<DetailPage> {
     }
 
     void initObservers() {
-        dataProvider.getAnimeInfo.addObserver(Observer((data) {
+        dataProvider.getAnimeInfo!.addObserver(Observer((data) {
             setState(() {
                 anime = data;
             });
             dataProvider.requestTMDB(data);
         }));
 
-        dataProvider.getTMDBDetail.addObserver(Observer((data) {
+        dataProvider.getTMDBDetail!.addObserver(Observer((data) {
             setState(() {
                 tmdbDetail = data;
             });
@@ -74,11 +74,11 @@ class _DetailPageState extends State<DetailPage> {
                                     Backdrop(
                                         panelHeight: Sizes.SIZE_080,
                                         imageUrl: (tmdbDetail != null) 
-                                            ? tmdbDetail.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
+                                            ? tmdbDetail!.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
                                             : null,
-                                        title: anime.subject,
-                                        time: FACTOR.WEEKDAY[anime.week],
-                                        extra: anime.getExtraInfo,
+                                        title: anime!.subject,
+                                        time: FACTOR.WEEKDAY[anime!.week!],
+                                        extra: anime!.getExtraInfo,
                                     ),
                                     Visibility(
                                         visible: isBackdropHover,
@@ -117,26 +117,26 @@ class _DetailPageState extends State<DetailPage> {
                                     maxWidth: 750,
                                 ),
                                 child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
+                                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030!),
                                     child: Column(
                                         children: <Widget> [
                                             Padding(
-                                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
+                                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020!),
                                                 child: Description(
                                                     anime: anime,
                                                     tmdbDetail: tmdbDetail
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Helper.openURL(anime.website),
+                                                        onTap: () async => Helper.openURL(anime!.website),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012!, horizontal: Sizes.SIZE_020!),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
@@ -162,10 +162,10 @@ class _DetailPageState extends State<DetailPage> {
                                                     ),
                                                 ),
                                             ),
-                                        ] + ((tmdbDetail != null && tmdbDetail.type == TMDBMediaTypes.TV) 
+                                        ] + ((tmdbDetail != null && tmdbDetail!.type == TMDBMediaTypes.TV) 
                                             ? [
                                                 Padding(
-                                                    padding: EdgeInsets.only(top: Sizes.SIZE_020, left: Sizes.SIZE_020, right: Sizes.SIZE_020),
+                                                    padding: EdgeInsets.only(top: Sizes.SIZE_020!, left: Sizes.SIZE_020!, right: Sizes.SIZE_020!),
                                                     child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
@@ -181,28 +181,28 @@ class _DetailPageState extends State<DetailPage> {
                                                     ),
                                                 ),
                                                 SeasonTable(
-                                                    seasonList: (tmdbDetail.media as TV).seasonList.reversed.toList(),
+                                                    seasonList: (tmdbDetail!.media as TV).seasonList!.reversed.toList(),
                                                 ),
                                             ] 
                                             : [])
                                         + [
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
                                                 child: Captions(
-                                                    captionList: anime.captionList,
+                                                    captionList: anime!.captionList,
                                                     onItemClick: (Caption caption) async => Helper.openURL(caption.website),
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Helper.openURL("https://namu.wiki/go/${anime.subject}"),
+                                                        onTap: () async => Helper.openURL("https://namu.wiki/go/${anime!.subject}"),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012!, horizontal: Sizes.SIZE_020!),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(

@@ -5,15 +5,15 @@ import 'package:anisched/repository/repository.dart';
 
 class RecentDataProvider extends DataProvider {
 
-    ObservableData<List<RecentCaption>> _recentCaptionList;
+    ObservableData<List<RecentCaption>>? _recentCaptionList;
 
     void requestRecentCaption() {
         Repositories.anissiaService.requestRecentCaption().then((value) {
-            _recentCaptionList.setData(value);
+            _recentCaptionList!.setData(value);
         });
     }
 
-    ObservableData<List<RecentCaption>> get getRecentCaptionList {
+    ObservableData<List<RecentCaption>>? get getRecentCaptionList {
         if (_recentCaptionList == null) {
             _recentCaptionList = ObservableData();
         }

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
     
-    SearchPage({ Key key }) : super(key: key);
+    SearchPage({ Key? key }) : super(key: key);
 
     @override
     _SearchPageState createState() => _SearchPageState();
@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
     final SearchDataProvider dataProvider = SearchDataProvider();
     final ScrollController scrollController = ScrollController();
     
-    List<AutoCorrect> _autoCorrectList;
+    List<AutoCorrect>? _autoCorrectList;
     AllAnime _allAnime = AllAnime();
 
     bool isAutoCorrect = false;
@@ -39,14 +39,14 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     void initObservers() {
-        dataProvider.getAutoCorrectList.addObserver(Observer((data) {
+        dataProvider.getAutoCorrectList!.addObserver(Observer((data) {
             setState(() {
                 _autoCorrectList = data;
                 isAutoCorrect = true;
             });
         }));
 
-        dataProvider.getAnimeList.addObserver(Observer((data) {
+        dataProvider.getAnimeList!.addObserver(Observer((data) {
             setState(() {
                 _allAnime = data;
                 isAutoCorrect = false;
@@ -57,7 +57,7 @@ class _SearchPageState extends State<SearchPage> {
     void initEvents() {
         scrollController.addListener(() {
             final ScrollPosition scrollPosition = scrollController.position;
-            if (scrollPosition.pixels >= scrollPosition.maxScrollExtent - Sizes.SIZE_060) {
+            if (scrollPosition.pixels >= scrollPosition.maxScrollExtent - Sizes.SIZE_060!) {
                 dataProvider.requestAllScheduleNext();
             }
         });
@@ -77,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                             maxWidth: 750,
                         ),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_024),
+                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_024!),
                             child: Column(
                                 children: [
                                     Row(
@@ -130,17 +130,17 @@ class _SearchPageState extends State<SearchPage> {
                                         child: IndexedStack(
                                             index: (isAutoCorrect) ? 1 : 0,
                                             children: [
-                                                (_allAnime.content != null) && (_allAnime.content.isNotEmpty) ? ListView.separated(
+                                                (_allAnime.content != null) && (_allAnime.content!.isNotEmpty) ? ListView.separated(
                                                     controller: scrollController,
-                                                    itemCount: _allAnime.content.length,
-                                                    itemBuilder: (context, index) => SearchItem(anime: _allAnime.content[index]),
+                                                    itemCount: _allAnime.content!.length,
+                                                    itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
                                                     separatorBuilder: (context, index) => Divider(),
                                                 ) : _noList(),
-                                            ] + ((_autoCorrectList != null) && (_autoCorrectList.isNotEmpty) 
+                                            ] + ((_autoCorrectList != null) && (_autoCorrectList!.isNotEmpty) 
                                                 ? [
                                                     ListView.separated(
-                                                        itemCount: _autoCorrectList.length,
-                                                        itemBuilder: (context, index) => AutoCorrectItem(autoCorrect: _autoCorrectList[index]),
+                                                        itemCount: _autoCorrectList!.length,
+                                                        itemBuilder: (context, index) => AutoCorrectItem(autoCorrect: _autoCorrectList![index]),
                                                         separatorBuilder: (context, index) => Divider(),
                                                     )
                                                 ] : []
@@ -160,7 +160,7 @@ class _SearchPageState extends State<SearchPage> {
         return Container(
             alignment: Alignment.topCenter,
             child: Padding(
-                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
+                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
                 child: Text(
                     "검색어를 입력해주세요.",
                     style: TextStyle(

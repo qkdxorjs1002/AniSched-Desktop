@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 class Description extends StatelessWidget {
 
-    final Anime anime;
-    final TMDBDetail tmdbDetail;
+    final Anime? anime;
+    final TMDBDetail? tmdbDetail;
 
     const Description({ this.anime, this.tmdbDetail });
 
@@ -31,33 +31,33 @@ class Description extends StatelessWidget {
                                         text: "시간",
                                     ),
                                     _contentText(
-                                        text: anime.getTimeString,
+                                        text: anime!.getTimeString,
                                     ),
                                     _headerText(
                                         text: "방영 시작",
                                     ),
                                     _contentText(
-                                        text: anime.getStartDateString,
+                                        text: anime!.getStartDateString,
                                     ),
                                     _headerText(
                                         text: "종영",
                                     ),
                                     _contentText(
-                                        text: anime.getEndDateString,
+                                        text: anime!.getEndDateString,
                                     ),
                                     _headerText(
                                         text: "장르",
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(bottom: Sizes.SIZE_016),
+                                        padding: EdgeInsets.only(bottom: Sizes.SIZE_016!),
                                         child: Wrap(
-                                            children: anime.getGenreList.map((e) {
+                                            children: anime!.getGenreList.map((e) {
                                                 return Padding(
                                                     padding: EdgeInsets.only(top: Sizes.SIZE_004, right: Sizes.SIZE_008),
                                                     child: Chip(
                                                         backgroundColor: Theme.of(context).primaryColor,
                                                         elevation: 0,
-                                                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010),
+                                                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010!),
                                                         labelPadding: EdgeInsets.zero,
                                                         label: Text(
                                                             e,
@@ -85,7 +85,7 @@ class Description extends StatelessWidget {
                                     fit: StackFit.expand,
                                     children: [
                                         ImageNetwork(
-                                            source: (tmdbDetail != null) ? tmdbDetail.media.getPosterPath(TMDBImageSizes.W500) : null,
+                                            source: (tmdbDetail != null) ? tmdbDetail!.media.getPosterPath(TMDBImageSizes.W500) : null,
                                         ),
                                     ],
                                 ),
@@ -101,10 +101,10 @@ class Description extends StatelessWidget {
                     ),
                     const Divider(),
                     _contentText(
-                        text: (tmdbDetail.media as TMDBMediaInterface).getTitle,
+                        text: (tmdbDetail!.media as TMDBMediaInterface).getTitle!,
                     ),
                     _contentText(
-                        text: (tmdbDetail.media as TMDBMediaInterface).getOriginalTitle,
+                        text: (tmdbDetail!.media as TMDBMediaInterface).getOriginalTitle!,
                     ),
                     _headerText(
                         text: "시청자 평점",
@@ -114,7 +114,7 @@ class Description extends StatelessWidget {
                         child: LinearProgressIndicator(
                             backgroundColor: Theme.of(context).primaryColor.withOpacity(0.12),
                             color: Theme.of(context).primaryColor.withOpacity(0.7),
-                            value: (tmdbDetail.media as TMDBMediaInterface).getVoteDouble,
+                            value: (tmdbDetail!.media as TMDBMediaInterface).getVoteDouble,
                         ),
                     ),
                     _content(
@@ -123,7 +123,7 @@ class Description extends StatelessWidget {
                             children: [
                                 Expanded(
                                     child: Text(
-                                        (tmdbDetail.media as TMDBMediaInterface).getVoteCountString,
+                                        (tmdbDetail!.media as TMDBMediaInterface).getVoteCountString,
                                         style: TextStyle(
                                             fontSize: Sizes.SIZE_014,
                                             fontWeight: FontWeight.w300,
@@ -131,7 +131,7 @@ class Description extends StatelessWidget {
                                     ),
                                 ),
                                 Text(
-                                    "${(tmdbDetail.media as TMDBMediaInterface).getVoteDecimal}점",
+                                    "${(tmdbDetail!.media as TMDBMediaInterface).getVoteDecimal}점",
                                     style: TextStyle(
                                         fontSize: Sizes.SIZE_014,
                                         fontWeight: FontWeight.w300,
@@ -145,16 +145,16 @@ class Description extends StatelessWidget {
                     ),
                     const Divider(),
                     _contentText(
-                        text: (tmdbDetail.media as TMDBMediaInterface).getOverview,
+                        text: (tmdbDetail!.media as TMDBMediaInterface).getOverview!,
                     ),
-                ] + ((tmdbDetail.type == TMDBMediaTypes.TV) 
+                ] + ((tmdbDetail!.type == TMDBMediaTypes.TV) 
                     ? [
                         _headerText(
                             text: "방영사",
                         ),
                         const Divider(),
                         _contentText(
-                            text: (tmdbDetail.media as TV).getNetworksString,
+                            text: (tmdbDetail!.media as TV).getNetworksString,
                         ),
                     ] 
                     : []) 
@@ -164,7 +164,7 @@ class Description extends StatelessWidget {
                     ),
                     const Divider(),
                     _contentText(
-                        text: (tmdbDetail.media as TMDBMediaInterface).getProductionsString,
+                        text: (tmdbDetail!.media as TMDBMediaInterface).getProductionsString,
                     ),
                 ]
                 : []
@@ -172,14 +172,14 @@ class Description extends StatelessWidget {
         ) : LoadingIndicator();
     }
 
-    Widget _header({ @required Widget child }) {
+    Widget _header({ required Widget child }) {
         return Padding(
-            padding: EdgeInsets.only(top: Sizes.SIZE_020),
+            padding: EdgeInsets.only(top: Sizes.SIZE_020!),
             child: child,
         );
     }
 
-    Widget _headerText({ @required String text }) {
+    Widget _headerText({ required String text }) {
         return _header(
             child: Text(
                 text,
@@ -191,14 +191,14 @@ class Description extends StatelessWidget {
         );
     }
     
-    Widget _content({ @required Widget child, EdgeInsets padding = EdgeInsets.zero}) {
+    Widget _content({ required Widget child, EdgeInsets padding = EdgeInsets.zero}) {
         return Padding(
             padding: padding,
             child: child,
         );
     }
 
-    Widget _contentText({ @required String text }) {
+    Widget _contentText({ required String text }) {
         return _content(
             child: Text(
                 text,

@@ -7,10 +7,10 @@ class RecentItem extends StatelessWidget {
 
     final RecentCaption caption;
 
-    final Function onItemClick;
-    final Function onItemLongClick;
+    final Function? onItemClick;
+    final Function? onItemLongClick;
 
-    RecentItem({ @required this.caption, this.onItemClick, this.onItemLongClick });
+    RecentItem({ required this.caption, this.onItemClick, this.onItemLongClick });
 
     @override
     Widget build(BuildContext context) {
@@ -22,16 +22,16 @@ class RecentItem extends StatelessWidget {
                 child: InkWell(
                     onTap: () {
                         if (onItemClick != null) {
-                            onItemClick(this.caption);
+                            onItemClick!(this.caption);
                         }
                     },
                     onLongPress: () {
                         if (onItemLongClick != null) {
-                            onItemLongClick(this.caption);
+                            onItemLongClick!(this.caption);
                         }
                     },
                     child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
+                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center, 
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +39,7 @@ class RecentItem extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.bottomLeft,
                                     child: Text(
-                                        caption.subject,
+                                        caption.subject!,
                                         style: TextStyle(
                                             fontSize: Sizes.SIZE_014,
                                             fontWeight: FontWeight.w500,

@@ -18,27 +18,27 @@ class FACTOR {
 
 class Anime {
 
-    int id;
+    int? id;
 
-    String status;
+    String? status;
 
-    String time;
+    String? time;
 
-    int week;
+    int? week;
 
-    String subject;
+    String? subject;
 
-    String genres;
+    String? genres;
 
-    String startDate;
+    String? startDate;
 
-    String endDate;
+    String? endDate;
 
-    String website;
+    String? website;
 
-    int captionCount;
+    int? captionCount;
 
-    List<Caption> captionList;
+    List<Caption>? captionList;
 
     Anime({ 
         this.id, this.status, this.time, this.week, this.subject, 
@@ -47,7 +47,7 @@ class Anime {
     });
 
     factory Anime.fromJson(Map<String, dynamic> json) {
-        int week = -1;
+        int? week = -1;
         try {
             week = int.tryParse(json['week']);
         } catch (Exception) { }
@@ -62,16 +62,16 @@ class Anime {
             endDate: json['endDate'],
             website: json['website'],
             captionCount: json['captionCount'],
-            captionList: (json['captions'] as List)?.map((e) => Caption.fromJson(e))?.toList(),
+            captionList: (json['captions'] as List?)?.map((e) => Caption.fromJson(e)).toList(),
         );
     }
 
     String get getExtraInfo {
-        if (time.contains(":")) {
+        if (time!.contains(":")) {
             return (isSoon)
-                ? (time.contains(":"))
-                    ? startDate.replaceAll("-99", "").replaceAll(RegExp("\\d\\d\\d\\d-"), "")
-                    : startDate.replaceAll("-99", "")
+                ? (time!.contains(":"))
+                    ? startDate!.replaceAll("-99", "").replaceAll(RegExp("\\d\\d\\d\\d-"), "")
+                    : startDate!.replaceAll("-99", "")
                 : (!isEnd) 
                     ? (isStatus)
                         ? "" 
@@ -82,9 +82,9 @@ class Anime {
         return "";
     } 
 
-    String get getGenreString => genres.replaceAll(",", " ᐧ ");
+    String get getGenreString => genres!.replaceAll(",", " ᐧ ");
 
-    List<String> get getGenreList => genres.split(",");
+    List<String> get getGenreList => genres!.split(",");
 
     bool get isStatus {
         return (status == "ON" ? true : false);
@@ -94,28 +94,28 @@ class Anime {
         if (startDate == "") {
             return true;
         }
-        return DateTime.now().isBefore(DateTime.parse(startDate));
+        return DateTime.now().isBefore(DateTime.parse(startDate!));
     }
 
     bool get isEnd {
         if (endDate == "") {
             return false;
         }
-        return DateTime.now().isAfter(DateTime.parse(endDate));
+        return DateTime.now().isAfter(DateTime.parse(endDate!));
     }
 
-    String get getTimeString => time.isNotEmpty ? time.replaceAll("-99", "") : "미정";
+    String get getTimeString => time!.isNotEmpty ? time!.replaceAll("-99", "") : "미정";
     
-    String get getStartDateString => startDate.isNotEmpty ? startDate.replaceAll("-99", "") : "미정";
+    String get getStartDateString => startDate!.isNotEmpty ? startDate!.replaceAll("-99", "") : "미정";
     
-    String get getEndDateString => endDate.isNotEmpty ? endDate.replaceAll("-99", "") : "미정";
+    String get getEndDateString => endDate!.isNotEmpty ? endDate!.replaceAll("-99", "") : "미정";
 }
 
 class RecentCaption extends Caption {
     
-    int id;
+    int? id;
 
-    String subject;
+    String? subject;
 
     RecentCaption({
         episode, uploadDate, website, author, this.id, this.subject
@@ -138,13 +138,13 @@ class RecentCaption extends Caption {
 
 class Caption {
 
-    String episode;
+    String? episode;
 
-    String uploadDate;
+    String? uploadDate;
 
-    String website;
+    String? website;
 
-    String author;
+    String? author;
 
     Caption({
         this.episode, this.uploadDate, this.website, this.author
@@ -159,12 +159,12 @@ class Caption {
         );
     }
 
-    String get getEpisodeString => (episode == "0" ? (isWIP ? "준비중" : "단편") : episode + "화");
+    String get getEpisodeString => (episode == "0" ? (isWIP ? "준비중" : "단편") : episode! + "화");
 
-    bool get isWIP => DateTime.now().isBefore(DateTime.parse(uploadDate));
+    bool get isWIP => DateTime.now().isBefore(DateTime.parse(uploadDate!));
 
     String get getUploadDateString {
-        Duration diff = DateTime.now().difference(DateTime.parse(uploadDate));
+        Duration diff = DateTime.now().difference(DateTime.parse(uploadDate!));
 
         if (diff.inDays > 0) {
             if (diff.inDays >= 30) {
@@ -189,15 +189,15 @@ class Caption {
 
 class Rank {
 
-    int id;
+    int? id;
 
-    String subject;
+    String? subject;
 
-    int diff;
+    int? diff;
 
-    int hit;
+    int? hit;
 
-    int rank;
+    int? rank;
 
     Rank({
         this.id, this.subject, this.diff, this.hit, this.rank
@@ -213,15 +213,15 @@ class Rank {
         );
     }
 
-    String get diffString => (diff != 0 ? (diff.isOdd ? "▲" : "▼") + diff.abs().toString() : "");
+    String get diffString => (diff != 0 ? (diff!.isOdd ? "▲" : "▼") + diff!.abs().toString() : "");
 
     String get rankString => "${rank.toString()}위";
 }
 
 class AutoCorrect {
 
-    int id;
-    String subject;
+    int? id;
+    String? subject;
 
     AutoCorrect({ this.id, this.subject });
 
@@ -237,12 +237,12 @@ class AutoCorrect {
 
 class AllAnime {
 
-    List<Anime> content;
+    List<Anime>? content;
 
-    bool isLast;
-    int number;
-    int totalElements;
-    int totalPages;
+    bool? isLast;
+    int? number;
+    int? totalElements;
+    int? totalPages;
 
     AllAnime({
         this.content, this.isLast, this.number, this.totalElements, this.totalPages
@@ -252,7 +252,7 @@ class AllAnime {
         if (content == null) {
             content = [];
         }
-        this.content.addAll(allAnime.content);
+        this.content!.addAll(allAnime.content!);
         this.isLast = allAnime.isLast;
         this.number = allAnime.number;
         this.totalElements = allAnime.totalElements;
@@ -261,7 +261,7 @@ class AllAnime {
 
     factory AllAnime.fromJson(Map<String, dynamic> json) {
         return AllAnime(
-            content: (json['content'] as List)?.map((e) => Anime.fromJson(e))?.toList(),
+            content: (json['content'] as List?)?.map((e) => Anime.fromJson(e)).toList(),
             isLast: json['last'],
             number: json['number'],
             totalElements: json['totalElements'],

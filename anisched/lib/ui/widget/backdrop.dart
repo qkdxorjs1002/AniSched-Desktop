@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class Backdrop extends StatelessWidget {
 
-    final String imageUrl;
-    final String title;
-    final String description;
-    final String time;
-    final String extra;
-    final double panelHeight;
+    final String? imageUrl;
+    final String? title;
+    final String? description;
+    final String? time;
+    final String? extra;
+    final double? panelHeight;
     
-    const Backdrop({ @required this.imageUrl, this.title = "", this.description, this.time = "", this.extra, @required this.panelHeight });
+    const Backdrop({ required this.imageUrl, this.title = "", this.description, this.time = "", this.extra, required this.panelHeight });
 
     @override
     Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Backdrop extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                                 Text(
-                                                    title,
+                                                    title!,
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_030,
                                                         fontWeight: FontWeight.w500,
@@ -49,7 +49,7 @@ class Backdrop extends StatelessWidget {
                                                 ),
                                             ] + ((description != null) ? [
                                                 Text(
-                                                    description,
+                                                    description!,
                                                     style: TextStyle(
                                                         fontSize: Sizes.SIZE_020,
                                                         fontWeight: FontWeight.w300,
@@ -65,7 +65,7 @@ class Backdrop extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                             Text(
-                                                time,
+                                                time!,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_020,
                                                     fontWeight: FontWeight.w300,
@@ -75,7 +75,7 @@ class Backdrop extends StatelessWidget {
                                             ),
                                         ] + ((extra != null && extra != "") ? [
                                             Text(
-                                                extra,
+                                                extra!,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_020,
                                                     fontWeight: FontWeight.w300,

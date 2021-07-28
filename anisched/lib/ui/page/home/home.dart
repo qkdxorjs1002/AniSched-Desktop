@@ -16,9 +16,9 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class HomePage extends StatelessWidget {
     
-    final int week;
+    final int? week;
     
-    const HomePage({ Key key, this.week }) : super(key: key);
+    const HomePage({ Key? key, this.week }) : super(key: key);
 
     @override
     Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                         onItemClick: (Anime anime, Result tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(top: Sizes.SIZE_020),
+                        padding: EdgeInsets.only(top: Sizes.SIZE_020!),
                         child: Tools(
                             children: [
                                 ToolsItem(
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                         ),
                     ),
                 ] + List<Widget>.generate(9, (index) {
-                    int idx = (index < 7) ? (index + week) % 7 : index;
+                    int idx = (index < 7) ? (index + week!) % 7 : index;
                     return Board(
                         title: FACTOR.WEEKDAY[idx],
                         description: (idx == week) ? "오늘" : "",
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                     Container(
                         alignment: Alignment.center,
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
+                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030!),
                             child: Text(
                                 "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'",
                                 style: TextStyle(

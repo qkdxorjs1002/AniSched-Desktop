@@ -8,12 +8,12 @@ import 'package:anisched/repository/tmdb/model.dart';
 
 class RankingItemDataProvider extends DataProvider {
 
-    ObservableData<Anime> _animeInfo;
-    ObservableData<Result> _tmdbResult;
+    ObservableData<Anime>? _animeInfo;
+    ObservableData<Result>? _tmdbResult;
 
-    void requestAnime(int id) {
+    void requestAnime(int? id) {
         Repositories.anissiaService.requestAnime(id).then((value) {
-            _animeInfo.setData(value);
+            _animeInfo!.setData(value);
         });
     }
 
@@ -23,7 +23,7 @@ class RankingItemDataProvider extends DataProvider {
                 tmdbService: Repositories.tmdbService,
                 onResultListener: OnResultListener(
                     onFind: (Result result) {
-                        _tmdbResult.setData(result);
+                        _tmdbResult!.setData(result);
                     },
                     onFailed: () {
 
@@ -33,14 +33,14 @@ class RankingItemDataProvider extends DataProvider {
         });
     }
 
-    ObservableData<Anime> get getAnimeInfo {
+    ObservableData<Anime>? get getAnimeInfo {
         if (_animeInfo == null) {
             _animeInfo = ObservableData();
         }
         return _animeInfo;
     }
 
-    ObservableData<Result> get getTMDBResult {
+    ObservableData<Result>? get getTMDBResult {
         if (_tmdbResult == null) {
             _tmdbResult = ObservableData();
         }

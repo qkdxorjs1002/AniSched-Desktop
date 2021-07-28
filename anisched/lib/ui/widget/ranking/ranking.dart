@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 class Ranking extends StatefulWidget {
 
-    final Function onItemClick;
+    final Function? onItemClick;
 
     const Ranking({ this.onItemClick, key }) : super(key: key);
 
@@ -25,11 +25,11 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     final RankingDataProvider dataProvider = RankingDataProvider();
     final PageController pageController = PageController(initialPage: 0);
 
-    Timer transitionTimer;
+    late Timer transitionTimer;
 
-    double page = 0;
+    double? page = 0;
 
-    List<Rank> rankList;
+    List<Rank>? rankList;
 
     @override
     void initState() {
@@ -41,7 +41,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     }
 
     void initObservers() {
-        dataProvider.getRankList.addObserver(Observer((data) {
+        dataProvider.getRankList!.addObserver(Observer((data) {
             setState(() {
                 rankList = data;
             });
@@ -77,10 +77,10 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                         allowImplicitScrolling: true,
                         physics: const ClampingScrollPhysics(),
                         controller: pageController,
-                        itemCount: rankList.length,
+                        itemCount: rankList!.length,
                         itemBuilder: (context, index) => RankingItem(
-                            rank: rankList[index], 
-                            onItemClick: (anime, tmdb) => widget.onItemClick(anime, tmdb),
+                            rank: rankList![index], 
+                            onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
                         ),
                     ),
                     PageNavigator(
@@ -92,7 +92,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                                 curve: Curves.easeInOut
                             );
                         },
-                        enableLeft: (page > 0),
+                        enableLeft: (page! > 0),
                         onRightTap: () {
                             pageController.nextPage(
                                 duration: const Duration(
@@ -101,7 +101,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                                 curve: Curves.easeInOut
                             );
                         },
-                        enableRight: (page < rankList.length - 1),
+                        enableRight: (page! < rankList!.length - 1),
                     ),
                 ],
             ),
@@ -112,7 +112,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
         return Timer(
             const Duration(seconds: 6), 
             () {
-                if (page < rankList.length - 1) {
+                if (page! < rankList!.length - 1) {
                     pageController.nextPage(
                         duration: const Duration(
                             milliseconds: 350,

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class AutoCorrectItem extends StatelessWidget {
 
-    final AutoCorrect autoCorrect;
+    final AutoCorrect? autoCorrect;
 
     const AutoCorrectItem({ this.autoCorrect });
 
@@ -15,11 +15,11 @@ class AutoCorrectItem extends StatelessWidget {
         return Material(
             color: Colors.transparent,
             child: InkWell(
-                onTap: () => Helper.navigateRoute(context, DetailPage(animeId: autoCorrect.id,)),
+                onTap: () => Helper.navigateRoute(context, DetailPage(animeId: autoCorrect!.id,)),
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
                     child: Text(
-                        autoCorrect.subject,
+                        autoCorrect!.subject!,
                         style: TextStyle(
                             fontSize: Sizes.SIZE_016,
                             fontWeight: FontWeight.w300,
@@ -36,7 +36,7 @@ class AutoCorrectItem extends StatelessWidget {
 
 class SearchItem extends StatelessWidget {
 
-    final Anime anime;
+    final Anime? anime;
 
     const SearchItem({ this.anime });
 
@@ -45,9 +45,9 @@ class SearchItem extends StatelessWidget {
         return Material(
             color: Colors.transparent,
             child: InkWell(
-                onTap: () => Helper.navigateRoute(context, DetailPage(animeId: anime.id,)),
+                onTap: () => Helper.navigateRoute(context, DetailPage(animeId: anime!.id,)),
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
                     child: Column(
                         children: [
                             Row(
@@ -56,7 +56,7 @@ class SearchItem extends StatelessWidget {
                                         child: Align(
                                             alignment: Alignment.bottomLeft,
                                             child: Text(
-                                                anime.subject,
+                                                anime!.subject!,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_016,
                                                     fontWeight: FontWeight.w300,
@@ -69,7 +69,7 @@ class SearchItem extends StatelessWidget {
                                     Align(
                                         alignment: Alignment.topRight,
                                         child: Text(
-                                            FACTOR.WEEKDAY[anime.week],
+                                            FACTOR.WEEKDAY[anime!.week!]!,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_012,
                                                 fontWeight: FontWeight.w300,
@@ -86,7 +86,7 @@ class SearchItem extends StatelessWidget {
                                         child: Align(
                                             alignment: Alignment.topLeft,
                                             child: Text(
-                                                "${anime.getGenreString} ᐧ 𝒞${anime.captionCount}",
+                                                "${anime!.getGenreString} ᐧ 𝒞${anime!.captionCount}",
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_012,
                                                     fontWeight: FontWeight.w300,
@@ -100,7 +100,7 @@ class SearchItem extends StatelessWidget {
                                         child: Align(
                                             alignment: Alignment.topRight,
                                             child: Text(
-                                                anime.getStartDateString,
+                                                anime!.getStartDateString,
                                                 style: TextStyle(
                                                     fontSize: Sizes.SIZE_012,
                                                     fontWeight: FontWeight.w300,

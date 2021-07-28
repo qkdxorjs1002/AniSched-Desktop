@@ -2,8 +2,8 @@ import 'package:anisched/repository/tmdb/model.dart';
 
 class TMDBDetail<T> {
 
-    final T media;
-    final String type;
+    final T? media;
+    final String? type;
 
     TMDBDetail({
         this.media, this.type

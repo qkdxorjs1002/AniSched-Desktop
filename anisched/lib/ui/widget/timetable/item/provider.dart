@@ -8,7 +8,7 @@ import 'package:anisched/repository/tmdb/model.dart';
 
 class TimeTableItemDataProvider extends DataProvider {
 
-    ObservableData<Result> _tmdbResult;
+    ObservableData<Result>? _tmdbResult;
 
     void requestTMDB(Anime anime) {
         Future(() {
@@ -16,7 +16,7 @@ class TimeTableItemDataProvider extends DataProvider {
                 tmdbService: Repositories.tmdbService,
                 onResultListener: OnResultListener(
                     onFind: (Result result) {
-                        _tmdbResult.setData(result);
+                        _tmdbResult!.setData(result);
                     },
                     onFailed: () {
 
@@ -26,7 +26,7 @@ class TimeTableItemDataProvider extends DataProvider {
         });
     }
 
-    ObservableData<Result> get getTMDBResult {
+    ObservableData<Result>? get getTMDBResult {
         if (_tmdbResult == null) {
             _tmdbResult = ObservableData();
         }

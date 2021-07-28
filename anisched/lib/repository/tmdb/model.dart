@@ -22,11 +22,11 @@ abstract class TMDBInterface {
 
     String get getVoteCountString;
 
-    String get getTitle;
+    String? get getTitle;
 
-    String get getOriginalTitle;
+    String? get getOriginalTitle;
 
-    String get getOverview;
+    String? get getOverview;
 }
 
 abstract class TMDBMediaInterface implements TMDBInterface {
@@ -36,13 +36,13 @@ abstract class TMDBMediaInterface implements TMDBInterface {
 
 class Search {
     
-    int page;
+    int? page;
 
-    List<Result> resultList;
+    List<Result>? resultList;
 
-    int totalPages;
+    int? totalPages;
 
-    int totalResults;
+    int? totalResults;
 
     Search({ 
         this.page, this.resultList, this.totalPages, this.totalResults,
@@ -51,7 +51,7 @@ class Search {
     factory Search.fromJson(Map<String, dynamic> json) {
         return Search(
             page: json['page'],
-            resultList: (json['results'] as List)?.map((e) => Result.fromJson(e))?.toList(),
+            resultList: (json['results'] as List?)?.map((e) => Result.fromJson(e)).toList(),
             totalPages: json['total_pages'],
             totalResults: json['total_results'],
         );
@@ -60,43 +60,43 @@ class Search {
 
 class Result implements TMDBInterface {
 
-    bool adult;
+    bool? adult;
 
-    String backdropPath;
+    String? backdropPath;
 
-    String firstAirDate;
+    String? firstAirDate;
 
-    List<int> genreIdList;
+    List<int>? genreIdList;
 
-    int id;
+    int? id;
 
-    String mediaType;
+    String? mediaType;
 
-    String name;
+    String? name;
 
-    List<String> originCountry;
+    List<String>? originCountry;
 
-    String originalLanguage;
+    String? originalLanguage;
 
-    String originalName;
+    String? originalName;
 
-    String originalTitle;
+    String? originalTitle;
 
-    String overview;
+    String? overview;
 
-    double popularity;
+    double? popularity;
 
-    String posterPath;
+    String? posterPath;
 
-    String releaseDate;
+    String? releaseDate;
 
-    String title;
+    String? title;
 
-    bool video;
+    bool? video;
 
-    double voteAverage;
+    double? voteAverage;
 
-    int voteCount;
+    int? voteCount;
 
     Result({ 
         this.adult, this.backdropPath, this.firstAirDate, this.genreIdList, this.id, 
@@ -110,11 +110,11 @@ class Result implements TMDBInterface {
             adult: json['adult'],
             backdropPath: json['backdrop_path'],
             firstAirDate: json['first_air_date'],
-            genreIdList: (json['genre_ids'] as List)?.map((e) => e as int)?.toList(),
+            genreIdList: (json['genre_ids'] as List?)?.map((e) => e as int).toList(),
             id: json['id'],
             mediaType: json['media_type'],
             name: json['name'],
-            originCountry: (json['origin_country'] as List)?.map((e) => e as String)?.toList(),
+            originCountry: (json['origin_country'] as List?)?.map((e) => e as String).toList(),
             originalLanguage: json['original_language'],
             originalName: json['original_name'],
             originalTitle: json['original_title'],
@@ -131,7 +131,7 @@ class Result implements TMDBInterface {
 
     @override
     String getBackdropPath(String width) {
-        if (backdropPath == null || backdropPath.isEmpty) {
+        if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
         return "https://image.tmdb.org/t/p/${width}${backdropPath}";
@@ -139,14 +139,14 @@ class Result implements TMDBInterface {
     
     @override
     String getPosterPath(String width) {
-        if (posterPath == null || posterPath.isEmpty) {
+        if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/${width}${posterPath}";
     }
 
     @override
-    String get getTitle {
+    String? get getTitle {
         if (mediaType == TMDBMediaTypes.TV) {
             return name;
         } else if (mediaType == TMDBMediaTypes.MOVIE) {
@@ -156,7 +156,7 @@ class Result implements TMDBInterface {
     }
 
     @override
-    String get getOriginalTitle {
+    String? get getOriginalTitle {
         if (mediaType == TMDBMediaTypes.TV) {
             return originalName;
         } else if (mediaType == TMDBMediaTypes.MOVIE) {
@@ -166,74 +166,74 @@ class Result implements TMDBInterface {
     }
 
     @override
-    int get getVoteDecimal => (voteAverage * 10).toInt();
+    int get getVoteDecimal => (voteAverage! * 10).toInt();
 
     @override
-    double get getVoteDouble => (voteAverage / 10);
+    double get getVoteDouble => (voteAverage! / 10);
 
     @override
     String get getVoteCountString => "${voteCount}명의 시청자 평가";
 
     @override
-    String get getOverview => (overview != null && overview.isNotEmpty) ? overview : "줄거리 내용 없음";
+    String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
 
 }
 
 class TV implements TMDBMediaInterface {
 
-    String backdropPath;
+    String? backdropPath;
 
-    List<int> episodeRuntime;
+    List<int>? episodeRuntime;
 
-    String firstAirDate;
+    String? firstAirDate;
 
-    List<Genre> genreList;
+    List<Genre>? genreList;
 
-    String homepage;
+    String? homepage;
 
-    int id;
+    int? id;
 
-    bool inProduction;
+    bool? inProduction;
 
-    List<String> languageList;
+    List<String>? languageList;
 
-    String lastAirDate;
+    String? lastAirDate;
 
-    Episode lastEpisodeToAir;
+    Episode? lastEpisodeToAir;
 
-    String name;
+    String? name;
 
-    List<Network> networkList;
+    List<Network>? networkList;
 
-    int numberOfEpisodes;
+    int? numberOfEpisodes;
 
-    int numberOfSeasons;
+    int? numberOfSeasons;
 
-    List<String> originCountry;
+    List<String>? originCountry;
 
-    String originalLanguage;
+    String? originalLanguage;
 
-    String originalName;
+    String? originalName;
 
-    String overview;
+    String? overview;
 
-    double popularity;
+    double? popularity;
 
-    String posterPath;
+    String? posterPath;
 
-    List<Production> productionCompany;
+    List<Production>? productionCompany;
 
-    List<Season> seasonList;
+    List<Season>? seasonList;
 
-    String status;
+    String? status;
 
-    String tagLine;
+    String? tagLine;
 
-    String type;
+    String? type;
 
-    double voteAverage;
+    double? voteAverage;
 
-    int voteCount;
+    int? voteCount;
 
     TV({ 
         this.backdropPath, this.episodeRuntime, this.firstAirDate, this.genreList, this.homepage, this.id, this.inProduction, this.languageList, 
@@ -244,27 +244,27 @@ class TV implements TMDBMediaInterface {
     factory TV.fromJson(Map<String, dynamic> json) {
         return TV(
             backdropPath: json['backdrop_path'],
-            episodeRuntime: (json['episode_run_time'] as List)?.map((e) => e as int)?.toList(),
+            episodeRuntime: (json['episode_run_time'] as List?)?.map((e) => e as int).toList(),
             firstAirDate: json['first_air_date'],
-            genreList: (json['genres'] as List)?.map((e) => Genre.fromJson(e))?.toList(),
+            genreList: (json['genres'] as List?)?.map((e) => Genre.fromJson(e)).toList(),
             homepage: json['homepage'],
             id: json['id'],
             inProduction: json['in_production'],
-            languageList: (json['languages'] as List)?.map((e) => e as String)?.toList(),
+            languageList: (json['languages'] as List?)?.map((e) => e as String).toList(),
             lastAirDate: json['last_air_date'],
             lastEpisodeToAir: (json['last_episode_to_air'] != null) ? Episode.fromJson(json['last_episode_to_air']) : null,
             name: json['name'],
-            networkList: (json['networks'] as List)?.map((e) => Network.fromJson(e))?.toList(),
+            networkList: (json['networks'] as List?)?.map((e) => Network.fromJson(e)).toList(),
             numberOfEpisodes: json['number_of_episodes'],
             numberOfSeasons: json['number_of_seasons'],
-            originCountry: (json['origin_country'] as List)?.map((e) => e as String)?.toList(),
+            originCountry: (json['origin_country'] as List?)?.map((e) => e as String).toList(),
             originalLanguage: json['original_language'],
             originalName: json['original_name'],
             overview: json['overview'],
             popularity: json['popularity']?.toDouble(),
             posterPath: json['poster_path'],
-            productionCompany: (json['production_companies'] as List)?.map((e) => Production.fromJson(e))?.toList(),
-            seasonList: (json['seasons'] as List)?.map((e) => Season.fromJson(e))?.toList(),
+            productionCompany: (json['production_companies'] as List?)?.map((e) => Production.fromJson(e)).toList(),
+            seasonList: (json['seasons'] as List?)?.map((e) => Season.fromJson(e)).toList(),
             status: json['status'],
             tagLine: json['tagline'],
             type: json['type'],
@@ -277,9 +277,9 @@ class TV implements TMDBMediaInterface {
         String string = "";
 
         if (networkList != null) {
-            for (int idx = 0; idx < networkList.length; idx++) {
-                string += networkList[idx].name;
-                if (idx < networkList.length - 1) {
+            for (int idx = 0; idx < networkList!.length; idx++) {
+                string += networkList![idx].name!;
+                if (idx < networkList!.length - 1) {
                     string += " ᐧ ";
                 } 
             }
@@ -294,9 +294,9 @@ class TV implements TMDBMediaInterface {
         String string = "";
 
         if (productionCompany != null) {
-            for (int idx = 0; idx < productionCompany.length; idx++) {
-                string += productionCompany[idx].name;
-                if (idx < productionCompany.length - 1) {
+            for (int idx = 0; idx < productionCompany!.length; idx++) {
+                string += productionCompany![idx].name!;
+                if (idx < productionCompany!.length - 1) {
                     string += " ᐧ ";
                 } 
             }
@@ -309,7 +309,7 @@ class TV implements TMDBMediaInterface {
 
     @override
     String getBackdropPath(String width) {
-        if (backdropPath == null || backdropPath.isEmpty) {
+        if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
         return "https://image.tmdb.org/t/p/${width}${backdropPath}";
@@ -317,77 +317,77 @@ class TV implements TMDBMediaInterface {
     
     @override
     String getPosterPath(String width) {
-        if (posterPath == null || posterPath.isEmpty) {
+        if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/${width}${posterPath}";
     }
 
     @override
-    int get getVoteDecimal => (voteAverage * 10).toInt();
+    int get getVoteDecimal => (voteAverage! * 10).toInt();
 
     @override
-    double get getVoteDouble => (voteAverage / 10);
+    double get getVoteDouble => (voteAverage! / 10);
 
     @override
     String get getVoteCountString => "${voteCount}명의 시청자 평가";
 
     @override
-    String get getOverview => (overview != null && overview.isNotEmpty) ? overview : "줄거리 내용 없음";
+    String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
 
     @override
-    String get getTitle => name;
+    String? get getTitle => name;
 
     @override
-    String get getOriginalTitle => originalName;
+    String? get getOriginalTitle => originalName;
 
 }
 
 class Movie implements TMDBMediaInterface {
 
-    bool adult;
+    bool? adult;
 
-    String backdropPath;
+    String? backdropPath;
 
-    int budget;
+    int? budget;
 
-    List<Genre> genreList;
+    List<Genre>? genreList;
 
-    String homepage;
+    String? homepage;
 
-    int id;
+    int? id;
 
-    String imdbId;
+    String? imdbId;
 
-    String originalLanguage;
+    String? originalLanguage;
 
-    String originalTitle;
+    String? originalTitle;
 
-    String overview;
+    String? overview;
 
-    double popularity;
+    double? popularity;
 
-    String posterPath;
+    String? posterPath;
 
-    List<Production> productionCompany;
+    List<Production>? productionCompany;
 
-    String releaseDate;
+    String? releaseDate;
 
-    int revenue;
+    int? revenue;
 
-    int runtime;
+    int? runtime;
 
-    String status;
+    String? status;
 
-    String tagLine;
+    String? tagLine;
 
-    String title;
+    String? title;
 
-    bool video;
+    bool? video;
 
-    double voteAverage;
+    double? voteAverage;
 
-    int voteCount;
+    int? voteCount;
 
     Movie({ 
         this.adult, this.backdropPath, this.budget, this.genreList, this.homepage, this.id, this.imdbId,
@@ -400,7 +400,7 @@ class Movie implements TMDBMediaInterface {
             adult: json['adult'],
             backdropPath: json['backdrop_path'],
             budget: json['budget'],
-            genreList: (json['genres'] as List)?.map((e) => Genre.fromJson(e))?.toList(),
+            genreList: (json['genres'] as List?)?.map((e) => Genre.fromJson(e)).toList(),
             homepage: json['homepage'],
             id: json['id'],
             imdbId: json['imdb_id'],
@@ -409,7 +409,7 @@ class Movie implements TMDBMediaInterface {
             overview: json['overview'],
             popularity: json['popularity']?.toDouble(),
             posterPath: json['poster_path'],
-            productionCompany: (json['production_companies'] as List)?.map((e) => Production.fromJson(e))?.toList(),
+            productionCompany: (json['production_companies'] as List?)?.map((e) => Production.fromJson(e)).toList(),
             releaseDate: json['release_date'],
             revenue: json['revenue'],
             runtime: json['runtime'],
@@ -426,9 +426,9 @@ class Movie implements TMDBMediaInterface {
         String string = "";
 
         if (productionCompany != null) {
-            for (int idx = 0; idx < productionCompany.length; idx++) {
-                string += productionCompany[idx].name;
-                if (idx < productionCompany.length - 1) {
+            for (int idx = 0; idx < productionCompany!.length; idx++) {
+                string += productionCompany![idx].name!;
+                if (idx < productionCompany!.length - 1) {
                     string += " ᐧ ";
                 } 
             }
@@ -441,7 +441,7 @@ class Movie implements TMDBMediaInterface {
 
     @override
     String getBackdropPath(String width) {
-        if (backdropPath == null || backdropPath.isEmpty) {
+        if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
         return "https://image.tmdb.org/t/p/${width}${backdropPath}";
@@ -449,53 +449,53 @@ class Movie implements TMDBMediaInterface {
     
     @override
     String getPosterPath(String width) {
-        if (posterPath == null || posterPath.isEmpty) {
+        if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/${width}${posterPath}";
     }
 
     @override
-    int get getVoteDecimal => (voteAverage * 10).toInt();
+    int get getVoteDecimal => (voteAverage! * 10).toInt();
     
     @override
-    double get getVoteDouble => (voteAverage / 10);
+    double get getVoteDouble => (voteAverage! / 10);
 
     @override
     String get getVoteCountString => "${voteCount}명의 시청자 평가";
 
     @override
-    String get getOverview => (overview != null && overview.isNotEmpty) ? overview : "줄거리 내용 없음";
+    String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
 
     @override
-    String get getTitle => title;
+    String? get getTitle => title;
 
     @override
-    String get getOriginalTitle => originalTitle;
+    String? get getOriginalTitle => originalTitle;
     
 }
 
 class Episode {
 
-    String airDate;
+    String? airDate;
 
-    int episodeNumber;
+    int? episodeNumber;
 
-    int id;
+    int? id;
 
-    String name;
+    String? name;
 
-    String overview;
+    String? overview;
 
-    String productionCode;
+    String? productionCode;
 
-    int seasonNumber;
+    int? seasonNumber;
 
-    String stillPath;
+    String? stillPath;
 
-    double voteAverage;
+    double? voteAverage;
 
-    int voteCount;
+    int? voteCount;
 
     Episode({ 
         this.airDate, this.episodeNumber, this.id, this.name,
@@ -519,36 +519,36 @@ class Episode {
     }
     
     String getStillPath(String width) {
-        if (stillPath == null || stillPath.isEmpty) {
+        if (stillPath == null || stillPath!.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/${width}${stillPath}";
     }
     
-    String get getOverview => (overview != null && overview.isNotEmpty) ? overview : "줄거리 내용 없음";
+    String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
 
-    int get getVoteDecimal => (voteAverage * 10).toInt();
+    int get getVoteDecimal => (voteAverage! * 10).toInt();
     
-    double get getVoteDouble => (voteAverage / 10);
+    double get getVoteDouble => (voteAverage! / 10);
 
     String get getVoteCountString => "${voteCount}명의 시청자 평가";
 }
 
 class Season {
 
-    String airDate;
+    String? airDate;
 
-    int episodeCount;
+    int? episodeCount;
 
-    int id;
+    int? id;
 
-    String name;
+    String? name;
 
-    String overview;
+    String? overview;
 
-    String posterPath;
+    String? posterPath;
 
-    int seasonNumber;
+    int? seasonNumber;
 
     Season({ 
         this.airDate, this.episodeCount, this.id, this.name,
@@ -568,7 +568,7 @@ class Season {
     }
     
     String getPosterPath(String width) {
-        if (posterPath == null || posterPath.isEmpty) {
+        if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
         return "https://image.tmdb.org/t/p/${width}${posterPath}";
@@ -578,9 +578,9 @@ class Season {
 
 class Genre {
 
-    int id;
+    int? id;
 
-    String name;
+    String? name;
 
     Genre({ this.id, this.name });
 
@@ -594,13 +594,13 @@ class Genre {
 
 class Production {
 
-    int id;
+    int? id;
 
-    String logoPath;
+    String? logoPath;
 
-    String name;
+    String? name;
 
-    String originCountry;
+    String? originCountry;
 
     Production({ this.id, this.logoPath, this.name, this.originCountry });
 
@@ -624,13 +624,13 @@ class Production {
 
 class Network {
 
-    int id;
+    int? id;
 
-    String logoPath;
+    String? logoPath;
 
-    String name;
+    String? name;
 
-    String originCountry;
+    String? originCountry;
 
     Network({ this.id, this.logoPath, this.name, this.originCountry });
 
@@ -654,9 +654,9 @@ class Network {
 
 class Videos {
 
-    int id;
+    int? id;
 
-    List<Video> videoList;
+    List<Video>? videoList;
     
     Videos({ 
         this.id, this.videoList,
@@ -665,7 +665,7 @@ class Videos {
     factory Videos.fromJson(Map<String, dynamic> json) {
         return Videos(
             id: json['id'],
-            videoList: (json['results'] as List)?.map((e) => Video.fromJson(e))?.toList(),
+            videoList: (json['results'] as List?)?.map((e) => Video.fromJson(e)).toList(),
         );
     }
 
@@ -673,21 +673,21 @@ class Videos {
 
 class Video {
 
-    String id;
+    String? id;
 
-    String lang;
+    String? lang;
 
-    String country;
+    String? country;
 
-    String key;
+    String? key;
 
-    String name;
+    String? name;
 
-    String site;
+    String? site;
 
-    int res;
+    int? res;
 
-    String type;
+    String? type;
 
     Video({ 
         this.id, this.lang, this.country, this.key, this.name, this.site, this.res, this.type,

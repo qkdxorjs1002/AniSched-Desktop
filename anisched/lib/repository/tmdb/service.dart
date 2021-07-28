@@ -8,7 +8,7 @@ part 'service.g.dart';
 @RestApi(baseUrl: "https://api.themoviedb.org/3/")
 abstract class TMDBService {
 
-    factory TMDBService({ String baseUrl }) {
+    factory TMDBService({ String? baseUrl }) {
         final dio = Dio();
         
         return _TMDBService(dio);
@@ -18,21 +18,21 @@ abstract class TMDBService {
     Future<Search> requestSearch(
         @Query("api_key") String apiKey,
         @Query("language") String lang,
-        @Query("query") String keyword,
+        @Query("query") String? keyword,
     );
 
     @GET("movie/{id}")
     Future<Movie> requestMovie(
         @Query("api_key") String apiKey,
         @Query("language") String lang,
-        @Path("id") int id,
+        @Path("id") int? id,
     );
 
     @GET("tv/{id}")
     Future<TV> requestTV(
         @Query("api_key") String apiKey,
         @Query("language") String lang,
-        @Path("id") int id,
+        @Path("id") int? id,
     );
 
     @GET("{type}/{id}/videos")
