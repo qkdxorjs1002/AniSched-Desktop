@@ -4,22 +4,54 @@
 <p align="center">
   <img src="img/icon.png" width="256"/>
 <br/><br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/1.png">
-    <img src="img/1.png" width="900"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w1.png">
+    <img src="img/b1.png" width="900"/>
   </a>
 <br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/2.png">
-    <img src="img/2.png" width="400"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/3.png">
-    <img src="img/3.png" width="400"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b1.png">
+    <img src="img/w1.png" width="900"/>
   </a>
 <br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/4.png">
-    <img src="img/4.png" width="400"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w2.png">
+    <img src="img/w2.png" width="400"/>
   </a>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/5.png">
-    <img src="img/5.png" width="400"/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w3.png">
+    <img src="img/w3.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w4.png">
+    <img src="img/w4.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w5.png">
+    <img src="img/w5.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w6.png">
+    <img src="img/w6.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w7.png">
+    <img src="img/w7.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b2.png">
+    <img src="img/b2.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b3.png">
+    <img src="img/b3.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b4.png">
+    <img src="img/b4.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b5.png">
+    <img src="img/b5.png" width="400"/>
+  </a>
+<br/>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b6.png">
+    <img src="img/b6.png" width="400"/>
+  </a>
+  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b7.png">
+    <img src="img/b7.png" width="400"/>
   </a>
 <br/>
 
@@ -43,7 +75,7 @@
  - 주간 작품 순위 정보
  - 최근 등록된 자막 정보
  - 작품의 실시간 자막 정보
- - [미구현] 작품 검색 기능
+ - 작품 검색 기능
  - 그 외 [추가 예정](https://github.com/qkdxorjs1002/AniSched-Desktop/projects/1)
 <br/><br/>
 
