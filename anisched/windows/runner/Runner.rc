@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "CompanyName", "kr.paragonnov" "\0"
+            VALUE "FileDescription", "AniSched" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "anisched" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 com.example. All rights reserved." "\0"
+            VALUE "InternalName", "AniSched" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 kr.paragonnov. All rights reserved." "\0"
             VALUE "OriginalFilename", "anisched.exe" "\0"
-            VALUE "ProductName", "anisched" "\0"
+            VALUE "ProductName", "AniSched" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
