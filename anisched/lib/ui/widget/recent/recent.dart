@@ -19,22 +19,22 @@ class Recent extends StatefulWidget {
 
 class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
 
-    final RecentDataProvider dataProvider = RecentDataProvider();
+    final RecentDataProvider _dataProvider = RecentDataProvider();
     
-    List<RecentCaption>? recentCaptionList;
+    List<RecentCaption>? _recentCaptionList;
 
     @override
     void initState() {
         super.initState();
         initObservers();
 
-        dataProvider.requestRecentCaption();
+        _dataProvider.requestRecentCaption();
     }
 
     void initObservers() {
-        dataProvider.getRecentCaptionList!.addObserver(Observer((data) {
+        _dataProvider.getRecentCaptionList!.addObserver(Observer((data) {
             setState(() {
-                recentCaptionList = data;
+                _recentCaptionList = data;
             });
         }));
     }
@@ -43,23 +43,23 @@ class _RecentState extends State<Recent> with AutomaticKeepAliveClientMixin {
     Widget build(BuildContext context) {
         super.build(context);
         
-        return (recentCaptionList != null) ? Container(
+        return (_recentCaptionList != null) ? Container(
             height: Sizes.SIZE_060,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: recentCaptionList!.length,
+                itemCount: _recentCaptionList!.length,
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: Sizes.SIZE_020!);
-                    } else if (index == recentCaptionList!.length - 1) {
-                        padding = EdgeInsets.only(right: Sizes.SIZE_020!);
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
+                    } else if (index == _recentCaptionList!.length - 1) {
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
                     }
                     return Padding(
                         padding: padding,
                         child: RecentItem(
-                            caption: recentCaptionList![index],
+                            caption: _recentCaptionList![index],
                             onItemClick: (RecentCaption caption) => widget.onItemClick!(caption),
                             onItemLongClick: (RecentCaption caption) => widget.onItemLongClick!(caption),
                         ),

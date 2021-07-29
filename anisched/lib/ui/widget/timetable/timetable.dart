@@ -20,22 +20,22 @@ class TimeTable extends StatefulWidget {
 
 class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixin {
 
-    final TimeTableDataProvider dataProvider = TimeTableDataProvider();
+    final TimeTableDataProvider _dataProvider = TimeTableDataProvider();
 
-    List<Anime>? animeList;
+    List<Anime>? _animeList;
 
     @override
     void initState() {
         super.initState();
         initObservers();
 
-        dataProvider.requestSchedule(widget.week);
+        _dataProvider.requestSchedule(widget.week);
     }
 
     void initObservers() {
-        dataProvider.getScheduleList!.addObserver(Observer((data) {
+        _dataProvider.getScheduleList!.addObserver(Observer((data) {
             setState(() {
-                animeList = data;
+                _animeList = data;
             });
         }));
     }
@@ -44,23 +44,23 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
     Widget build(BuildContext context) {
         super.build(context);
         
-        return (animeList != null) ? Container(
+        return (_animeList != null) ? Container(
             height: Sizes.SIZE_300,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: animeList!.length,
+                itemCount: _animeList!.length,
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: Sizes.SIZE_020!);
-                    } else if (index == animeList!.length - 1) {
-                        padding = EdgeInsets.only(right: Sizes.SIZE_020!);
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
+                    } else if (index == _animeList!.length - 1) {
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
                     }
                     return Padding(
                         padding: padding,
                         child: TimeTableItem(
-                            animeList![index],
+                            _animeList![index],
                             onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
                         ),
                     );

@@ -7,7 +7,7 @@ class RankingDataProvider extends DataProvider {
     ObservableData<List<Rank>>? _rankList;
 
     void requestRanking() {
-        Repositories.anissiaService.requestRanking(FACTOR.WEEK).then((value) {
+        Repositories.anissiaService.requestRanking(AnissiaFactor.WEEK).then((value) {
             _rankList!.setData(value);
         });
     }

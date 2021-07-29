@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
     final HomeDataProvider _dataProvider = HomeDataProvider();
 
-    String version = "";
+    String _version = "";
 
     @override
     void initState() {
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         PackageInfo.fromPlatform().then(
             (value) { 
                 setState(() {
-                    version = "${value.version}+${value.buildNumber}";
+                    _version = "${value.version}+${value.buildNumber}";
                 });
                 if (Platform.operatingSystem == "macos") {
                     _dataProvider.requestRelease("qkdxorjs1002", "AniSched-Desktop", Platform.operatingSystem, value.version);
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                         onItemClick: (Anime anime, Result tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(top: Sizes.SIZE_020!),
+                        padding: EdgeInsets.only(top: Sizes.SIZE_020),
                         child: Tools(
                             children: [
                                 ToolsItem(
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                 ] + List<Widget>.generate(9, (index) {
                     int idx = (index < 7) ? (index + widget.week!) % 7 : index;
                     return Board(
-                        title: FACTOR.WEEKDAY[idx],
+                        title: AnissiaFactor.WEEKDAY[idx],
                         description: (idx == widget.week) ? "오늘" : "",
                         child: TimeTable(
                             week: idx,
@@ -144,9 +144,9 @@ class _HomePageState extends State<HomePage> {
                     Container(
                         alignment: Alignment.center,
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030!),
+                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
                             child: Text(
-                                "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'\n${version}",
+                                "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'\n${_version}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor.withOpacity(0.35),

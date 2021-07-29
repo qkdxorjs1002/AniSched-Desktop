@@ -29,7 +29,7 @@ class Backdrop extends StatelessWidget {
                     child: BackBlur(
                         height: panelHeight,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(Sizes.SIZE_040, 0, Sizes.SIZE_040, 0),
+                            padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_040),
                             child: Row(
                                 children: [
                                     Expanded(

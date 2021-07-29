@@ -22,14 +22,14 @@ class Ranking extends StatefulWidget {
 
 class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
 
-    final RankingDataProvider dataProvider = RankingDataProvider();
-    final PageController pageController = PageController(initialPage: 0);
+    final RankingDataProvider _dataProvider = RankingDataProvider();
+    final PageController _pageController = PageController(initialPage: 0);
 
-    late Timer transitionTimer;
+    late Timer _transitionTimer;
 
-    double? page = 0;
+    double? _page = 0;
 
-    List<Rank>? rankList;
+    List<Rank>? _rankList;
 
     @override
     void initState() {
@@ -37,31 +37,31 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
         initObservers();
         initEvents();
 
-        dataProvider.requestRanking();
+        _dataProvider.requestRanking();
     }
 
     void initObservers() {
-        dataProvider.getRankList!.addObserver(Observer((data) {
+        _dataProvider.getRankList!.addObserver(Observer((data) {
             setState(() {
-                rankList = data;
+                _rankList = data;
             });
-            transitionTimer = _initTransition();
+            _transitionTimer = _initTransition();
         }));
     }
 
     void initEvents() {
-        pageController.addListener(() {
+        _pageController.addListener(() {
             setState(() {
-                page = pageController.page;
+                _page = _pageController.page;
             });
-            transitionTimer.cancel();
-            transitionTimer = _initTransition();
+            _transitionTimer.cancel();
+            _transitionTimer = _initTransition();
         });
     }
 
     @override
     void dispose() {
-        pageController.dispose();
+        _pageController.dispose();
         super.dispose();
     }
 
@@ -69,39 +69,39 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     Widget build(BuildContext context) {
         super.build(context);
 
-        return rankList != null ? Container(
+        return _rankList != null ? Container(
             height: Sizes.SIZE_560,
             child: Stack(
                 children: [
                     PageView.builder(
                         allowImplicitScrolling: true,
                         physics: const ClampingScrollPhysics(),
-                        controller: pageController,
-                        itemCount: rankList!.length,
+                        controller: _pageController,
+                        itemCount: _rankList!.length,
                         itemBuilder: (context, index) => RankingItem(
-                            rank: rankList![index], 
+                            rank: _rankList![index], 
                             onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
                         ),
                     ),
                     PageNavigator(
                         onLeftTap: () {
-                            pageController.previousPage(
+                            _pageController.previousPage(
                                 duration: const Duration(
                                     milliseconds: 350,
                                 ), 
                                 curve: Curves.easeInOut
                             );
                         },
-                        enableLeft: (page! > 0),
+                        enableLeft: (_page! > 0),
                         onRightTap: () {
-                            pageController.nextPage(
+                            _pageController.nextPage(
                                 duration: const Duration(
                                     milliseconds: 350,
                                 ), 
                                 curve: Curves.easeInOut
                             );
                         },
-                        enableRight: (page! < rankList!.length - 1),
+                        enableRight: (_page! < _rankList!.length - 1),
                     ),
                 ],
             ),
@@ -112,15 +112,15 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
         return Timer(
             const Duration(seconds: 6), 
             () {
-                if (page! < rankList!.length - 1) {
-                    pageController.nextPage(
+                if (_page! < _rankList!.length - 1) {
+                    _pageController.nextPage(
                         duration: const Duration(
                             milliseconds: 350,
                         ), 
                         curve: Curves.easeInOut
                     );
                 } else {
-                    pageController.jumpTo(0);
+                    _pageController.jumpTo(0);
                 }
             }
         );

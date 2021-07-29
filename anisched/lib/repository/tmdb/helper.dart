@@ -4,10 +4,12 @@ import 'package:anisched/helper.dart';
 
 import 'model.dart';
 
+typedef ResultListener<T> = void Function(T data);
+
 class OnResultListener {
 
-    final onFind;
-    final onFailed;
+    final ResultListener<Result>? onFind;
+    final Function? onFailed;
 
     OnResultListener({ this.onFind, this.onFailed });
 }
@@ -35,13 +37,13 @@ class TMDBHelper {
             if (result != null || result!.isNotEmpty) {
                 int idx = selectBestResult(result, keyword, anime);
                 if (idx != -1) {
-                    onResultListener!.onFind(result[idx]);
+                    onResultListener!.onFind!(result[idx]);
                     return;
                 }
             }
 
             if (!iterator.moveNext()) {
-                onResultListener!.onFailed();
+                onResultListener!.onFailed!();
                 return;
             }
             String filtered = keyword!.replaceAll(RegExp(iterator.current, caseSensitive: false), "");

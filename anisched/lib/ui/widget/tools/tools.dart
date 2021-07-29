@@ -18,9 +18,9 @@ class Tools extends StatelessWidget {
                 itemBuilder: (context, index) {
                     EdgeInsets padding = EdgeInsets.zero;
                     if (index == 0) {
-                        padding = EdgeInsets.only(left: Sizes.SIZE_020!);
+                        padding = EdgeInsets.only(left: Sizes.SIZE_020);
                     } else if (index == children.length - 1) {
-                        padding = EdgeInsets.only(right: Sizes.SIZE_020!);
+                        padding = EdgeInsets.only(right: Sizes.SIZE_020);
                     }
                     return Padding(
                         padding: padding,

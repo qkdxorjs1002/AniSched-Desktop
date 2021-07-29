@@ -49,7 +49,7 @@ class Description extends StatelessWidget {
                                         text: "장르",
                                     ),
                                     Padding(
-                                        padding: EdgeInsets.only(bottom: Sizes.SIZE_016!),
+                                        padding: EdgeInsets.only(bottom: Sizes.SIZE_016),
                                         child: Wrap(
                                             children: anime!.getGenreList.map((e) {
                                                 return Padding(
@@ -57,7 +57,7 @@ class Description extends StatelessWidget {
                                                     child: Chip(
                                                         backgroundColor: Theme.of(context).primaryColor,
                                                         elevation: 0,
-                                                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010!),
+                                                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_006, horizontal: Sizes.SIZE_010),
                                                         labelPadding: EdgeInsets.zero,
                                                         label: Text(
                                                             e,
@@ -174,7 +174,7 @@ class Description extends StatelessWidget {
 
     Widget _header({ required Widget child }) {
         return Padding(
-            padding: EdgeInsets.only(top: Sizes.SIZE_020!),
+            padding: EdgeInsets.only(top: Sizes.SIZE_020),
             child: child,
         );
     }

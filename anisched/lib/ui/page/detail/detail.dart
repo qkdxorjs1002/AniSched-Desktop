@@ -28,10 +28,10 @@ class _DetailPageState extends State<DetailPage> {
 
     final DetailDataProvider dataProvider = DetailDataProvider();
     
-    Anime? anime;
-    TMDBDetail? tmdbDetail;
+    Anime? _anime;
+    TMDBDetail? _tmdbDetail;
 
-    bool isBackdropHover = false;
+    bool _isBackdropHover = false;
 
     @override
     void initState() {
@@ -44,14 +44,14 @@ class _DetailPageState extends State<DetailPage> {
     void initObservers() {
         dataProvider.getAnimeInfo!.addObserver(Observer((data) {
             setState(() {
-                anime = data;
+                _anime = data;
             });
             dataProvider.requestTMDB(data);
         }));
 
         dataProvider.getTMDBDetail!.addObserver(Observer((data) {
             setState(() {
-                tmdbDetail = data;
+                _tmdbDetail = data;
             });
         }));
     }
@@ -63,7 +63,7 @@ class _DetailPageState extends State<DetailPage> {
         return Scaffold(
             backgroundColor: Colors.transparent,
             body: BackBlur(
-                child: (anime != null) ? ListView(
+                child: (_anime != null) ? ListView(
                     physics: const ClampingScrollPhysics(),
                     children: [
                         Container(
@@ -73,15 +73,15 @@ class _DetailPageState extends State<DetailPage> {
                                 children: [
                                     Backdrop(
                                         panelHeight: Sizes.SIZE_080,
-                                        imageUrl: (tmdbDetail != null) 
-                                            ? tmdbDetail!.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
+                                        imageUrl: (_tmdbDetail != null) 
+                                            ? _tmdbDetail!.media.getBackdropPath(TMDBImageSizes.ORIGINAL)
                                             : null,
-                                        title: anime!.subject,
-                                        time: FACTOR.WEEKDAY[anime!.week!],
-                                        extra: anime!.getExtraInfo,
+                                        title: _anime!.subject,
+                                        time: AnissiaFactor.WEEKDAY[_anime!.week!],
+                                        extra: _anime!.getExtraInfo,
                                     ),
                                     Visibility(
-                                        visible: isBackdropHover,
+                                        visible: _isBackdropHover,
                                         child: Container(
                                             color: Theme.of(context).backgroundColor.withOpacity(0.35),
                                             child: Center(
@@ -101,7 +101,7 @@ class _DetailPageState extends State<DetailPage> {
                                             onTap: () => Navigator.pop(context),
                                             onHover: (value) {
                                                 setState(() {
-                                                    isBackdropHover = value;
+                                                    _isBackdropHover = value;
                                                 });
                                             },
                                             hoverColor: Colors.transparent,
@@ -117,26 +117,26 @@ class _DetailPageState extends State<DetailPage> {
                                     maxWidth: 750,
                                 ),
                                 child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030!),
+                                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
                                     child: Column(
                                         children: <Widget> [
                                             Padding(
-                                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020!),
+                                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
                                                 child: Description(
-                                                    anime: anime,
-                                                    tmdbDetail: tmdbDetail
+                                                    anime: _anime,
+                                                    tmdbDetail: _tmdbDetail
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Helper.openURL(anime!.website!),
+                                                        onTap: () async => Helper.openURL(_anime!.website!),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012!, horizontal: Sizes.SIZE_020!),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(
@@ -162,10 +162,10 @@ class _DetailPageState extends State<DetailPage> {
                                                     ),
                                                 ),
                                             ),
-                                        ] + ((tmdbDetail != null && tmdbDetail!.type == TMDBMediaTypes.TV) 
+                                        ] + ((_tmdbDetail != null && _tmdbDetail!.type == TMDBMediaTypes.TV) 
                                             ? [
                                                 Padding(
-                                                    padding: EdgeInsets.only(top: Sizes.SIZE_020!, left: Sizes.SIZE_020!, right: Sizes.SIZE_020!),
+                                                    padding: EdgeInsets.only(top: Sizes.SIZE_020, left: Sizes.SIZE_020, right: Sizes.SIZE_020),
                                                     child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
@@ -181,28 +181,28 @@ class _DetailPageState extends State<DetailPage> {
                                                     ),
                                                 ),
                                                 SeasonTable(
-                                                    seasonList: (tmdbDetail!.media as TV).seasonList!.reversed.toList(),
+                                                    seasonList: (_tmdbDetail!.media as TV).seasonList!.reversed.toList(),
                                                 ),
                                             ] 
                                             : [])
                                         + [
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Captions(
-                                                    captionList: anime!.captionList,
+                                                    captionList: _anime!.captionList,
                                                     onItemClick: (Caption caption) async => Helper.openURL(caption.website!),
                                                 ),
                                             ),
                                             Padding(
-                                                padding: EdgeInsets.only(top: Sizes.SIZE_020!),
+                                                padding: EdgeInsets.only(top: Sizes.SIZE_020),
                                                 child: Material(
                                                     color: Colors.transparent,
                                                     child: InkWell(
-                                                        onTap: () async => Helper.openURL("https://namu.wiki/go/${anime!.subject}"),
+                                                        onTap: () async => Helper.openURL("https://namu.wiki/go/${_anime!.subject}"),
                                                         child: Container(
                                                             width: double.infinity,
                                                             child: Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012!, horizontal: Sizes.SIZE_020!),
+                                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_012, horizontal: Sizes.SIZE_020),
                                                                 child: Row(
                                                                     children: [
                                                                         Expanded(

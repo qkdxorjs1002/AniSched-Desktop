@@ -31,7 +31,7 @@ class RecentItem extends StatelessWidget {
                         }
                     },
                     child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
+                        padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center, 
                             crossAxisAlignment: CrossAxisAlignment.center,

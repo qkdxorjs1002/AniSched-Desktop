@@ -20,22 +20,22 @@ class TimeTableItem extends StatefulWidget {
 
 class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveClientMixin {
 
-    final TimeTableItemDataProvider dataProvider = TimeTableItemDataProvider();
+    final TimeTableItemDataProvider _dataProvider = TimeTableItemDataProvider();
 
-    Result? tmdbResult;
+    Result? _tmdbResult;
 
     @override
     void initState() {
         super.initState();
         initObservers();
 
-        dataProvider.requestTMDB(widget.anime);
+        _dataProvider.requestTMDB(widget.anime);
     }
 
     void initObservers() {
-        dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
+        _dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
             setState(() {
-                tmdbResult = data;
+                _tmdbResult = data;
             });
         }));
     }
@@ -52,8 +52,8 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                     Stack(
                         fit: StackFit.expand,
                         children: [
-                            (tmdbResult != null)
-                            ? ImageNetwork(source: tmdbResult!.getPosterPath(TMDBImageSizes.W500))
+                            (_tmdbResult != null)
+                            ? ImageNetwork(source: _tmdbResult!.getPosterPath(TMDBImageSizes.W500))
                             : Center(
                                 child: Text(
                                     "NO IMAGE",
@@ -92,7 +92,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                             width: double.infinity,
                             height: Sizes.SIZE_080,
                             child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016!),
+                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +126,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                         child: InkWell(
                             onTap: () {
                                 if (widget.onItemClick != null) {
-                                    widget.onItemClick!(widget.anime, tmdbResult);
+                                    widget.onItemClick!(widget.anime, _tmdbResult);
                                 }
                             }
                         ),

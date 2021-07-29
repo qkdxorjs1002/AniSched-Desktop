@@ -21,30 +21,30 @@ class RankingItem extends StatefulWidget {
 
 class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClientMixin{
 
-    final RankingItemDataProvider dataProvider = RankingItemDataProvider();
+    final RankingItemDataProvider _dataProvider = RankingItemDataProvider();
     
-    Anime? anime;
-    Result? tmdbResult;
+    Anime? _anime;
+    Result? _tmdbResult;
 
     @override
     void initState() {
         super.initState();
         initObservers();
 
-        dataProvider.requestAnime(widget.rank.id);
+        _dataProvider.requestAnime(widget.rank.id);
     }
 
     void initObservers() {
-        dataProvider.getAnimeInfo!.addObserver(Observer((Anime data) {
+        _dataProvider.getAnimeInfo!.addObserver(Observer((Anime data) {
             setState(() {
-                anime = data;
-                dataProvider.requestTMDB(data);
+                _anime = data;
+                _dataProvider.requestTMDB(data);
             });
         }));
 
-        dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
+        _dataProvider.getTMDBResult!.addObserver(Observer((Result data) {
             setState(() {
-                tmdbResult = data;
+                _tmdbResult = data;
             });
         }));
     }
@@ -53,22 +53,22 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
     Widget build(BuildContext context) {
         super.build(context);
         
-        return (anime != null) ? Stack(
+        return (_anime != null) ? Stack(
             children: [
                 Backdrop(
                     panelHeight: Sizes.SIZE_120,
-                    imageUrl: (tmdbResult != null) 
-                        ? tmdbResult!.getBackdropPath(TMDBImageSizes.ORIGINAL)
+                    imageUrl: (_tmdbResult != null) 
+                        ? _tmdbResult!.getBackdropPath(TMDBImageSizes.ORIGINAL)
                         : null,
                     title: widget.rank.subject,
                     description: "${widget.rank.rankString} ᐧ ${widget.rank.diffString}",
-                    time: FACTOR.WEEKDAY[anime!.week!],
-                    extra: anime!.getGenreString,
+                    time: AnissiaFactor.WEEKDAY[_anime!.week!],
+                    extra: _anime!.getGenreString,
                 ),
                 Material(
                     color: Colors.transparent,
                     child: InkWell(
-                        onTap: () => widget.onItemClick!(anime, tmdbResult),
+                        onTap: () => widget.onItemClick!(_anime, _tmdbResult),
                         hoverColor: Colors.transparent,
                     ),
                 ),

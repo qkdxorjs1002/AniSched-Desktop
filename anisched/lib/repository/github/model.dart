@@ -1,9 +1,13 @@
 class Release {
 
     final List<Asset>? assetList;
+
     final String? url;
+
     final String? body;
+
     final bool? pre;
+
     final String? tagName;
 
     Release({ this.assetList, this.url, this.body, this.pre, this.tagName });
@@ -23,7 +27,9 @@ class Release {
 class Asset {
     
     final String? downloadUrl;
+    
     final String? name;
+
     final String? state;
 
     Asset({ this.downloadUrl, this.name, this.state });

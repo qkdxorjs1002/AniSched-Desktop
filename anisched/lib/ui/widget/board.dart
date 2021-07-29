@@ -12,12 +12,12 @@ class Board extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return Padding(
-            padding: EdgeInsets.fromLTRB(0, Sizes.SIZE_020!, 0, 0),
+            padding: EdgeInsets.only(top: Sizes.SIZE_020),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     Padding(
-                        padding: EdgeInsets.only(left: Sizes.SIZE_020!, bottom: Sizes.SIZE_020!),
+                        padding: EdgeInsets.only(left: Sizes.SIZE_020, bottom: Sizes.SIZE_020),
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [

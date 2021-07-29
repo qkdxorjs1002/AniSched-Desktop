@@ -40,7 +40,7 @@ class SeasonTableItem extends StatelessWidget {
                             width: double.infinity,
                             height: Sizes.SIZE_080,
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(Sizes.SIZE_016!, 0, Sizes.SIZE_016!, 0),
+                                padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_016),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,

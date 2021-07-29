@@ -16,17 +16,17 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
-    final SearchDataProvider dataProvider = SearchDataProvider();
-    final ScrollController scrollController = ScrollController();
+    final SearchDataProvider _dataProvider = SearchDataProvider();
+    final ScrollController _scrollController = ScrollController();
     
     List<AutoCorrect>? _autoCorrectList;
     AllAnime _allAnime = AllAnime();
 
-    bool isAutoCorrect = false;
+    bool _isAutoCorrect = false;
 
     @override
     void dispose() {
-        scrollController.dispose();
+        _scrollController.dispose();
         super.dispose();
     }
 
@@ -35,30 +35,30 @@ class _SearchPageState extends State<SearchPage> {
         super.initState();
         initObservers();
         initEvents();
-        dataProvider.requestAllSchedule(0, "");
+        _dataProvider.requestAllSchedule(0, "");
     }
 
     void initObservers() {
-        dataProvider.getAutoCorrectList!.addObserver(Observer((data) {
+        _dataProvider.getAutoCorrectList!.addObserver(Observer((data) {
             setState(() {
                 _autoCorrectList = data;
-                isAutoCorrect = true;
+                _isAutoCorrect = true;
             });
         }));
 
-        dataProvider.getAnimeList!.addObserver(Observer((data) {
+        _dataProvider.getAnimeList!.addObserver(Observer((data) {
             setState(() {
                 _allAnime = data;
-                isAutoCorrect = false;
+                _isAutoCorrect = false;
             });
         }));
     }
 
     void initEvents() {
-        scrollController.addListener(() {
-            final ScrollPosition scrollPosition = scrollController.position;
-            if (scrollPosition.pixels >= scrollPosition.maxScrollExtent - Sizes.SIZE_060!) {
-                dataProvider.requestAllScheduleNext();
+        _scrollController.addListener(() {
+            final ScrollPosition scrollPosition = _scrollController.position;
+            if (scrollPosition.pixels >= scrollPosition.maxScrollExtent - Sizes.SIZE_060) {
+                _dataProvider.requestAllScheduleNext();
             }
         });
     }
@@ -77,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                             maxWidth: 750,
                         ),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_024!),
+                            padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_024),
                             child: Column(
                                 children: [
                                     Row(
@@ -111,14 +111,14 @@ class _SearchPageState extends State<SearchPage> {
                                                         ),
                                                         onChanged: (value) {
                                                             if (value != "") {
-                                                                dataProvider.requestAutoCorrect(value);
+                                                                _dataProvider.requestAutoCorrect(value);
                                                             } else {
                                                                 setState(() {
-                                                                    isAutoCorrect = false;
+                                                                    _isAutoCorrect = false;
                                                                 });
                                                             }
                                                         },
-                                                        onSubmitted: (value) => dataProvider.requestAllSchedule(0, value),
+                                                        onSubmitted: (value) => _dataProvider.requestAllSchedule(0, value),
                                                         maxLines: 1,
                                                     ),
                                                 ),
@@ -128,10 +128,10 @@ class _SearchPageState extends State<SearchPage> {
                                     Divider(),
                                     Expanded(
                                         child: IndexedStack(
-                                            index: (isAutoCorrect) ? 1 : 0,
+                                            index: (_isAutoCorrect) ? 1 : 0,
                                             children: [
                                                 (_allAnime.content != null) && (_allAnime.content!.isNotEmpty) ? ListView.separated(
-                                                    controller: scrollController,
+                                                    controller: _scrollController,
                                                     itemCount: _allAnime.content!.length,
                                                     itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
                                                     separatorBuilder: (context, index) => Divider(),
@@ -160,7 +160,7 @@ class _SearchPageState extends State<SearchPage> {
         return Container(
             alignment: Alignment.topCenter,
             child: Padding(
-                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
+                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                 child: Text(
                     "검색어를 입력해주세요.",
                     style: TextStyle(

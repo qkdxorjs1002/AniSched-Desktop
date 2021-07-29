@@ -1,4 +1,4 @@
-class FACTOR {
+class AnissiaFactor {
     static const Map<int, String> WEEKDAY = {
         0: "일요일",
         1: "월요일",
@@ -48,9 +48,11 @@ class Anime {
 
     factory Anime.fromJson(Map<String, dynamic> json) {
         int? week = -1;
+        
         try {
             week = int.tryParse(json['week']);
         } catch (Exception) { }
+
         return Anime(
             id: json['animeNo'],
             status: json['status'],
@@ -171,16 +173,16 @@ class Caption {
                 int inMonth = diff.inDays ~/ 30;
                 
                 if (inMonth >= 12) {
-                    return (inMonth ~/ 12).toString() + "년 전";
+                    return "${(inMonth ~/ 12).toString()}년 전";
                 } else {
-                    return inMonth.toString() + "개월 전";
+                    return "${inMonth.toString()}개월 전";
                 }
             } 
-            return diff.inDays.toString() + "일 전";
+            return "${diff.inDays.toString()}일 전";
         } else if (diff.inHours > 0) {
-            return diff.inHours.toString() + "시간 전";
+            return "${diff.inHours.toString()}시간 전";
         } else if (diff.inMinutes > 0) {
-            return diff.inMinutes.toString() + "분 전";
+            return "${diff.inMinutes.toString()}분 전";
         } else {
             return "방금 전";
         }
@@ -221,12 +223,14 @@ class Rank {
 class AutoCorrect {
 
     int? id;
+
     String? subject;
 
     AutoCorrect({ this.id, this.subject });
 
     factory AutoCorrect.fromString(String string) {
         final int delimIdx = string.indexOf(" ");
+
         return AutoCorrect(
             id: int.parse(string.substring(0, delimIdx)),
             subject: string.substring(delimIdx + 1, string.length),
@@ -240,8 +244,11 @@ class AllAnime {
     List<Anime>? content;
 
     bool? isLast;
+
     int? number;
+
     int? totalElements;
+
     int? totalPages;
 
     AllAnime({

@@ -17,7 +17,7 @@ class ObservableData<T> {
 
         Iterator iterator = _observerList.iterator;
         while (iterator.moveNext()) {
-            iterator.current?.call(_data);
+            iterator.current.call(_data);
         }
     }
 
@@ -31,9 +31,11 @@ class ObservableData<T> {
 
 }
 
+typedef ObserverListener<T> = void Function(T data);
+
 class Observer<T> {
 
-    final _onObservableDataChanged;
+    final ObserverListener<T> _onObservableDataChanged;
 
     Observer(this._onObservableDataChanged);
 

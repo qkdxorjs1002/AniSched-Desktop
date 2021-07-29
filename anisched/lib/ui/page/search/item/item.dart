@@ -17,7 +17,7 @@ class AutoCorrectItem extends StatelessWidget {
             child: InkWell(
                 onTap: () => Helper.navigateRoute(context, DetailPage(animeId: autoCorrect!.id,)),
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                     child: Text(
                         autoCorrect!.subject!,
                         style: TextStyle(
@@ -47,7 +47,7 @@ class SearchItem extends StatelessWidget {
             child: InkWell(
                 onTap: () => Helper.navigateRoute(context, DetailPage(animeId: anime!.id,)),
                 child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010!, horizontal: Sizes.SIZE_020!),
+                    padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                     child: Column(
                         children: [
                             Row(
@@ -69,7 +69,7 @@ class SearchItem extends StatelessWidget {
                                     Align(
                                         alignment: Alignment.topRight,
                                         child: Text(
-                                            FACTOR.WEEKDAY[anime!.week!]!,
+                                            AnissiaFactor.WEEKDAY[anime!.week!]!,
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_012,
                                                 fontWeight: FontWeight.w300,
