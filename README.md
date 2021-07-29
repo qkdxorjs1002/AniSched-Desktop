@@ -65,7 +65,9 @@
 ## 다운로드
 ### macOS 10.11 이상, Windows 7 이상 지원
 [![Download](https://img.shields.io/badge/Github-Downloads-red.svg?style=for-the-badge&logo=github)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases) 
-<br/><br/>
+<br/>
+M1 맥의 경우 로제타를 통해 실행해야 합니다. (아직 ARM Binary 포함 X)
+<br/>
 위 링크에서 프로그램을 다운로드 할 수 있습니다.
 <br/><br/>
 
