@@ -40,7 +40,7 @@ msix_config:
     identity_name: 13139Novang.AniSched-Desktop
     publisher: CN=8618EF24-0399-4ACB-BBBC-87A2F5B3B625
     vs_generated_images_folder_path: windows\Assets
-    icons_backgroud_color: '#E3567D'
+    icons_background_color: '#E3567D'
     languages: ko-KR
     msix_version: 2.2.1.0
     architecture: x64
