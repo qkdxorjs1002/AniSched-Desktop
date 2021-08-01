@@ -11,3 +11,4 @@ echo "Creating MSIX..."
 flutter pub run msix:create --store
 
 echo "Done."
+explorer ./build/windows/runner/Release
