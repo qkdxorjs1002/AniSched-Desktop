@@ -65,7 +65,7 @@ class _SearchPageState extends State<SearchPage> {
 
     @override
     Widget build(BuildContext context) {
-        Sizes.initialize(context);
+        Sizes.calculate(context);
         
         return Scaffold(
             backgroundColor: Colors.transparent,

@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 
     @override
     Widget build(BuildContext context) {
-        Sizes.initialize(context);
+        Sizes.calculate(context);
         
         return Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,

@@ -29,7 +29,7 @@ class Sizes {
     
     static Size? _size;
 
-    static void initialize(BuildContext context) {
+    static void calculate(BuildContext context) {
         final Scale scale = Scale(context);
 
         if (scale.size == _size) {
