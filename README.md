@@ -29,31 +29,6 @@
     <img src="img/w7.png" width="400"/>
   </a>
 <br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/w1.png">
-    <img src="img/b1.png" width="900"/>
-  </a>
-<br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b2.png">
-    <img src="img/b2.png" width="400"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b3.png">
-    <img src="img/b3.png" width="400"/>
-  </a>
-<br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b4.png">
-    <img src="img/b4.png" width="400"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b5.png">
-    <img src="img/b5.png" width="400"/>
-  </a>
-<br/>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b6.png">
-    <img src="img/b6.png" width="400"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/qkdxorjs1002/AniSched-Desktop/main/img/b7.png">
-    <img src="img/b7.png" width="400"/>
-  </a>
-<br/>
 
 ### 애니메이션 편성표 앱 (애니시아 API, TMDb)
 <br/>
@@ -61,16 +36,21 @@
 [![Travis (.com)](https://img.shields.io/travis/com/qkdxorjs1002/AniSched-Desktop?logo=travis-ci&style=for-the-badge)](https://travis-ci.com/qkdxorjs1002/AniSched-Desktop)
 [![GitHub all releases](https://img.shields.io/github/downloads/qkdxorjs1002/AniSched-Desktop/total?style=for-the-badge)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
+<br/><br/>
 
-## 다운로드
-### macOS 10.11 이상, Windows 7 이상 지원
-[![Download](https://img.shields.io/badge/Github-Downloads-red.svg?style=for-the-badge&logo=github)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases) 
-<br/>
-M1 맥의 경우 로제타를 통해 실행해야 합니다. (아직 ARM Binary 포함 X)
-<br/>
-** 맥의 경우 우클릭 열기를 통해 신뢰 되지 않는 패키지 실행을 할 수 있습니다. **
-<br/>
-위 링크에서 프로그램을 다운로드 할 수 있습니다.
+## 다운로드 
+### Homebrew (macOS)
+```
+$ brew tap qkdxorjs1002/tap
+$ brew install anisched
+```
+
+### 직접 다운로드 (macOS 10.11 이상, Windows 7 이상 지원)
+[![Download](https://img.shields.io/badge/Github-Download%20Link-hotpink.svg?style=for-the-badge&logo=github)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases) 
+
+### 알림
+- M1 맥의 경우 로제타를 통해 실행해야 합니다. (아직 ARM Binary 포함 X)
+- 맥의 경우 우클릭 열기를 통해 신뢰 되지 않는 패키지 실행을 할 수 있습니다.
 <br/><br/>
 
 ## 기능
