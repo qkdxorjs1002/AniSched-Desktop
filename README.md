@@ -1,5 +1,4 @@
 # AniSched-Desktop
-## 개발 진행 중 (진행도는 [여기](https://github.com/qkdxorjs1002/AniSched-Desktop/projects/1))
 
 <p align="center">
   <img src="img/icon.png" width="256"/>
