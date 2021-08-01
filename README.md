@@ -31,6 +31,7 @@
 
 ### 애니메이션 편성표 앱 (애니시아 API, TMDb)
 <br/>
+  
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/qkdxorjs1002/AniSched-Desktop/Deploy?style=for-the-badge)](https://github.com/qkdxorjs1002/AniSched-Desktop/actions/workflows/deploy.yml)
 [![GitHub all releases](https://img.shields.io/github/downloads/qkdxorjs1002/AniSched-Desktop/total?style=for-the-badge)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
