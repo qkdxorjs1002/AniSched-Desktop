@@ -55,7 +55,7 @@ jobs:
       - name: Create DMG
         run: |
           npm install -g create-dmg
-          create-dmg ./anisched/build/macos/Build/Products/Release/AniSched.app
+          create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app
 
       - name: Create Draft Release
         id: create_release
