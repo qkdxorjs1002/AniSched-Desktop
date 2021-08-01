@@ -23,6 +23,7 @@ dev_dependencies:
         sdk: flutter
     retrofit_generator: ^2.0.1
     build_runner: ^2.0.6
+    msix: ^2.1.3
     
 flutter:
     uses-material-design: true
@@ -32,3 +33,14 @@ flutter:
             - asset: fonts/NotoSansCJKkr-Light.otf
             - asset: fonts/NotoSansCJKkr-Medium.otf
             - asset: fonts/NotoSansCJKkr-Regular.otf
+
+msix_config:
+    display_name: AniSched
+    publisher_display_name: Novang
+    identity_name: 13139Novang.AniSched
+    publisher: CN=8618EF24-0399-4ACB-BBBC-87A2F5B3B625
+    languages: ko-KR
+    msix_version: 2.2.1.0
+    architecture: x64
+    capabilities: 'internetClient'
+    store: true
