@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./anisched/build/macos/Build/Products/Release/AniSched ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
+          asset_path: ./AniSched ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
           asset_name: AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
           asset_content_type: application/octet-stream
 
