@@ -2,7 +2,6 @@ name: Deploy
 
 on:
   push:
-    branches: [ main ]
     tags:
       - "*"
 
@@ -13,7 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up environment variables
         run: |
-          git fetch --prune --unshallow --tags
           echo ::set-output name=REPO_TAG::$(git describe --tags --abbrev=0)
           echo ::set-output name=REPO_NUM::$(git rev-list --count $(git describe --tags --abbrev=0))
         id: set-up-env-var
@@ -70,7 +68,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up environment variables
         run: |
-          git fetch --prune --unshallow --tags
           echo $('::set-output name=REPO_TAG::' + $(git describe --tags --abbrev=0))
           echo $('::set-output name=REPO_NUM::' + $(git rev-list --count $(git describe --tags --abbrev=0)))
         id: set-up-env-var
