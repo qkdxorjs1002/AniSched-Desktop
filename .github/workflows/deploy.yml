@@ -7,37 +7,12 @@ on:
       - "*"
 
 jobs:
-  make_draft:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up environment variables
-        run: |
-          git fetch --prune --unshallow --tags
-          echo ::set-output name=REPO_TAG::$(git describe --tags --abbrev=0)
-          echo ::set-output name=REPO_NUM::$(git rev-list --count $(git describe --tags --abbrev=0))
-        id: set-up-env-var
-
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          release_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          draft: true
-          prerelease: false
-
   build_mac:
     runs-on: macos-latest
-    needs: [make_draft]
     steps:
       - uses: actions/checkout@v2
       - name: Set up environment variables
         run: |
-          echo 1 ${{ jobs.make_draft.steps.create_release.outputs.upload_url }}
-          echo 2 ${{ jobs.make_draft.outputs.steps.create_release.outputs.upload_url }}
           git fetch --prune --unshallow --tags
           echo ::set-output name=REPO_TAG::$(git describe --tags --abbrev=0)
           echo ::set-output name=REPO_NUM::$(git rev-list --count $(git describe --tags --abbrev=0))
@@ -82,30 +57,15 @@ jobs:
           npm install -g create-dmg
           create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app
 
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          release_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          draft: true
-          prerelease: false
-
-      - name: Upload Assets
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./AniSched ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
-          asset_name: AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
-          asset_content_type: application/octet-stream
+          name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
+          files: ./AniSched ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
 
   build_win:
     runs-on: windows-latest
-    needs: [make_draft]
     steps:
       - uses: actions/checkout@v2
       - name: Set up environment variables
@@ -145,36 +105,16 @@ jobs:
           Compress-Archive -Path '.\anisched\build\windows\runner\Release\*' -DestinationPath (".\AniSched.{0}-win.zip" -f "${{ steps.set-up-env-var.outputs.REPO_TAG }}") -CompressionLevel Optimal
           cd anisched
           flutter pub run msix:create --store
+          mv ./build/windows/runner/Release/anisched.msix ../AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.msix
         shell: pwsh
 
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          release_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          draft: true
-          prerelease: false
+          name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
+          files: |
+            ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.zip
+            ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.msix
 
-      - name: Upload Assets
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.zip
-          asset_name: AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.zip
-          asset_content_type: application/zip
-
-      - name: Upload Assets
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./anisched/build/windows/runner/Release/anisched.msix
-          asset_name: AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.msix
-          asset_content_type: application/octet-stream
           
