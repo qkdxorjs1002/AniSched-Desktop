@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up environment variables
         run: |
+          git fetch --prune --unshallow --tags -f
           echo ::set-output name=REPO_TAG::$(git describe --tags --abbrev=0)
           echo ::set-output name=REPO_NUM::$(git rev-list --count $(git describe --tags --abbrev=0))
         id: set-up-env-var
@@ -53,14 +54,21 @@ jobs:
       - name: Create DMG
         run: |
           npm install -g create-dmg
-          create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app
+          create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
+
+      - name: Digest Package
+        run: |
+          echo sha256 \"$(openssl dgst -sha256 ./AniSched*.dmg | sed 's/SHA256*.*=\ //g')\"
+          echo :set-output name=DMG_SHA256::"$(openssl dgst -sha256 ./AniSched*.dmg)"
+        id: digest-package
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
           name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
-          files: ./AniSched ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
+          body: ${{ steps.digest-package.outputs.DMG_SHA256 }}
+          files: ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
 
   build_win:
     runs-on: windows-latest
@@ -68,6 +76,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up environment variables
         run: |
+          git fetch --prune --unshallow --tags -f
           echo $('::set-output name=REPO_TAG::' + $(git describe --tags --abbrev=0))
           echo $('::set-output name=REPO_NUM::' + $(git rev-list --count $(git describe --tags --abbrev=0)))
         id: set-up-env-var
@@ -113,5 +122,3 @@ jobs:
           files: |
             ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.zip
             ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}-win.msix
-
-          
