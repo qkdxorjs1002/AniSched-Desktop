@@ -38,18 +38,21 @@
 <br/><br/>
 
 ## 다운로드 
-### Homebrew (macOS)
+### 알림
+- M1 맥의 경우 로제타를 통해 실행해야 합니다. (아직 ARM Binary 포함 X)
+- 맥의 경우 우클릭 열기를 통해 신뢰 되지 않는 패키지 실행을 할 수 있습니다.
+  
+### Homebrew (macOS 10.11 이상)
 ```
 $ brew tap qkdxorjs1002/tap
 $ brew install anisched
 ```
+  
+### MS Store (Windows 10 이상)
+[![Download](https://img.shields.io/badge/Store-Product%20Link-blue.svg?style=for-the-badge&logo=microsoft)](https://www.microsoft.com/store/apps/9PB5WSXN3TMN) 
 
 ### 직접 다운로드 (macOS 10.11 이상, Windows 7 이상 지원)
 [![Download](https://img.shields.io/badge/Github-Download%20Link-hotpink.svg?style=for-the-badge&logo=github)](https://github.com/qkdxorjs1002/AniSched-Desktop/releases) 
-
-### 알림
-- M1 맥의 경우 로제타를 통해 실행해야 합니다. (아직 ARM Binary 포함 X)
-- 맥의 경우 우클릭 열기를 통해 신뢰 되지 않는 패키지 실행을 할 수 있습니다.
 <br/><br/>
 
 ## 기능
