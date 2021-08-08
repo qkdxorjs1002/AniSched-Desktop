@@ -128,6 +128,33 @@ class _HomePageState extends State<HomePage> {
                                         },
                                     ),
                                 ),
+                                ToolsItem(
+                                    icon: Icon(
+                                        Icons.subtitles_off_outlined,
+                                        size: Sizes.SIZE_024,
+                                    ), 
+                                    text: "",
+                                    onItemClick: () => Helper.snack(
+                                        context, 
+                                        text: "모든 설정을 초기화합니다. 설정에는 즐겨찾기 및 여러 선택 사항이 포함됩니다. 이 작업은 되돌릴 수 없습니다.", 
+                                        label: "설정 초기화",
+                                        onPressed: () {
+                                            _dataProvider.requestClearPreference();
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                    backgroundColor: Theme.of(context).backgroundColor,
+                                                    content: Text(
+                                                        "설정을 초기화했습니다.",
+                                                        style: TextStyle(
+                                                            color: Theme.of(context).primaryColor,
+                                                            fontWeight: FontWeight.w300,
+                                                        ),
+                                                    ),
+                                                ),
+                                            );
+                                        },
+                                    ),
+                                ),
                             ],
                         ),
                     ),
