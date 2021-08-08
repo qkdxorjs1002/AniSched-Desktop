@@ -11,7 +11,7 @@ class RankingItemDataProvider extends DataProvider {
     ObservableData<Anime>? _animeInfo;
     ObservableData<Result>? _tmdbResult;
 
-    void requestAnime(int? id) {
+    void requestAnime(int id) {
         Repositories.anissiaService.requestAnime(id).then((value) {
             _animeInfo!.setData(value);
         });

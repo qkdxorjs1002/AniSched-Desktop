@@ -32,6 +32,10 @@ class HomeDataProvider extends DataProvider {
         });
     }
 
+    void requestClearPreference() {
+        Repositories.preferenceService.clear();
+    }
+
     ObservableData<NewRelease>? get getNewRelease {
         if (_newRelease == null) {
             _newRelease = ObservableData();

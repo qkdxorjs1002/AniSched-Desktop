@@ -32,13 +32,15 @@ class _DetailPageState extends State<DetailPage> {
     TMDBDetail? _tmdbDetail;
 
     bool _isBackdropHover = false;
+    bool _isFavorited = false;
 
     @override
     void initState() {
         super.initState();
         initObservers();
         
-        dataProvider.requestAnimeInfo(widget.animeId);
+        dataProvider.requestAnimeInfo(widget.animeId!);
+        dataProvider.requestExistFavorite(widget.animeId!);
     }
 
     void initObservers() {
@@ -52,6 +54,12 @@ class _DetailPageState extends State<DetailPage> {
         dataProvider.getTMDBDetail!.addObserver(Observer((data) {
             setState(() {
                 _tmdbDetail = data;
+            });
+        }));
+
+        dataProvider.getIsFavorited!.addObserver(Observer((data) {
+            setState(() {
+                _isFavorited = data;
             });
         }));
     }
@@ -124,7 +132,15 @@ class _DetailPageState extends State<DetailPage> {
                                                 padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
                                                 child: Description(
                                                     anime: _anime,
-                                                    tmdbDetail: _tmdbDetail
+                                                    tmdbDetail: _tmdbDetail,
+                                                    isFavorited: _isFavorited,
+                                                    onFavClick: (value) {
+                                                        if (value) {
+                                                            dataProvider.requestDelFavorite(widget.animeId!);
+                                                        } else {
+                                                            dataProvider.requestAddFavorite(_anime!);
+                                                        }
+                                                    },
                                                 ),
                                             ),
                                             Padding(
@@ -182,6 +198,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 ),
                                                 SeasonTable(
                                                     seasonList: (_tmdbDetail!.media as TV).seasonList!.reversed.toList(),
+                                                    height: Sizes.SIZE_240,
                                                 ),
                                             ] 
                                             : [])

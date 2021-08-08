@@ -12,8 +12,9 @@ class DetailDataProvider extends DataProvider {
     ObservableData<Anime>? _animeInfo;
     ObservableData<List<Caption>>? _captionList;
     ObservableData<TMDBDetail>? _tmdbDetail;
+    ObservableData<bool>? _isFavorited;
 
-    void requestAnimeInfo(int? id) {
+    void requestAnimeInfo(int id) {
         Repositories.anissiaService.requestAnime(id).then((value) {
             _animeInfo!.setData(value);
         });
@@ -57,6 +58,28 @@ class DetailDataProvider extends DataProvider {
         }
     }
 
+    void requestExistFavorite(int id) {
+        Repositories.preferenceService.existFavorite(id).then((value) {
+            _isFavorited!.setData(value);
+        });
+    }
+
+    void requestAddFavorite(Anime anime) {
+        Repositories.preferenceService.addFavorite(anime).then((value) {
+            if (value) {
+                requestExistFavorite(anime.id!);
+            }
+        });
+    }
+
+    void requestDelFavorite(int id) {
+        Repositories.preferenceService.delFavorite(id).then((value) {
+            if (value) {
+                requestExistFavorite(id);
+            }
+        });
+    }
+
     ObservableData<Anime>? get getAnimeInfo {
         if (_animeInfo == null) {
             _animeInfo = ObservableData();
@@ -76,5 +99,12 @@ class DetailDataProvider extends DataProvider {
             _tmdbDetail = ObservableData();
         }
         return _tmdbDetail;
+    }
+
+    ObservableData<bool>? get getIsFavorited {
+        if (_isFavorited == null) {
+            _isFavorited = ObservableData();
+        }
+        return _isFavorited;
     }
 }

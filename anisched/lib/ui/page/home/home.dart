@@ -5,6 +5,7 @@ import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/helper.dart';
 import 'package:anisched/ui/page/detail/detail.dart';
+import 'package:anisched/ui/page/favorite/favorite.dart';
 import 'package:anisched/ui/page/home/provider.dart';
 import 'package:anisched/ui/page/search/search.dart';
 import 'package:anisched/ui/widget/board.dart';
@@ -94,10 +95,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 ToolsItem(
                                     icon: Icon(
-                                        Icons.star,
+                                        Icons.favorite_outline_rounded,
                                         size: Sizes.SIZE_024,
                                     ), 
                                     text: "",
+                                    onItemClick: () => Helper.navigateRoute(context, FavoritePage()),
                                 ),
                                 ToolsItem(
                                     icon: Icon(
@@ -142,8 +144,9 @@ class _HomePageState extends State<HomePage> {
                     return Board(
                         title: AnissiaFactor.WEEKDAY[idx],
                         description: (idx == widget.week) ? "오늘" : "",
-                        child: TimeTable(
+                        child: TimeTable.week(
                             week: idx,
+                            height: Sizes.SIZE_300,
                             onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                         ),
                     );

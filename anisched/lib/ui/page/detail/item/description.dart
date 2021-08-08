@@ -10,8 +10,10 @@ class Description extends StatelessWidget {
 
     final Anime? anime;
     final TMDBDetail? tmdbDetail;
+    final bool isFavorited;
+    final Function? onFavClick;
 
-    const Description({ this.anime, this.tmdbDetail });
+    const Description({ required this.anime, required this.tmdbDetail, this.isFavorited = false, this.onFavClick});
 
     @override
     Widget build(BuildContext context) {
@@ -79,13 +81,40 @@ class Description extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Container(
                                 color: Theme.of(context).backgroundColor.withOpacity(0.26),
-                                width: Sizes.SIZE_170,
+                                width: Sizes.SIZE_240 * 0.7,
                                 height: Sizes.SIZE_240,
                                 child: Stack(
                                     fit: StackFit.expand,
                                     children: [
                                         ImageNetwork(
                                             source: (tmdbDetail != null) ? tmdbDetail!.media.getPosterPath(TMDBImageSizes.W500) : null,
+                                        ),
+                                        Container(
+                                            alignment: Alignment.topRight,
+                                            child: Padding(
+                                                padding: EdgeInsets.all(Sizes.SIZE_004),
+                                                child: ClipRRect(
+                                                    borderRadius: BorderRadius.all(Radius.circular(Sizes.SIZE_030)),
+                                                    child: Material(
+                                                        color: Theme.of(context).backgroundColor,
+                                                        child: InkWell(
+                                                            onTap: () {
+                                                                if (onFavClick != null) {
+                                                                    onFavClick!(isFavorited);
+                                                                }
+                                                            },
+                                                            child: Padding(
+                                                                padding: EdgeInsets.all(Sizes.SIZE_006),
+                                                                child: Icon(
+                                                                    (isFavorited) ? Icons.favorite_rounded : Icons.favorite_outline_rounded,
+                                                                    color: Color.fromRGBO(255, 82, 73, 1),
+                                                                    size: Sizes.SIZE_020,
+                                                                ), 
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ],
                                 ),

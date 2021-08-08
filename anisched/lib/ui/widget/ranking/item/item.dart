@@ -31,7 +31,7 @@ class _RankingItemState extends State<RankingItem> with AutomaticKeepAliveClient
         super.initState();
         initObservers();
 
-        _dataProvider.requestAnime(widget.rank.id);
+        _dataProvider.requestAnime(widget.rank.id!);
     }
 
     void initObservers() {
