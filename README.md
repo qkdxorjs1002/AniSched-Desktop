@@ -70,6 +70,7 @@ AniSched는 아래와 같은 기능을 제공합니다.
  - 자막 정보, 최근 자막 목록
  - 위키 바로가기
  - 전체 검색 기능
+ - 즐겨찾기 기능
  - 그 외 [추가 예정](https://github.com/qkdxorjs1002/AniSched-Desktop/projects/1)
 <br/><br/>
 
