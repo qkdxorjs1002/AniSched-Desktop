@@ -19,7 +19,7 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
 
-    final List<String> _SORT_MODE_LIST = ["ADD", "ABC", "DAT", "RADD", "RABC", "RDAT"];
+    final List<String> _SORT_MODE_LIST = ["  +  ", "  A  ", "  D  ", " R+ ", " RA ", " RD "];
 
     final FavoriteDataProvider dataProvider = FavoriteDataProvider();
 
@@ -140,14 +140,17 @@ class _FavoritePageState extends State<FavoritePage> {
                                                                     Icons.sort_rounded,
                                                                     size: Sizes.SIZE_024,
                                                                 ),
-                                                                Text(
-                                                                    _SORT_MODE_LIST[_sortMode],
-                                                                    style: TextStyle(
-                                                                        color: Theme.of(context).backgroundColor,
-                                                                        backgroundColor: Theme.of(context).primaryColor,
-                                                                        fontSize: Sizes.SIZE_008,
-                                                                        fontWeight: FontWeight.w500,
-                                                                        height: 1.0,
+                                                                Padding(
+                                                                    padding: EdgeInsets.only(bottom: Sizes.SIZE_004),
+                                                                    child: Text(
+                                                                        _SORT_MODE_LIST[_sortMode],
+                                                                        style: TextStyle(
+                                                                            color: Theme.of(context).backgroundColor,
+                                                                            backgroundColor: Theme.of(context).primaryColor,
+                                                                            fontSize: Sizes.SIZE_008,
+                                                                            fontWeight: FontWeight.w500,
+                                                                            height: 1.0,
+                                                                        ),
                                                                     ),
                                                                 ),
                                                             ],
