@@ -94,6 +94,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 ToolsItem(
                                     icon: Icon(
+                                        Icons.star,
+                                        size: Sizes.SIZE_024,
+                                    ), 
+                                    text: "",
+                                ),
+                                ToolsItem(
+                                    icon: Icon(
                                         Icons.hide_image_outlined,
                                         size: Sizes.SIZE_024,
                                     ), 
