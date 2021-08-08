@@ -5,9 +5,9 @@ import 'package:anisched/repository/tmdb/service.dart';
 
 class Repositories {
 
-    static AnissiaService anissiaService = AnissiaService();
-    static TMDBService tmdbService = TMDBService();
-    static GithubService githubService = GithubService();
-    static PreferenceService preferenceService = PreferenceService();
+    static final AnissiaService anissiaService = AnissiaService();
+    static final TMDBService tmdbService = TMDBService();
+    static final GithubService githubService = GithubService();
+    static final PreferenceService preferenceService = PreferenceService();
 
 }

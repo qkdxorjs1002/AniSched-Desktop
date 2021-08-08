@@ -1,15 +1,18 @@
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/arch/provider.dart';
 import 'package:anisched/repository/anissia/model.dart';
+import 'package:anisched/repository/preference/service.dart';
 import 'package:anisched/repository/repository.dart';
 
 class FavoriteDataProvider extends DataProvider {
+
+    final PreferenceService _preferenceService = Repositories.preferenceService;
 
     ObservableData<List<Anime>>? _favList;
     ObservableData<int>? _sortMode;
 
     void requestFavoriteList(int sortMode) {
-        Repositories.preferenceService.getFavoriteList().then((value) {
+        _preferenceService.getFavoriteList().then((value) {
             List<Anime> sorted = value;
             switch(sortMode) {
                 case 1:
@@ -29,19 +32,19 @@ class FavoriteDataProvider extends DataProvider {
     }
 
     void requestRemoveFavoriteList() {
-        Repositories.preferenceService.removeFavoriteList().then((value) {
+        _preferenceService.removeFavoriteList().then((value) {
             _favList!.setData([]);
         });
     }
 
     void requestFavoriteSortMode() {
-        Repositories.preferenceService.getFavoriteSortMode().then((value) {
+        _preferenceService.getFavoriteSortMode().then((value) {
             _sortMode!.setData(value);
         });
     }
 
     void requestSetFavoriteSortMode(int mode) {
-        Repositories.preferenceService.setFavoriteSortMode(mode).then((value) {
+        _preferenceService.setFavoriteSortMode(mode).then((value) {
             if (value) {
                 requestFavoriteSortMode();
             }

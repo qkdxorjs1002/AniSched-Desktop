@@ -3,23 +3,26 @@ import 'dart:convert';
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/arch/provider.dart';
 import 'package:anisched/repository/anissia/model.dart';
+import 'package:anisched/repository/anissia/service.dart';
 import 'package:anisched/repository/repository.dart';
 
 class SearchDataProvider extends DataProvider {
+
+    final AnissiaService _anissiaService = Repositories.anissiaService;
 
     ObservableData<List<AutoCorrect>>? _autoCorrectList;
     ObservableData<AllAnime>? _allAnime;
     String? _query;
 
     void requestAutoCorrect(String query) {
-        Repositories.anissiaService.requestAutoCorrect(query).then((value) {
+        _anissiaService.requestAutoCorrect(query).then((value) {
             _autoCorrectList!.setData((jsonDecode(value) as List).map((e) => AutoCorrect.fromString(e)).toList());
         });
     }
 
     void requestAllSchedule(int page, String query) {
         _query = query;
-        Repositories.anissiaService.requestAllSchedule(page, query).then((value) {
+        _anissiaService.requestAllSchedule(page, query).then((value) {
             _allAnime!.setData(value);
         });
     }
@@ -31,7 +34,7 @@ class SearchDataProvider extends DataProvider {
             return;
         }
 
-        Repositories.anissiaService.requestAllSchedule(_pre.number! + 1, _query).then((value) {
+        _anissiaService.requestAllSchedule(_pre.number! + 1, _query).then((value) {
             AllAnime temp = AllAnime()..update(_pre)..update(value);
             _allAnime!.setData(temp);
         });

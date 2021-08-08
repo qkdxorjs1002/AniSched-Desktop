@@ -2,12 +2,19 @@ import 'package:anisched/_API_KEY.dart';
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/arch/provider.dart';
 import 'package:anisched/repository/anissia/model.dart';
+import 'package:anisched/repository/anissia/service.dart';
+import 'package:anisched/repository/preference/service.dart';
 import 'package:anisched/repository/repository.dart';
 import 'package:anisched/repository/tmdb/helper.dart';
 import 'package:anisched/repository/tmdb/model.dart';
+import 'package:anisched/repository/tmdb/service.dart';
 import 'package:anisched/ui/page/detail/model.dart';
 
 class DetailDataProvider extends DataProvider {
+
+    final AnissiaService _anissiaService = Repositories.anissiaService;
+    final TMDBService _tmdbService = Repositories.tmdbService;
+    final PreferenceService _preferenceService = Repositories.preferenceService;
 
     ObservableData<Anime>? _animeInfo;
     ObservableData<List<Caption>>? _captionList;
@@ -15,13 +22,13 @@ class DetailDataProvider extends DataProvider {
     ObservableData<bool>? _isFavorited;
 
     void requestAnimeInfo(int id) {
-        Repositories.anissiaService.requestAnime(id).then((value) {
+        _anissiaService.requestAnime(id).then((value) {
             _animeInfo!.setData(value);
         });
     }
 
     void requestCaption(int id) {
-        Repositories.anissiaService.requestCaption(id).then((value) {
+        _anissiaService.requestCaption(id).then((value) {
             _captionList!.setData(value);
         });
     }
@@ -29,7 +36,7 @@ class DetailDataProvider extends DataProvider {
     void requestTMDB(Anime anime) {
         Future(() {
             TMDBHelper(
-                tmdbService: Repositories.tmdbService,
+                tmdbService: _tmdbService,
                 onResultListener: OnResultListener(
                     onFind: (Result result) {
                         _requestDetail(result.mediaType, result.id);
@@ -44,11 +51,11 @@ class DetailDataProvider extends DataProvider {
 
     void _requestDetail(String? type, int? id) {
         if (type == TMDBMediaTypes.MOVIE) {
-            Repositories.tmdbService.requestMovie(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
+            _tmdbService.requestMovie(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
                 _tmdbDetail!.setData(TMDBDetail<Movie>.from(value));
             });
         } else if (type == TMDBMediaTypes.TV) {
-            Repositories.tmdbService.requestTV(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
+            _tmdbService.requestTV(APIKey.TMDB_API_KEY, "ko-KR", id).then((value) {
                 _tmdbDetail!.setData(TMDBDetail<TV>.from(value));
             });
         }
@@ -59,13 +66,13 @@ class DetailDataProvider extends DataProvider {
     }
 
     void requestExistFavorite(int id) {
-        Repositories.preferenceService.existFavorite(id).then((value) {
+        _preferenceService.existFavorite(id).then((value) {
             _isFavorited!.setData(value);
         });
     }
 
     void requestAddFavorite(Anime anime) {
-        Repositories.preferenceService.addFavorite(anime).then((value) {
+        _preferenceService.addFavorite(anime).then((value) {
             if (value) {
                 requestExistFavorite(anime.id!);
             }
@@ -73,7 +80,7 @@ class DetailDataProvider extends DataProvider {
     }
 
     void requestDelFavorite(int id) {
-        Repositories.preferenceService.delFavorite(id).then((value) {
+        _preferenceService.delFavorite(id).then((value) {
             if (value) {
                 requestExistFavorite(id);
             }

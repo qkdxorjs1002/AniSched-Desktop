@@ -2,17 +2,22 @@ import 'package:anisched/_API_KEY.dart';
 import 'package:anisched/arch/observable.dart';
 import 'package:anisched/arch/provider.dart';
 import 'package:anisched/repository/anissia/model.dart';
+import 'package:anisched/repository/anissia/service.dart';
 import 'package:anisched/repository/repository.dart';
 import 'package:anisched/repository/tmdb/helper.dart';
 import 'package:anisched/repository/tmdb/model.dart';
+import 'package:anisched/repository/tmdb/service.dart';
 
 class RankingItemDataProvider extends DataProvider {
+
+    final AnissiaService _anissiaService = Repositories.anissiaService;
+    final TMDBService _tmdbService = Repositories.tmdbService;
 
     ObservableData<Anime>? _animeInfo;
     ObservableData<Result>? _tmdbResult;
 
     void requestAnime(int id) {
-        Repositories.anissiaService.requestAnime(id).then((value) {
+        _anissiaService.requestAnime(id).then((value) {
             _animeInfo!.setData(value);
         });
     }
@@ -20,7 +25,7 @@ class RankingItemDataProvider extends DataProvider {
     void requestTMDB(Anime anime) {
         Future(() {
             TMDBHelper(
-                tmdbService: Repositories.tmdbService,
+                tmdbService: _tmdbService,
                 onResultListener: OnResultListener(
                     onFind: (Result result) {
                         _tmdbResult!.setData(result);
