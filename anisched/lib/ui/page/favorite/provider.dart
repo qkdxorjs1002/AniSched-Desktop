@@ -13,8 +13,10 @@ class FavoriteDataProvider extends DataProvider {
             List<Anime> sorted = value;
             switch(sortMode) {
                 case 1:
+                case 4:
                     sorted.sort((a, b) => a.subject!.codeUnitAt(0).compareTo(b.subject!.codeUnitAt(0)));
                     break;
+                case 5:
                 case 2:
                     sorted.sort((a, b) => a.startDate!.compareTo(b.startDate!));
                     break;
