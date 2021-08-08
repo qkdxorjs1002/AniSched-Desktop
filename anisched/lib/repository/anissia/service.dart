@@ -35,7 +35,7 @@ abstract class AnissiaService {
 
     @GET("animeNo/{id}")
     Future<Anime> requestAnime(
-        @Path("id") int? id,
+        @Path("id") int id,
     );
 
     @GET("rank/{factor}")
@@ -45,7 +45,7 @@ abstract class AnissiaService {
 
     @GET("autocorrect")
     Future<String> requestAutoCorrect(
-        @Query("q") String query,
+        @Query("q") String? query,
     );
     
 }

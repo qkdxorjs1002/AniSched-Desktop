@@ -8,11 +8,16 @@ import 'package:flutter/material.dart';
 
 class TimeTable extends StatefulWidget {
 
-    final int week;
+    final int? week;
+
+    final List<Anime>? animeList;
+
+    final double height;
     
     final Function? onItemClick;
 
-    const TimeTable( { required this.week, this.onItemClick, key }) : super(key: key);
+    const TimeTable.week({ required this.week, required this.height, this.onItemClick, key }) : animeList = null, super(key: key);
+    const TimeTable.list({ required this.animeList, required this.height, this.onItemClick, key }) : week = null, super(key: key);
 
     @override
     _TimeTableState createState() => _TimeTableState();
@@ -29,7 +34,11 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
         super.initState();
         initObservers();
 
-        _dataProvider.requestSchedule(widget.week);
+        _animeList = widget.animeList;
+        
+        if (widget.animeList == null) {
+            _dataProvider.requestSchedule(widget.week!);
+        }
     }
 
     void initObservers() {
@@ -39,13 +48,21 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
             });
         }));
     }
+    
+    @override
+    void didUpdateWidget(covariant TimeTable oldWidget) {
+        super.didUpdateWidget(oldWidget);
+        if (widget.week == null) {
+            _animeList = widget.animeList;
+        }
+    }
 
     @override
     Widget build(BuildContext context) {
         super.build(context);
-        
+
         return (_animeList != null) ? Container(
-            height: Sizes.SIZE_300,
+            height: widget.height,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -60,8 +77,9 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
                     return Padding(
                         padding: padding,
                         child: TimeTableItem(
-                            _animeList![index],
-                            onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
+                            anime: _animeList![index],
+                            width: widget.height * 0.7,
+                            onItemClick: widget.onItemClick,
                         ),
                     );
                 }, 

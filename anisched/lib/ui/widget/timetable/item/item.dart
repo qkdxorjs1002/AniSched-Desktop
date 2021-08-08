@@ -10,9 +10,12 @@ import 'package:flutter/material.dart';
 class TimeTableItem extends StatefulWidget {
 
     final Anime anime;
+
+    final double width;
+
     final Function? onItemClick;
 
-    const TimeTableItem(this.anime, { this.onItemClick, Key? key }) : super(key: key);
+    const TimeTableItem({ required this.anime, required this.width, this.onItemClick, Key? key }) : super(key: key);
 
     @override
     _TimeTableItemState createState() => _TimeTableItemState();
@@ -41,12 +44,18 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
     }
 
     @override
+    void didUpdateWidget(covariant TimeTableItem oldWidget) {
+        super.didUpdateWidget(oldWidget);
+        _dataProvider.requestTMDB(widget.anime);
+    }
+
+    @override
     Widget build(BuildContext context) {
         super.build(context);
         
         return Container(
             color: Theme.of(context).primaryColor.withOpacity(0.1),
-            width: Sizes.SIZE_210,
+            width: widget.width,
             child: Stack(
                 children: [
                     Stack(

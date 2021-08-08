@@ -5,6 +5,7 @@ import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/repository/tmdb/model.dart';
 import 'package:anisched/helper.dart';
 import 'package:anisched/ui/page/detail/detail.dart';
+import 'package:anisched/ui/page/favorite/favorite.dart';
 import 'package:anisched/ui/page/home/provider.dart';
 import 'package:anisched/ui/page/search/search.dart';
 import 'package:anisched/ui/widget/board.dart';
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
 
     void initObservers() {
         _dataProvider.getNewRelease!.addObserver(Observer((NewRelease data) {
-            _snackMe(
+            Helper.snack(
                 context, 
                 text: "업데이트 (${data.tagName})\n${data.body!}", 
                 label: "바로가기",
@@ -94,11 +95,19 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 ToolsItem(
                                     icon: Icon(
+                                        Icons.favorite_outline_rounded,
+                                        size: Sizes.SIZE_024,
+                                    ), 
+                                    text: "",
+                                    onItemClick: () => Helper.navigateRoute(context, FavoritePage()),
+                                ),
+                                ToolsItem(
+                                    icon: Icon(
                                         Icons.hide_image_outlined,
                                         size: Sizes.SIZE_024,
                                     ), 
                                     text: "",
-                                    onItemClick: () => _snackMe(
+                                    onItemClick: () => Helper.snack(
                                         context, 
                                         text: "이미지 캐시를 삭제합니다. 이미지 캐시를 제거할 경우, 일시적으로 데이터 사용량이 증가할 수 있습니다.", 
                                         label: "캐시 삭제",
@@ -109,6 +118,33 @@ class _HomePageState extends State<HomePage> {
                                                     backgroundColor: Theme.of(context).backgroundColor,
                                                     content: Text(
                                                         "캐시를 제거했습니다.",
+                                                        style: TextStyle(
+                                                            color: Theme.of(context).primaryColor,
+                                                            fontWeight: FontWeight.w300,
+                                                        ),
+                                                    ),
+                                                ),
+                                            );
+                                        },
+                                    ),
+                                ),
+                                ToolsItem(
+                                    icon: Icon(
+                                        Icons.subtitles_off_outlined,
+                                        size: Sizes.SIZE_024,
+                                    ), 
+                                    text: "",
+                                    onItemClick: () => Helper.snack(
+                                        context, 
+                                        text: "모든 설정을 초기화합니다. 설정에는 즐겨찾기 및 여러 선택 사항이 포함됩니다. 이 작업은 되돌릴 수 없습니다.", 
+                                        label: "설정 초기화",
+                                        onPressed: () {
+                                            _dataProvider.requestClearPreference();
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                    backgroundColor: Theme.of(context).backgroundColor,
+                                                    content: Text(
+                                                        "설정을 초기화했습니다.",
                                                         style: TextStyle(
                                                             color: Theme.of(context).primaryColor,
                                                             fontWeight: FontWeight.w300,
@@ -135,8 +171,9 @@ class _HomePageState extends State<HomePage> {
                     return Board(
                         title: AnissiaFactor.WEEKDAY[idx],
                         description: (idx == widget.week) ? "오늘" : "",
-                        child: TimeTable(
+                        child: TimeTable.week(
                             week: idx,
+                            height: Sizes.SIZE_300,
                             onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
                         ),
                     );
@@ -158,28 +195,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                 ],
             ),
-        );
-    }
-
-    void _snackMe(BuildContext context, { required String text, required String label, Duration duration = const Duration(seconds: 5), Function? onPressed }) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                duration: duration,
-                backgroundColor: Theme.of(context).backgroundColor,
-                content: Text(
-                    text,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w300,
-                    ),
-                ),
-                action: SnackBarAction(
-                    textColor: Theme.of(context).primaryColor,
-                    disabledTextColor: Theme.of(context).primaryColor.withOpacity(0.5),
-                    label: label,
-                    onPressed: () => onPressed!(),
-                ),
-            )
         );
     }
 }

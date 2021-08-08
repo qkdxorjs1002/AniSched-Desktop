@@ -8,13 +8,15 @@ class SeasonTableItem extends StatelessWidget {
 
     final Season season;
 
-    const SeasonTableItem({ required this.season });
+    final double width;
+
+    const SeasonTableItem({ required this.season, required this.width });
 
     @override
     Widget build(BuildContext context) {
         return Container(
             color: Theme.of(context).primaryColor.withOpacity(0.1),
-            width: Sizes.SIZE_170,
+            width: width,
             child: Stack(
                 children: [
                     Stack(

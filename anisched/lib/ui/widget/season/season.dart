@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 class SeasonTable extends StatelessWidget {
 
     final List<Season> seasonList;
+    
+    final double height;
 
-    const SeasonTable({ required this.seasonList });
+    const SeasonTable({ required this.seasonList, required this.height });
 
     @override
     Widget build(BuildContext context) {
         return Container(
             alignment: Alignment.topLeft,
-            height: Sizes.SIZE_240,
+            height: height,
             child: ListView.separated(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -29,6 +31,7 @@ class SeasonTable extends StatelessWidget {
                         padding: padding,
                         child: SeasonTableItem(
                             season: seasonList[index],
+                            width: height * 0.7,
                         ),
                     );
                 }, 
