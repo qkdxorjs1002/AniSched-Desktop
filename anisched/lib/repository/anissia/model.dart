@@ -68,6 +68,22 @@ class Anime {
         );
     }
 
+    Map<String, dynamic> toJson() {
+        return {
+            'animeNo': id,
+            'status': status,
+            'time': time,
+            'week': week,
+            'subject': subject,
+            'genres': genres,
+            'startDate': startDate,
+            'endDate': endDate,
+            'website': website,
+            'captionCount': captionCount,
+            'captions': captionList,
+        };
+    }
+
     String get getExtraInfo {
         if (time!.contains(":")) {
             return (isSoon)
@@ -159,6 +175,15 @@ class Caption {
             website: json['website'],
             author: json['name'],
         );
+    }
+
+    Map<String, dynamic> toJson() {
+        return {
+            'episode': episode,
+            'updDt': uploadDate,
+            'website': website,
+            'name': author,
+        };
     }
 
     String get getEpisodeString => (episode == "0" ? (isWIP ? "준비중" : "단편") : episode! + "화");
