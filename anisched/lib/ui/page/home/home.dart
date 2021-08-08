@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
 
     void initObservers() {
         _dataProvider.getNewRelease!.addObserver(Observer((NewRelease data) {
-            _snackMe(
+            Helper.snack(
                 context, 
                 text: "업데이트 (${data.tagName})\n${data.body!}", 
                 label: "바로가기",
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                                         size: Sizes.SIZE_024,
                                     ), 
                                     text: "",
-                                    onItemClick: () => _snackMe(
+                                    onItemClick: () => Helper.snack(
                                         context, 
                                         text: "이미지 캐시를 삭제합니다. 이미지 캐시를 제거할 경우, 일시적으로 데이터 사용량이 증가할 수 있습니다.", 
                                         label: "캐시 삭제",
@@ -165,28 +165,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                 ],
             ),
-        );
-    }
-
-    void _snackMe(BuildContext context, { required String text, required String label, Duration duration = const Duration(seconds: 5), Function? onPressed }) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                duration: duration,
-                backgroundColor: Theme.of(context).backgroundColor,
-                content: Text(
-                    text,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w300,
-                    ),
-                ),
-                action: SnackBarAction(
-                    textColor: Theme.of(context).primaryColor,
-                    disabledTextColor: Theme.of(context).primaryColor.withOpacity(0.5),
-                    label: label,
-                    onPressed: () => onPressed!(),
-                ),
-            )
         );
     }
 }
