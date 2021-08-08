@@ -116,7 +116,7 @@ jobs:
         shell: pwsh
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.8
         with:
           tag_name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
           name: ${{ steps.set-up-env-var.outputs.REPO_TAG }}
