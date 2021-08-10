@@ -19,7 +19,14 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
 
-    final List<String> _SORT_MODE_LIST = ["  +  ", "  A  ", "  D  ", " R+ ", " RA ", " RD "];
+    final Map<String, String> _SORT_MODE_LIST = {
+        "추가 순": "  +  ",
+        "가나다 순": "  A  ",
+        "방영일자 순": "  D  ",
+        "추가 순 (역정렬)": " R+ ",
+        "가나다 순 (역정렬)": " RA ",
+        "방영일자 순 (역정렬)": " RD "
+    };
 
     final FavoriteDataProvider dataProvider = FavoriteDataProvider();
 
@@ -131,7 +138,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                     color: Colors.transparent,
                                                     child: InkWell(
                                                         onTap: () {
-                                                            dataProvider.requestSetFavoriteSortMode((_sortMode + 1) % _SORT_MODE_LIST.length);
+                                                            dataProvider.requestSetFavoriteSortMode((_sortMode + 1) % _SORT_MODE_LIST.values.length);
                                                         },
                                                         child: Stack(
                                                             alignment: Alignment.bottomRight,
@@ -143,7 +150,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                                 Padding(
                                                                     padding: EdgeInsets.only(bottom: Sizes.SIZE_004),
                                                                     child: Text(
-                                                                        _SORT_MODE_LIST[_sortMode],
+                                                                        _SORT_MODE_LIST.values.toList()[_sortMode],
                                                                         style: TextStyle(
                                                                             color: Theme.of(context).backgroundColor,
                                                                             backgroundColor: Theme.of(context).primaryColor,
@@ -162,19 +169,35 @@ class _FavoritePageState extends State<FavoritePage> {
                                     ),
                                 ),
                                 Expanded(
-                                    child: Align(
-                                        alignment: Alignment.center,
-                                        child: (_favList != null && _favList!.isNotEmpty) ? TimeTable.list(
-                                            animeList: _favList,
-                                            height: Sizes.SIZE_400,
-                                            onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
-                                        ) : Text(
-                                            "목록 없음",
-                                            style: TextStyle(
-                                                fontSize: Sizes.SIZE_015,
-                                                fontWeight: FontWeight.w300,
+                                    child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                            Padding(
+                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_008, horizontal: Sizes.SIZE_024),
+                                                child: Text(
+                                                    _SORT_MODE_LIST.keys.toList()[_sortMode],
+                                                    style: TextStyle(
+                                                        fontSize: Sizes.SIZE_020,
+                                                        fontWeight: FontWeight.w500,
+                                                    ),
+                                                ),
                                             ),
-                                        ),
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: (_favList != null && _favList!.isNotEmpty) ? TimeTable.list(
+                                                    animeList: _favList,
+                                                    height: Sizes.SIZE_400,
+                                                    onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
+                                                ) : Text(
+                                                    "목록 없음",
+                                                    style: TextStyle(
+                                                        fontSize: Sizes.SIZE_015,
+                                                        fontWeight: FontWeight.w300,
+                                                    ),
+                                                ),
+                                            ),
+                                        ],
                                     ),
                                 ),
                             ],
