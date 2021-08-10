@@ -111,7 +111,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                             style: TextStyle(
                                                 fontSize: Sizes.SIZE_016,
                                                 fontWeight: FontWeight.w500,
-                                                height: 1.0,
+                                                height: 1.2,
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,
