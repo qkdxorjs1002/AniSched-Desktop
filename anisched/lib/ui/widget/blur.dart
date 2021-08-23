@@ -11,7 +11,7 @@ class BackBlur extends StatelessWidget {
     final Widget? child;
     final Alignment childAlignment;
 
-    const BackBlur({ this.sigma = 50.0, this.width, this.height, this.child, this.childAlignment = Alignment.centerLeft });
+    const BackBlur({ this.sigma = 35.0, this.width, this.height, this.child, this.childAlignment = Alignment.centerLeft });
 
     @override
     Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class BackBlur extends StatelessWidget {
                     sigmaY: sigma,
                 ),
                 child: Container(
-                    color: Theme.of(context).backgroundColor.withOpacity(0.35),
+                    color: Theme.of(context).backgroundColor.withOpacity(0.4),
                     height: height,
                     width: width,
                     alignment: childAlignment,
