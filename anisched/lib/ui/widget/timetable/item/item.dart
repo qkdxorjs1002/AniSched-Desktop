@@ -15,7 +15,9 @@ class TimeTableItem extends StatefulWidget {
 
     final Function? onItemClick;
 
-    const TimeTableItem({ required this.anime, required this.width, this.onItemClick, Key? key }) : super(key: key);
+    final bool wantKeepAlive;
+
+    const TimeTableItem({ required this.anime, required this.width, this.onItemClick, this.wantKeepAlive = true, Key? key }) : super(key: key);
 
     @override
     _TimeTableItemState createState() => _TimeTableItemState();
@@ -146,5 +148,5 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
     }
 
     @override
-    bool get wantKeepAlive => true;
+    bool get wantKeepAlive => widget.wantKeepAlive;
 }

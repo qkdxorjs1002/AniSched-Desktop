@@ -7,6 +7,7 @@ import 'package:anisched/ui/widget/pagenav.dart';
 import 'package:anisched/ui/widget/ranking/item/item.dart';
 import 'package:anisched/ui/widget/ranking/provider.dart';
 import 'package:anisched/ui/widget/sizes.dart';
+import 'package:anisched/ui/widget/smoothscroll.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
     late Timer _transitionTimer;
 
     double? _page = 0;
+    bool isOnScroll = false;
 
     List<Rank>? _rankList;
 
@@ -73,14 +75,43 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
             height: Sizes.SIZE_560,
             child: Stack(
                 children: [
-                    PageView.builder(
-                        allowImplicitScrolling: true,
-                        physics: const ClampingScrollPhysics(),
-                        controller: _pageController,
-                        itemCount: _rankList!.length,
-                        itemBuilder: (context, index) => RankingItem(
-                            rank: _rankList![index], 
-                            onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
+                    ScrollEvent(
+                        onHorizontalScroll: (delta) {
+                            if (isOnScroll) {
+                                return ;
+                            }
+                            isOnScroll = true;
+
+                            if (delta.dx > 0) {
+                                _pageController.nextPage(
+                                    duration: const Duration(
+                                        milliseconds: 350,
+                                    ), 
+                                    curve: Curves.easeInOut
+                                ).then((value) {
+                                    isOnScroll = false;
+                                });
+                            } else {
+                                _pageController.previousPage(
+                                    duration: const Duration(
+                                        milliseconds: 350,
+                                    ), 
+                                    curve: Curves.easeInOut
+                                ).then((value) {
+                                    isOnScroll = false;
+                                });
+                            }
+                        },
+                        critical: 30.0,
+                        child: PageView.builder(
+                            allowImplicitScrolling: true,
+                            physics: const SmoothScrollPhysics(),
+                            controller: _pageController,
+                            itemCount: _rankList!.length,
+                            itemBuilder: (context, index) => RankingItem(
+                                rank: _rankList![index], 
+                                onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
+                            ),
                         ),
                     ),
                     PageNavigator(

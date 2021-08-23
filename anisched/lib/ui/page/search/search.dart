@@ -4,6 +4,7 @@ import 'package:anisched/ui/page/search/item/item.dart';
 import 'package:anisched/ui/page/search/provider.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/sizes.dart';
+import 'package:anisched/ui/widget/smoothscroll.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
 
     final SearchDataProvider _dataProvider = SearchDataProvider();
+    final ScrollController _autoScrollController = ScrollController();
     final ScrollController _scrollController = ScrollController();
     
     List<AutoCorrect>? _autoCorrectList;
@@ -130,19 +132,26 @@ class _SearchPageState extends State<SearchPage> {
                                         child: IndexedStack(
                                             index: (_isAutoCorrect) ? 1 : 0,
                                             children: [
-                                                (_allAnime.content != null) && (_allAnime.content!.isNotEmpty) ? ListView.separated(
-                                                    controller: _scrollController,
-                                                    itemCount: _allAnime.content!.length,
-                                                    itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
-                                                    separatorBuilder: (context, index) => Divider(),
+                                                (_allAnime.content != null) && (_allAnime.content!.isNotEmpty) ? SmoothScroll(
+                                                    child: ListView.separated(
+                                                        controller: _scrollController,
+                                                        physics: const SmoothScrollPhysics(),
+                                                        itemCount: _allAnime.content!.length,
+                                                        itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
+                                                        separatorBuilder: (context, index) => Divider(),
+                                                    ),
                                                 ) : _noList(),
                                             ] + ((_autoCorrectList != null) && (_autoCorrectList!.isNotEmpty) 
                                                 ? [
-                                                    ListView.separated(
-                                                        itemCount: _autoCorrectList!.length,
-                                                        itemBuilder: (context, index) => AutoCorrectItem(autoCorrect: _autoCorrectList![index]),
-                                                        separatorBuilder: (context, index) => Divider(),
-                                                    )
+                                                    SmoothScroll(
+                                                        child: ListView.separated(
+                                                            controller: _autoScrollController,
+                                                            physics: const SmoothScrollPhysics(),
+                                                            itemCount: _autoCorrectList!.length,
+                                                            itemBuilder: (context, index) => AutoCorrectItem(autoCorrect: _autoCorrectList![index]),
+                                                            separatorBuilder: (context, index) => Divider(),
+                                                        )
+                                                    ),
                                                 ] : []
                                             ),
                                         ),
