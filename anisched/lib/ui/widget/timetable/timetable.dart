@@ -51,18 +51,14 @@ class _TimeTableState extends State<TimeTable> with AutomaticKeepAliveClientMixi
             });
         }));
     }
-    
-    @override
-    void didUpdateWidget(covariant TimeTable oldWidget) {
-        super.didUpdateWidget(oldWidget);
-        if (widget.week == null) {
-            _animeList = widget.animeList;
-        }
-    }
 
     @override
     Widget build(BuildContext context) {
         super.build(context);
+
+        if (widget.week == null) {
+            _animeList = widget.animeList;
+        }
 
         return (_animeList != null) ? Container(
             height: widget.height,
