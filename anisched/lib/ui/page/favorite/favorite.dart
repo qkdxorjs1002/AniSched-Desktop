@@ -91,7 +91,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                 child: Padding(
                                                     padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_006),
                                                     child: Text(
-                                                        "즐겨찾기",
+                                                        "즐겨찾기 — ${_SORT_MODE_LIST.keys.toList()[_sortMode]}",
                                                         style: TextStyle(
                                                             fontSize: Sizes.SIZE_016,
                                                             fontWeight: FontWeight.w500,
@@ -169,35 +169,21 @@ class _FavoritePageState extends State<FavoritePage> {
                                     ),
                                 ),
                                 Expanded(
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                            Padding(
-                                                padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_008, horizontal: Sizes.SIZE_024),
-                                                child: Text(
-                                                    _SORT_MODE_LIST.keys.toList()[_sortMode],
-                                                    style: TextStyle(
-                                                        fontSize: Sizes.SIZE_020,
-                                                        fontWeight: FontWeight.w500,
-                                                    ),
-                                                ),
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child: (_favList != null && _favList!.isNotEmpty) ? TimeTable.list(
+                                            animeList: _favList,
+                                            height: Sizes.SIZE_400,
+                                            onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
+                                            wantKeepAlive: false,
+                                            scrollAxis: Axis.vertical,
+                                        ) : Text(
+                                            "목록 없음",
+                                            style: TextStyle(
+                                                fontSize: Sizes.SIZE_015,
+                                                fontWeight: FontWeight.w300,
                                             ),
-                                            Align(
-                                                alignment: Alignment.center,
-                                                child: (_favList != null && _favList!.isNotEmpty) ? TimeTable.list(
-                                                    animeList: _favList,
-                                                    height: Sizes.SIZE_400,
-                                                    onItemClick: (anime, tmdb) => Helper.navigateRoute(context, DetailPage(animeId: anime.id)),
-                                                ) : Text(
-                                                    "목록 없음",
-                                                    style: TextStyle(
-                                                        fontSize: Sizes.SIZE_015,
-                                                        fontWeight: FontWeight.w300,
-                                                    ),
-                                                ),
-                                            ),
-                                        ],
+                                        ),
                                     ),
                                 ),
                             ],
