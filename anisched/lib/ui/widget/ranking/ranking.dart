@@ -73,68 +73,64 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
 
         return _rankList != null ? Container(
             height: Sizes.SIZE_560,
-            child: Stack(
-                children: [
-                    ScrollEvent(
-                        onHorizontalScroll: (delta) {
-                            if (isOnScroll) {
-                                return ;
-                            }
-                            isOnScroll = true;
+            child: PageNavigator(
+                onLeftTap: () {
+                    _pageController.previousPage(
+                        duration: const Duration(
+                            milliseconds: 350,
+                        ), 
+                        curve: Curves.easeInOut
+                    );
+                },
+                enableLeft: (_page! > 0),
+                onRightTap: () {
+                    _pageController.nextPage(
+                        duration: const Duration(
+                            milliseconds: 350,
+                        ), 
+                        curve: Curves.easeInOut
+                    );
+                },
+                enableRight: (_page! < _rankList!.length - 1),
+                child: ScrollEvent(
+                    onHorizontalScroll: (delta) {
+                        if (isOnScroll) {
+                            return ;
+                        }
+                        isOnScroll = true;
 
-                            if (delta.dx > 0) {
-                                _pageController.nextPage(
-                                    duration: const Duration(
-                                        milliseconds: 350,
-                                    ), 
-                                    curve: Curves.easeInOut
-                                ).then((value) {
-                                    isOnScroll = false;
-                                });
-                            } else {
-                                _pageController.previousPage(
-                                    duration: const Duration(
-                                        milliseconds: 350,
-                                    ), 
-                                    curve: Curves.easeInOut
-                                ).then((value) {
-                                    isOnScroll = false;
-                                });
-                            }
-                        },
-                        critical: 30.0,
-                        child: PageView.builder(
-                            allowImplicitScrolling: true,
-                            physics: const SmoothScrollPhysics(),
-                            controller: _pageController,
-                            itemCount: _rankList!.length,
-                            itemBuilder: (context, index) => RankingItem(
-                                rank: _rankList![index], 
-                                onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
-                            ),
-                        ),
-                    ),
-                    PageNavigator(
-                        onLeftTap: () {
-                            _pageController.previousPage(
-                                duration: const Duration(
-                                    milliseconds: 350,
-                                ), 
-                                curve: Curves.easeInOut
-                            );
-                        },
-                        enableLeft: (_page! > 0),
-                        onRightTap: () {
+                        if (delta.dx > 0) {
                             _pageController.nextPage(
                                 duration: const Duration(
                                     milliseconds: 350,
                                 ), 
                                 curve: Curves.easeInOut
-                            );
-                        },
-                        enableRight: (_page! < _rankList!.length - 1),
+                            ).then((value) {
+                                isOnScroll = false;
+                            });
+                        } else {
+                            _pageController.previousPage(
+                                duration: const Duration(
+                                    milliseconds: 350,
+                                ), 
+                                curve: Curves.easeInOut
+                            ).then((value) {
+                                isOnScroll = false;
+                            });
+                        }
+                    },
+                    critical: 30.0,
+                    child: PageView.builder(
+                        allowImplicitScrolling: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: _pageController,
+                        itemCount: _rankList!.length,
+                        itemBuilder: (context, index) => RankingItem(
+                            rank: _rankList![index], 
+                            onItemClick: (anime, tmdb) => widget.onItemClick!(anime, tmdb),
+                        ),
                     ),
-                ],
+                ),
             ),
         ) : LoadingIndicator();
     }

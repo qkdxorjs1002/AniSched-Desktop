@@ -3,32 +3,39 @@ import 'package:flutter/material.dart';
 
 class PageNavigator extends StatelessWidget {
 
+    final Widget child;
+
     final Function? onLeftTap;
     final Function? onRightTap;
 
     final bool? enableLeft;
     final bool? enableRight;
 
-    const PageNavigator({ this.onLeftTap, this.onRightTap, this.enableLeft, this.enableRight });
+    const PageNavigator({ required this.child, this.onLeftTap, this.onRightTap, this.enableLeft, this.enableRight });
     
     @override
     Widget build(BuildContext context) {
-        return Row(
+        return Stack(
             children: [
-                _navigator(
-                    context,
-                    text: "◀", 
-                    onTap: onLeftTap,
-                    enabled: enableLeft!,
-                ),
-                Expanded(
-                    child: Container(),
-                ),
-                _navigator(
-                    context,
-                    text: "▶", 
-                    onTap: onRightTap,
-                    enabled: enableRight!,
+                child,
+                Row(
+                    children: [
+                        _navigator(
+                            context,
+                            text: "◀", 
+                            onTap: onLeftTap,
+                            enabled: enableLeft!,
+                        ),
+                        Expanded(
+                            child: Container(),
+                        ),
+                        _navigator(
+                            context,
+                            text: "▶", 
+                            onTap: onRightTap,
+                            enabled: enableRight!,
+                        ),
+                    ],
                 ),
             ],
         );
