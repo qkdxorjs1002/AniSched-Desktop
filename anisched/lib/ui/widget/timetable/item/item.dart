@@ -76,7 +76,7 @@ class _TimeTableItemState extends State<TimeTableItem> with AutomaticKeepAliveCl
                                 ),
                             ),
                             Container(
-                                color: (widget.anime.isEnd || !widget.anime.isStatus)
+                                color: (widget.anime.getExtraInfo.isNotEmpty)
                                     ? Theme.of(context).backgroundColor.withOpacity(0.5)
                                     : Colors.transparent,
                             ),
