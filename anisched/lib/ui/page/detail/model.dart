@@ -12,7 +12,7 @@ class TMDBDetail<T> {
     factory TMDBDetail.from(T media) {
         return TMDBDetail(
             media: media,
-            type: (T == TV) ? TMDBMediaTypes.TV : TMDBMediaTypes.MOVIE,
+            type: (T is TV) ? TMDBMediaTypes.TV : TMDBMediaTypes.MOVIE,
         );
     }
 
