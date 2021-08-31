@@ -125,6 +125,18 @@ class _SearchPageState extends State<SearchPage> {
                                                     ),
                                                 ),
                                             ),
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: Padding(
+                                                    padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
+                                                    child: Text(
+                                                        ((!_isAutoCorrect) ? _allAnime.totalElements : _autoCorrectList!.length).toString() + " 항목",
+                                                        style: TextStyle(
+                                                            fontSize: Sizes.SIZE_016,
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ],
                                     ),
                                     Divider(),
