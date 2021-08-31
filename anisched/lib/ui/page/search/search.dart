@@ -125,6 +125,18 @@ class _SearchPageState extends State<SearchPage> {
                                                     ),
                                                 ),
                                             ),
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: Padding(
+                                                    padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_020),
+                                                    child: Text(
+                                                        ((!_isAutoCorrect) ? _allAnime.totalElements : _autoCorrectList!.length).toString() + " 항목",
+                                                        style: TextStyle(
+                                                            fontSize: Sizes.SIZE_016,
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ],
                                     ),
                                     Divider(),
@@ -132,18 +144,18 @@ class _SearchPageState extends State<SearchPage> {
                                         child: IndexedStack(
                                             index: (_isAutoCorrect) ? 1 : 0,
                                             children: [
-                                                (_allAnime.content != null) && (_allAnime.content!.isNotEmpty) ? SmoothScroll(
-                                                    child: ListView.separated(
-                                                        controller: _scrollController,
-                                                        physics: const SmoothScrollPhysics(),
-                                                        itemCount: _allAnime.content!.length,
-                                                        itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
-                                                        separatorBuilder: (context, index) => Divider(),
-                                                    ),
-                                                ) : _noList(),
-                                            ] + ((_autoCorrectList != null) && (_autoCorrectList!.isNotEmpty) 
-                                                ? [
-                                                    SmoothScroll(
+                                                ((_allAnime.content != null) && (_allAnime.content!.isNotEmpty))
+                                                    ? SmoothScroll(
+                                                        child: ListView.separated(
+                                                            controller: _scrollController,
+                                                            physics: const SmoothScrollPhysics(),
+                                                            itemCount: _allAnime.content!.length,
+                                                            itemBuilder: (context, index) => SearchItem(anime: _allAnime.content![index]),
+                                                            separatorBuilder: (context, index) => Divider(),
+                                                        )
+                                                    ) : _noList(),
+                                                ((_autoCorrectList != null) && (_autoCorrectList!.isNotEmpty))
+                                                    ? SmoothScroll(
                                                         child: ListView.separated(
                                                             controller: _autoScrollController,
                                                             physics: const SmoothScrollPhysics(),
@@ -151,9 +163,8 @@ class _SearchPageState extends State<SearchPage> {
                                                             itemBuilder: (context, index) => AutoCorrectItem(autoCorrect: _autoCorrectList![index]),
                                                             separatorBuilder: (context, index) => Divider(),
                                                         )
-                                                    ),
-                                                ] : []
-                                            ),
+                                                    ) : _noList(),
+                                            ],
                                         ),
                                     ),
                                 ],
@@ -171,7 +182,7 @@ class _SearchPageState extends State<SearchPage> {
             child: Padding(
                 padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_010, horizontal: Sizes.SIZE_020),
                 child: Text(
-                    "검색어를 입력해주세요.",
+                    "검색 결과가 없습니다.",
                     style: TextStyle(
                         fontSize: Sizes.SIZE_012,
                         fontWeight: FontWeight.w300,

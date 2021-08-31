@@ -33,6 +33,7 @@ class _FavoritePageState extends State<FavoritePage> {
     List<Anime>? _favList; 
 
     int _sortMode = 0;
+    int _favNum = 0;
 
     @override
     void initState() {
@@ -45,6 +46,7 @@ class _FavoritePageState extends State<FavoritePage> {
         dataProvider.getFavList!.addObserver(Observer((data) {
             setState(() {
                 _favList = data;
+                _favNum = data.length;
             });
         }));
         
@@ -91,7 +93,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                 child: Padding(
                                                     padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_006),
                                                     child: Text(
-                                                        "즐겨찾기 — ${_SORT_MODE_LIST.keys.toList()[_sortMode]}",
+                                                        "즐겨찾기(${_favNum}) — ${_SORT_MODE_LIST.keys.toList()[_sortMode]}",
                                                         style: TextStyle(
                                                             fontSize: Sizes.SIZE_016,
                                                             fontWeight: FontWeight.w500,
