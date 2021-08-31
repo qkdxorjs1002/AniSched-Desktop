@@ -9,6 +9,7 @@ import 'package:anisched/ui/widget/ranking/provider.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/smoothscroll.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Ranking extends StatefulWidget {
@@ -93,12 +94,19 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                 },
                 enableRight: (_page! < _rankList!.length - 1),
                 child: ScrollEvent(
-                    onHorizontalScroll: (delta) {
+                    onVerticalScroll: (event) {
+                        Offset delta = event.scrollDelta;
+                        if (delta.dx.abs() > delta.dy.abs()) {
+                            GestureBinding.instance!.pointerSignalResolver.register(event, (event) => null);
+                        }
+                    },
+                    onHorizontalScroll: (event) {
                         if (isOnScroll) {
                             return ;
                         }
                         isOnScroll = true;
 
+                        Offset delta = event.scrollDelta;
                         if (delta.dx > 0) {
                             _pageController.nextPage(
                                 duration: const Duration(
@@ -119,7 +127,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                             });
                         }
                     },
-                    critical: 30.0,
+                    horizontalCritical: 30.0,
                     child: PageView.builder(
                         allowImplicitScrolling: true,
                         physics: const NeverScrollableScrollPhysics(),
