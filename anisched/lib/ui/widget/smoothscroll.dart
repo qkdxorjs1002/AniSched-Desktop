@@ -4,19 +4,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 
+typedef ScrollEventFunction(PointerScrollEvent event);
+
 class ScrollEvent extends Listener {
     
-    ScrollEvent({ Function? onVerticalScroll, Function? onHorizontalScroll, double critical = 0.0, required Widget child }) : super(
+    ScrollEvent({ ScrollEventFunction? onVerticalScroll, ScrollEventFunction? onHorizontalScroll, double verticalCritical = 0.0, double horizontalCritical = 0.0, required Widget child }) : super(
         onPointerSignal: (event) {
             if (event is PointerScrollEvent) {
                 Offset _delta = event.scrollDelta;
+                debugPrint("ScrollEvent: x${_delta.dx} / y${_delta.dy}");
                 
-                if (_delta.dy.abs() > critical && onVerticalScroll != null) {
-                    onVerticalScroll(_delta);
+                if (_delta.dy.abs() > verticalCritical && onVerticalScroll != null) {
+                    onVerticalScroll(event);
                 }
 
-                if (_delta.dx.abs() > critical && onHorizontalScroll != null) {
-                    onHorizontalScroll(_delta);
+                if (_delta.dx.abs() > horizontalCritical && onHorizontalScroll != null) {
+                    onHorizontalScroll(event);
                 }
             }
         },
@@ -75,7 +78,8 @@ class _SmoothScrollState extends State<SmoothScroll> {
         });
 
         return ScrollEvent(
-            onVerticalScroll: (delta) {
+            onVerticalScroll: (event) {
+                Offset delta = event.scrollDelta;
                 double distance = delta.dy;
                 if (widget.scrollAxis == null) {
                     distance = (widget.child.scrollDirection == Axis.vertical) ? delta.dy : delta.dx;
@@ -84,7 +88,8 @@ class _SmoothScrollState extends State<SmoothScroll> {
                 }
                 _smoothScrolling(controller, distance);
             },
-            onHorizontalScroll: (delta) {
+            onHorizontalScroll: (event) {
+                Offset delta = event.scrollDelta;
                 double distance = delta.dx;
                 if (widget.scrollAxis == null) {
                     distance = (widget.child.scrollDirection == Axis.vertical) ? delta.dx : delta.dy;
