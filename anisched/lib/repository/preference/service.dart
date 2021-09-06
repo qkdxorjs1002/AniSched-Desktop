@@ -5,6 +5,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceService {
 
+    /** 
+     * Perference Keys
+     * - "PREFERENCE_FAVORITES" List<Anime> : favorite list
+     * - "PREFERENCE_FAVORITES_SORT_MODE" int : favorite list sorting method
+     * - "PREFERENCE_WINDOW_SIZE_*" double : app window size
+    */
+    static const String PREFERENCE_FAVORITES = "favorites";
+    static const String PREFERENCE_FAVORITES_SORT_MODE = "favorites_sort_mode";
+    static const String PREFERENCE_WINDOW_SIZE_WIDTH = "favorites_window_size_width";
+    static const String PREFERENCE_WINDOW_SIZE_HEIGHT = "favorites_window_size_height";
+
     late final SharedPreferences _instance;
 
     PreferenceService() {
@@ -19,7 +30,7 @@ class PreferenceService {
 
     Future<List<Anime>> getFavoriteList() {
         return Future<List<Anime>>(() {
-            String? string = _instance.getString("favorites");
+            String? string = _instance.getString(PREFERENCE_FAVORITES);
             if (string == null) {
                 return [];
             }
@@ -30,11 +41,11 @@ class PreferenceService {
     }
 
     Future<bool> setFavoriteList(List<Anime> list) {
-        return _instance.setString("favorites", jsonEncode(list));
+        return _instance.setString(PREFERENCE_FAVORITES, jsonEncode(list));
     }
 
     Future<bool> removeFavoriteList() {
-        return _instance.remove("favorites");
+        return _instance.remove(PREFERENCE_FAVORITES);
     }
 
     Future<bool> addFavorite(Anime anime) {
@@ -71,7 +82,7 @@ class PreferenceService {
 
     Future<int> getFavoriteSortMode() {
         return Future<int>(() {
-            int? mode = _instance.getInt("favorites_sort_mode");
+            int? mode = _instance.getInt(PREFERENCE_FAVORITES_SORT_MODE);
             if (mode == null) {
                 return 0;
             }
@@ -81,10 +92,10 @@ class PreferenceService {
     }
 
     Future<bool> setFavoriteSortMode(int mode) {
-        return _instance.setInt("favorites_sort_mode", mode);
+        return _instance.setInt(PREFERENCE_FAVORITES_SORT_MODE, mode);
     }
 
     Future<bool> removeFavoriteSortMode() {
-        return _instance.remove("favorites_sort_mode");
+        return _instance.remove(PREFERENCE_FAVORITES_SORT_MODE);
     }
 }
