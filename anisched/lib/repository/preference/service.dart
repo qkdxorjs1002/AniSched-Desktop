@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,4 +99,24 @@ class PreferenceService {
     Future<bool> removeFavoriteSortMode() {
         return _instance.remove(PREFERENCE_FAVORITES_SORT_MODE);
     }
+
+    Future<Size> getWindowSize() {
+        return Future<Size>(() {
+            double? width = _instance.getDouble(PREFERENCE_WINDOW_SIZE_WIDTH);
+            double? height = _instance.getDouble(PREFERENCE_WINDOW_SIZE_HEIGHT);
+            if (width == null || height == null) {
+                return Size(0, 0);
+            }
+
+            return Size(width, height);
+        });
+    }
+
+    Future<bool> setWindowSize(Size size) {
+        return Future<bool>(() async {
+            return await _instance.setDouble(PREFERENCE_WINDOW_SIZE_WIDTH, size.width) ||
+                await _instance.setDouble(PREFERENCE_WINDOW_SIZE_HEIGHT, size.height);
+        });
+    }
+    
 }
