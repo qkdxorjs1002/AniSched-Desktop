@@ -18,6 +18,7 @@ dependencies:
     flutter_cache_manager: ^3.1.2
     package_info_plus: ^1.0.4
     shared_preferences: ^2.0.6
+    desktop_window: ^0.4.0
 
 dev_dependencies:
     flutter_test:
