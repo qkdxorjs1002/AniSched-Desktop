@@ -1,8 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'ui/page/home/home.dart';
 
 void main() {
+    HttpOverrides.global = CustomHttpOverrides();
     runApp(App());
+}
+
+class CustomHttpOverrides extends HttpOverrides{
+
+    @override
+    HttpClient createHttpClient(SecurityContext? context){
+        return super.createHttpClient(context)
+            ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+    }
 }
 
 class App extends StatelessWidget {
@@ -16,27 +28,11 @@ class App extends StatelessWidget {
                     fontFamily: "Noto Sans CJK KR",
                     bodyColor: Colors.black,
                 ),
-                accentTextTheme: ThemeData.light().textTheme.apply(
-                    fontFamily: "Noto Sans CJK KR",
-                    bodyColor: Colors.black,
-                ),
-                primaryTextTheme: ThemeData.light().textTheme.apply(
-                    fontFamily: "Noto Sans CJK KR",
-                    bodyColor: Colors.black,
-                ),
             ),
             darkTheme: ThemeData.dark().copyWith(
                 primaryColor: Colors.white,
                 backgroundColor: Colors.black,
                 textTheme: ThemeData.dark().textTheme.apply(
-                    fontFamily: "Noto Sans CJK KR",
-                    bodyColor: Colors.white,
-                ),
-                accentTextTheme: ThemeData.dark().textTheme.apply(
-                    fontFamily: "Noto Sans CJK KR",
-                    bodyColor: Colors.white,
-                ),
-                primaryTextTheme: ThemeData.dark().textTheme.apply(
                     fontFamily: "Noto Sans CJK KR",
                     bodyColor: Colors.white,
                 ),

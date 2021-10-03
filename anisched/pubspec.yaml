@@ -1,4 +1,4 @@
-﻿name: anisched
+name: anisched
 description: AniSched
 publish_to: 'none'
 version: 2.2.2+151
@@ -10,7 +10,7 @@ dependencies:
     flutter:
         sdk: flutter
     retrofit: ^2.0.1
-    json_serializable: ^4.1.4
+    json_serializable: ^5.0.0
     url_launcher: ^6.0.9
     palette_generator: ^0.3.0
     cupertino_icons: ^1.0.3
