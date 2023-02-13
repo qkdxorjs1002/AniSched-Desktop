@@ -8,7 +8,7 @@ part of 'service.dart';
 
 class _AnissiaService implements AnissiaService {
   _AnissiaService(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://anissia.net/api/anime/';
+    baseUrl ??= 'https://api.anissia.net/anime/';
   }
 
   final Dio _dio;

@@ -5,7 +5,7 @@ import 'model.dart';
 
 part 'service.g.dart';
 
-@RestApi(baseUrl: "https://anissia.net/api/anime/")
+@RestApi(baseUrl: "https://api.anissia.net/anime/")
 abstract class AnissiaService {
 
     factory AnissiaService({ String? baseUrl }) {
