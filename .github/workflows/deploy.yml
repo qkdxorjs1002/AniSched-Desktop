@@ -54,7 +54,7 @@ jobs:
       - name: Create DMG
         run: |
           npm install -g create-dmg
-          create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app
+          create-dmg --identity="${{ secrets.BUILD_CERTIFICATE_IDENTITY }}" ./anisched/build/macos/Build/Products/Release/AniSched.app || true
           mv ./AniSched\ ${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg ./AniSched.${{ steps.set-up-env-var.outputs.REPO_TAG }}.dmg
 
       - name: Digest Package
