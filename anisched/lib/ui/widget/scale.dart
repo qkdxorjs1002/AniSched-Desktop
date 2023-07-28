@@ -47,7 +47,7 @@ class Scale {
 
     double restricted({ required double size, required double maxSize }) {
         double restricted = (size >= maxSize) ? maxSize : size;
-        debugPrint("Scale: Restricted Size(Size: ${size} Max: ${maxSize})");
+        debugPrint("Scale: Restricted Size(Size: $size Max: $maxSize)");
         return restricted;
     }
 

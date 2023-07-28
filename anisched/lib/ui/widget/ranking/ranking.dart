@@ -97,7 +97,7 @@ class _RankingState extends State<Ranking> with AutomaticKeepAliveClientMixin {
                     onVerticalScroll: (event) {
                         Offset delta = event.scrollDelta;
                         if (delta.dx.abs() > delta.dy.abs()) {
-                            GestureBinding.instance!.pointerSignalResolver.register(event, (event) => null);
+                            GestureBinding.instance.pointerSignalResolver.register(event, (event) => null);
                         }
                     },
                     onHorizontalScroll: (event) {

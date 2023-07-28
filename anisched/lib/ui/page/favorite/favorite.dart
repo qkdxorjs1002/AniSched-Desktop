@@ -6,7 +6,6 @@ import 'package:anisched/ui/page/favorite/provider.dart';
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/timetable/timetable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
 
-    final Map<String, String> _SORT_MODE_LIST = {
+    final Map<String, String> _sortModeList = {
         "추가 순": "  +  ",
         "가나다 순": "  A  ",
         "방영일자 순": "  D  ",
@@ -93,7 +92,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                 child: Padding(
                                                     padding: EdgeInsets.symmetric(horizontal: Sizes.SIZE_006),
                                                     child: Text(
-                                                        "즐겨찾기(${_favNum}) — ${_SORT_MODE_LIST.keys.toList()[_sortMode]}",
+                                                        "즐겨찾기($_favNum) — ${_sortModeList.keys.toList()[_sortMode]}",
                                                         style: TextStyle(
                                                             fontSize: Sizes.SIZE_016,
                                                             fontWeight: FontWeight.w500,
@@ -119,7 +118,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                                     dataProvider.requestRemoveFavoriteList();
                                                                     ScaffoldMessenger.of(context).showSnackBar(
                                                                         SnackBar(
-                                                                            backgroundColor: Theme.of(context).backgroundColor,
+                                                                            backgroundColor: Theme.of(context).colorScheme.background,
                                                                             content: Text(
                                                                                 "즐겨찾기 목록을 제거했습니다.",
                                                                                 style: TextStyle(
@@ -140,7 +139,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                     color: Colors.transparent,
                                                     child: InkWell(
                                                         onTap: () {
-                                                            dataProvider.requestSetFavoriteSortMode((_sortMode + 1) % _SORT_MODE_LIST.values.length);
+                                                            dataProvider.requestSetFavoriteSortMode((_sortMode + 1) % _sortModeList.values.length);
                                                         },
                                                         child: Stack(
                                                             alignment: Alignment.bottomRight,
@@ -152,9 +151,9 @@ class _FavoritePageState extends State<FavoritePage> {
                                                                 Padding(
                                                                     padding: EdgeInsets.only(bottom: Sizes.SIZE_004),
                                                                     child: Text(
-                                                                        _SORT_MODE_LIST.values.toList()[_sortMode],
+                                                                        _sortModeList.values.toList()[_sortMode],
                                                                         style: TextStyle(
-                                                                            color: Theme.of(context).backgroundColor,
+                                                                            color: Theme.of(context).colorScheme.background,
                                                                             backgroundColor: Theme.of(context).primaryColor,
                                                                             fontSize: Sizes.SIZE_008,
                                                                             fontWeight: FontWeight.w500,

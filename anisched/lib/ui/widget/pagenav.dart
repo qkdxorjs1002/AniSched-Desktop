@@ -46,7 +46,7 @@ class PageNavigator extends StatelessWidget {
             color: Colors.transparent,
             child: !enabled ? null : InkWell(
                 onTap: onTap as void Function()?,
-                hoverColor: Theme.of(context).backgroundColor.withOpacity(0.35),
+                hoverColor: Theme.of(context).colorScheme.background.withOpacity(0.35),
                 child: Container(
                     width: Sizes.SIZE_060,
                     height: double.infinity,
@@ -58,7 +58,7 @@ class PageNavigator extends StatelessWidget {
                             fontSize: Sizes.SIZE_020,
                             shadows: [
                                 Shadow(
-                                    color: Theme.of(context).backgroundColor.withOpacity(0.25),
+                                    color: Theme.of(context).colorScheme.background.withOpacity(0.25),
                                     blurRadius: 10.0,
                                     offset: Offset.fromDirection(0, 0),
                                 ),

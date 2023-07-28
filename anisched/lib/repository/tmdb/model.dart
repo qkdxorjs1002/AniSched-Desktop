@@ -134,7 +134,7 @@ class Result implements TMDBInterface {
         if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
-        return "https://image.tmdb.org/t/p/${width}${backdropPath}";
+        return "https://image.tmdb.org/t/p/$width$backdropPath";
     }
     
     @override
@@ -142,7 +142,7 @@ class Result implements TMDBInterface {
         if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${posterPath}";
+        return "https://image.tmdb.org/t/p/$width$posterPath";
     }
 
     @override
@@ -172,7 +172,7 @@ class Result implements TMDBInterface {
     double get getVoteDouble => (voteAverage! / 10);
 
     @override
-    String get getVoteCountString => "${voteCount}명의 시청자 평가";
+    String get getVoteCountString => "$voteCount명의 시청자 평가";
 
     @override
     String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
@@ -312,7 +312,7 @@ class TV implements TMDBMediaInterface {
         if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
-        return "https://image.tmdb.org/t/p/${width}${backdropPath}";
+        return "https://image.tmdb.org/t/p/$width$backdropPath";
     }
     
     @override
@@ -320,7 +320,7 @@ class TV implements TMDBMediaInterface {
         if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${posterPath}";
+        return "https://image.tmdb.org/t/p/$width$posterPath";
     }
 
     @override
@@ -330,7 +330,7 @@ class TV implements TMDBMediaInterface {
     double get getVoteDouble => (voteAverage! / 10);
 
     @override
-    String get getVoteCountString => "${voteCount}명의 시청자 평가";
+    String get getVoteCountString => "$voteCount명의 시청자 평가";
 
     @override
     String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
@@ -444,7 +444,7 @@ class Movie implements TMDBMediaInterface {
         if (backdropPath == null || backdropPath!.isEmpty) {
             return this.getPosterPath(width);
         }
-        return "https://image.tmdb.org/t/p/${width}${backdropPath}";
+        return "https://image.tmdb.org/t/p/$width$backdropPath";
     }
     
     @override
@@ -452,7 +452,7 @@ class Movie implements TMDBMediaInterface {
         if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${posterPath}";
+        return "https://image.tmdb.org/t/p/$width$posterPath";
     }
 
     @override
@@ -462,7 +462,7 @@ class Movie implements TMDBMediaInterface {
     double get getVoteDouble => (voteAverage! / 10);
 
     @override
-    String get getVoteCountString => "${voteCount}명의 시청자 평가";
+    String get getVoteCountString => "$voteCount명의 시청자 평가";
 
     @override
     String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
@@ -522,7 +522,7 @@ class Episode {
         if (stillPath == null || stillPath!.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${stillPath}";
+        return "https://image.tmdb.org/t/p/$width$stillPath";
     }
     
     String? get getOverview => (overview != null && overview!.isNotEmpty) ? overview : "줄거리 내용 없음";
@@ -531,7 +531,7 @@ class Episode {
     
     double get getVoteDouble => (voteAverage! / 10);
 
-    String get getVoteCountString => "${voteCount}명의 시청자 평가";
+    String get getVoteCountString => "$voteCount명의 시청자 평가";
 }
 
 class Season {
@@ -571,7 +571,7 @@ class Season {
         if (posterPath == null || posterPath!.isEmpty) {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${posterPath}";
+        return "https://image.tmdb.org/t/p/$width$posterPath";
     }
 
 }
@@ -617,7 +617,7 @@ class Production {
         if (logoPath == null || logoPath == "") {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${logoPath}";
+        return "https://image.tmdb.org/t/p/$width$logoPath";
     }
 
 }
@@ -647,7 +647,7 @@ class Network {
         if (logoPath == null || logoPath == "") {
             return "";
         }
-        return "https://image.tmdb.org/t/p/${width}${logoPath}";
+        return "https://image.tmdb.org/t/p/$width$logoPath";
     }
 
 }

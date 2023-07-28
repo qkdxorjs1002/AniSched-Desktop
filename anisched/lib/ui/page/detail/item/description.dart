@@ -64,7 +64,7 @@ class Description extends StatelessWidget {
                                                         label: Text(
                                                             e,
                                                             style: TextStyle(
-                                                                color: Theme.of(context).backgroundColor,
+                                                                color: Theme.of(context).colorScheme.background,
                                                                 fontSize: Sizes.SIZE_012,
                                                                 fontWeight: FontWeight.w500,
                                                             ),
@@ -80,7 +80,7 @@ class Description extends StatelessWidget {
                         Container(
                             alignment: Alignment.center,
                             child: Container(
-                                color: Theme.of(context).backgroundColor.withOpacity(0.26),
+                                color: Theme.of(context).colorScheme.background.withOpacity(0.26),
                                 width: Sizes.SIZE_240 * 0.7,
                                 height: Sizes.SIZE_240,
                                 child: Stack(
@@ -96,7 +96,7 @@ class Description extends StatelessWidget {
                                                 child: ClipRRect(
                                                     borderRadius: BorderRadius.all(Radius.circular(Sizes.SIZE_030)),
                                                     child: Material(
-                                                        color: Theme.of(context).backgroundColor,
+                                                        color: Theme.of(context).colorScheme.background,
                                                         child: InkWell(
                                                             onTap: () {
                                                                 if (onFavClick != null) {

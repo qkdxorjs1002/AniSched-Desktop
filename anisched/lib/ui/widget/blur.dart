@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BackBlur extends StatelessWidget {
@@ -22,7 +21,7 @@ class BackBlur extends StatelessWidget {
                     sigmaY: sigma,
                 ),
                 child: Container(
-                    color: Theme.of(context).backgroundColor.withOpacity(0.4),
+                    color: Theme.of(context).colorScheme.background.withOpacity(0.4),
                     height: height,
                     width: width,
                     alignment: childAlignment,

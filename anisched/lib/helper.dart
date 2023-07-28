@@ -1,12 +1,13 @@
 import 'package:anisched/ui/widget/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
+
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Helper {
     static void openURL(String url) async {
         String encodedUrl = Uri.encodeFull(url);
-        await canLaunch(encodedUrl) ? await launch(encodedUrl) : throw 'Could not launch $encodedUrl';
+        await canLaunchUrlString(encodedUrl) ? await launchUrlString(encodedUrl) : throw 'Could not launch $encodedUrl';
     }
 
     static void navigateRoute(BuildContext context, Widget child) {
@@ -26,7 +27,7 @@ class Helper {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 duration: duration,
-                backgroundColor: Theme.of(context).backgroundColor,
+                backgroundColor: Theme.of(context).colorScheme.background,
                 content: Text(
                     text,
                     style: TextStyle(

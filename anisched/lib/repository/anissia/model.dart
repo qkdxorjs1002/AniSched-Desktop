@@ -51,7 +51,7 @@ class Anime {
         
         try {
             week = int.tryParse(json['week']);
-        } catch (Exception) { }
+        } catch (exception) { }
 
         return Anime(
             id: json['animeNo'],

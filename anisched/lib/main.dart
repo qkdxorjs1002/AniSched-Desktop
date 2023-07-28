@@ -23,19 +23,17 @@ class App extends StatelessWidget {
         return MaterialApp(
             theme: ThemeData.light().copyWith(
             primaryColor: Colors.black,
-            backgroundColor: Colors.white,
                 textTheme: ThemeData.light().textTheme.apply(
                     fontFamily: "Noto Sans CJK KR",
                     bodyColor: Colors.black,
-                ),
+                ), colorScheme: ColorScheme.light(background: Colors.white),
             ),
             darkTheme: ThemeData.dark().copyWith(
                 primaryColor: Colors.white,
-                backgroundColor: Colors.black,
                 textTheme: ThemeData.dark().textTheme.apply(
                     fontFamily: "Noto Sans CJK KR",
                     bodyColor: Colors.white,
-                ),
+                ), colorScheme: ColorScheme.dark(background: Colors.black),
             ),
             home: HomePage(week: DateTime.now().weekday % 7),
         );

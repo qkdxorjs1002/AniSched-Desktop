@@ -12,7 +12,6 @@ import 'package:anisched/ui/widget/loading.dart';
 import 'package:anisched/ui/widget/season/season.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:anisched/ui/widget/smoothscroll.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
@@ -80,7 +79,7 @@ class _DetailPageState extends State<DetailPage> {
                         physics: const SmoothScrollPhysics(),
                         children: [
                             Container(
-                                color: Theme.of(context).backgroundColor.withOpacity(0.54),
+                                color: Theme.of(context).colorScheme.background.withOpacity(0.54),
                                 height: Sizes.SIZE_400,
                                 child: Stack(
                                     children: [
@@ -96,7 +95,7 @@ class _DetailPageState extends State<DetailPage> {
                                         Visibility(
                                             visible: _isBackdropHover,
                                             child: Container(
-                                                color: Theme.of(context).backgroundColor.withOpacity(0.35),
+                                                color: Theme.of(context).colorScheme.background.withOpacity(0.35),
                                                 child: Center(
                                                     child: Text(
                                                         "⮐",

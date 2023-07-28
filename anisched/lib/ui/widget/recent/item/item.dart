@@ -1,7 +1,6 @@
 import 'package:anisched/repository/anissia/model.dart';
 import 'package:anisched/ui/widget/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RecentItem extends StatelessWidget {
 

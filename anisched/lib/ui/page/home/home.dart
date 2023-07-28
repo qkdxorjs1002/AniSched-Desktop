@@ -16,7 +16,6 @@ import 'package:anisched/ui/widget/smoothscroll.dart';
 import 'package:anisched/ui/widget/timetable/timetable.dart';
 import 'package:anisched/ui/widget/tools/item/item.dart';
 import 'package:anisched/ui/widget/tools/tools.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -77,7 +76,7 @@ class _HomePageState extends State<HomePage> {
         Sizes.calculate(context);
         
         return Scaffold(
-            backgroundColor: Theme.of(context).backgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SmoothScroll(
                 child: ListView(
                     controller: _scrollController,
@@ -120,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                                                 DefaultCacheManager().emptyCache();
                                                 ScaffoldMessenger.of(context).showSnackBar(
                                                     SnackBar(
-                                                        backgroundColor: Theme.of(context).backgroundColor,
+                                                        backgroundColor: Theme.of(context).colorScheme.background,
                                                         content: Text(
                                                             "캐시를 제거했습니다.",
                                                             style: TextStyle(
@@ -147,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                                 _dataProvider.requestClearPreference();
                                                 ScaffoldMessenger.of(context).showSnackBar(
                                                     SnackBar(
-                                                        backgroundColor: Theme.of(context).backgroundColor,
+                                                        backgroundColor: Theme.of(context).colorScheme.background,
                                                         content: Text(
                                                             "설정을 초기화했습니다.",
                                                             style: TextStyle(
@@ -188,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: Sizes.SIZE_030),
                                 child: Text(
-                                    "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'\n${_version}",
+                                    "©paragonnov (github.com/qkdxorjs1002) - DB from 'Anissia' and 'TMDB'\n$_version",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor.withOpacity(0.35),

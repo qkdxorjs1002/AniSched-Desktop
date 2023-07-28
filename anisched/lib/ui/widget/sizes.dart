@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:anisched/ui/widget/scale.dart';
 import 'package:flutter/material.dart';
 
