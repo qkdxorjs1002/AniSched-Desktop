@@ -10,6 +10,14 @@ abstract class AnissiaService {
 
     factory AnissiaService({ String? baseUrl }) {
         final dio = Dio();
+        dio.interceptors.add(InterceptorsWrapper(
+            onResponse: (e, handler) {
+                if (e.data is Map && e.data['data'] != null) {
+                  e.data = e.data['data'];
+                }
+                handler.next(e);
+            },
+        ));
         
         return _AnissiaService(dio);
     }
